@@ -17,7 +17,7 @@
 
     <!-- Nav -->
     <nav id="nav">
-        <a href="index.html" id="centerlogo"><img src="images/logo.png"></a>
+        <a href="index.jsp" id="centerlogo"><img src="images/logo.png"></a>
         <ul>
             <li>
                 <a href="no-sidebar.html">우쿠렐레예술협회</a>

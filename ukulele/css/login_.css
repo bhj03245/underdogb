@@ -129,4 +129,10 @@ img.btn_close {
             border-radius: 0px;
         }
      
+        
+        img.btn_close {
+	float: right; 
+	margin: -28px -28px 0 0;
+}
+
 

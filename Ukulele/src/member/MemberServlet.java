@@ -2,8 +2,11 @@ package member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +22,8 @@ public class MemberServlet extends HttpServlet {
 	private MemberDTO memberDTO;
 	private MemberDAO memberDAO;
 	private int cnt;
+	private ArrayList<MemberDTO> memberList;
+	private ResultSet rs;
 
 
 
@@ -107,7 +112,76 @@ public class MemberServlet extends HttpServlet {
 			}
 			
 		}
+		//회원목록
+		else if(command.equals("/memberList.mb")) {
+			try {
+				memberList = memberDAO.memberList();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			RequestDispatcher dis = request.getRequestDispatcher("index.jsp?page=member/member/memberList");
+			request.setAttribute("memberList", memberList);
+			dis.forward(request, response);
+		}
+		//회원탈퇴
+		else if(command.equals("/memberDelete.mb")) {
+			String pw = request.getParameter("pw");
+			if(pw.equals(session.getAttribute("pw"))){
+				String deleteId = (String)session.getAttribute("id");
+				String deletePw = (String)session.getAttribute("pw");
+				try {
+					cnt = memberDAO.memberDelete(deleteId, deletePw);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				out.print("<script>alert('회원이 탈퇴되었습니다.<br>그동안 이용해주셔서 감사합니다.); location.href= memberLogout.mb'</script>");
+				
+			}else {
+				out.print("<script>alert('패스워드가 틀렸습니다.');historty.back();</script>");
+				
+				
+			}
+			
+		}
+		//회원수정
+		else if(command.equals("/memberUpdate.mb")) {
+			memberDTO.setId(request.getParameter("id"));
+			memberDTO.setPw(request.getParameter("pw"));
+			memberDTO.setEmail(request.getParameter("email"));
+			String memberUpdate = request.getParameter("memberUpdate");
+			try {
+				cnt = memberDAO.memberUpdate(memberDTO, memberUpdate);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			response.sendRedirect("index.jsp?page=center");
+			
+		}
+		//아이디 중복체크
+		else if(command.equals("/nodoubleid")) {
+			String doubleid = request.getParameter("id");
+			try {
+				rs = memberDAO.doubleIDcheck(doubleid);
+				while(rs.next()) {
+					if(doubleid.equals(memberDTO.getId())) {
+						out.print("이미 사용 중인 아이디 입니다.<br>");
+						out.print("<input type = 'button' value = '종료' onclick = 'self.close()'>");
+					}else {
+						out.print("사용 가능한 아이디 입니다.");
+						out.print("<input type = 'button' value = '종료' onclick = 'self.close()'>");
+					}
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		
+	
 
 	}
 

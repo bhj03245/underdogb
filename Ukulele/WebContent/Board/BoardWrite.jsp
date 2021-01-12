@@ -46,7 +46,7 @@
 		 		<td colspan="2"  class="text-center">
 		 			<input type="submit" value="글쓰기" class="btn btn-success">
 		 			<input type="reset" value="다시작성" class="btn btn-warning">
-		 			<button type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'">전체 게시글보기</button>
+		 			<button type="button"  class="btn btn-primary" onclick="location.href='index.jsp?page=Board/BoardList'">전체 게시글보기</button>
 		 		</td>
 		 	</tr>
 		 	

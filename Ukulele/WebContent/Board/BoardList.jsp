@@ -8,6 +8,7 @@
 <html>
 <head>
 <jsp:include page="Header.jsp" />
+<jsp:include page="../top.jsp" />
 </head>
 <body>
 	<%
@@ -30,7 +31,7 @@
 			<h2 class="text-center">자유게시판</h2>
 			<p class="text-right">
 				<input type="button" value="글쓰기"
-					onclick="location.href='BoardWrite.jsp'" class="btn btn-warning">
+					onclick="location.href='index.jsp?page=Board/BoardWrite'" class="btn btn-warning">
 			</p>
 			<div class="table-responsive">
 				<table class="table table-bordered table-striped">
@@ -49,7 +50,7 @@
 					<tr>
 						<td><%=paging.getNumber() - i%></td>
 
-						<td><a href="BoardInfo.jsp?num=<%=bean.getNum()%>"> <%
+						<td><a href="index.jsp?page=Board/BoardInfo&&num=<%=bean.getNum()%>"> <%
  	if (bean.getRe_step() > 1) {
  			for (int j = 0; j < (bean.getRe_step() * 5); j++) {
  %> &nbsp; <%
@@ -73,7 +74,7 @@
 									<%
 										if (paging.getStartPage() > 10) {
 									%>
-									<li><a href="BoardList.jsp?pageNum=<%=paging.getPrev()%>"
+									<li><a href="index.jsp?page=Board/BoardList.jsp&&pageNum=<%=paging.getPrev()%>"
 										aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 									<%
 										}
@@ -82,7 +83,7 @@
 									<li
 										<%if (i == Integer.parseInt(pageNum))
 					out.print("class='active'");%>><a
-										href="BoardList.jsp?pageNum=<%=i%>"><%=i%><span
+										href="index.jsp?page=Board/BoardList&&pageNum=<%=i%>"><%=i%><span
 											class="sr-only">(current)</span></a></li>
 
 									<%
@@ -90,7 +91,7 @@
 										if (paging.getEndPage() < paging.getPageCount()) {
 									%>
 
-									<li><a href="BoardList.jsp?pageNum=<%=paging.getNext()%>"
+									<li><a href="index.jsp?page=Board/BoardList&&pageNum=<%=paging.getNext()%>"
 										aria-label="next"><span aria-hidden="true">&raquo;</span></a></li>
 									<%
 										}

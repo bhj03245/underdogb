@@ -40,9 +40,8 @@
             <li>
                 <a href="no-sidebar.html">주요사업</a>
                 <ul>
-                    <li><a href="#">콩쿨(연주회)일정</a></li>
                     <li><a href="#">자격증</a></li>
-                    <li><a href="#">교육센터 위치</a></li>
+                    <li><a href="index.jsp?page=Bussiness/wayToCome">교육센터 위치</a></li>
                 </ul>
 
             </li>

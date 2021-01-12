@@ -84,9 +84,11 @@ public class BoardDAO {
 		getconn();
 		try{
 			//쿼리 준비
-			String sql = "select * from board order by num asc;";
+			String sql = "SELECT * FROM board ORDER BY ref DESC, re_step ASC, num DESC LIMIT ?, ?";
 			//쿼리를 실행할객체 선언
 			pstmt =conn.prepareStatement(sql);
+			pstmt.setInt(1, start-1);
+			pstmt.setInt(2, end);
 			//쿼리실행 후 결과 저장
 			rs=pstmt.executeQuery();
 			//데이터 개수가 몇개인지 모르기에 반복문을 이용하여 데이터를 추출

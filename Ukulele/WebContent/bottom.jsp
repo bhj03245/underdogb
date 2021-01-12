@@ -70,7 +70,6 @@
     <script src="js/breakpoints.min.js"></script>
     <script src="js/util.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/flickity-docs.min.js"></script>
     <script src="js/login_.js"></script>
     <script type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>

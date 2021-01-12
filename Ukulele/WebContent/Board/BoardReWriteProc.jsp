@@ -12,7 +12,7 @@
 	BoardDAO bdao =new BoardDAO();
 	bdao.reWriteBoard(boardbean);
 	
-	response.sendRedirect("BoardList.jsp");
+	response.sendRedirect("../index.jsp?page=Board/BoardList");
 %>
 
 

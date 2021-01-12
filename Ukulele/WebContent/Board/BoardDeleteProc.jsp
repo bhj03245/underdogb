@@ -11,7 +11,7 @@
 	
 	if(pass.equals(password)){
 		bdao.deleteBoard(num);	
-		response.sendRedirect("BoardList.jsp");
+		response.sendRedirect("../index.jsp?page=Board/BoardList");
 	}
 	else{
 %>

@@ -12,7 +12,7 @@
 	String pass=bdao.getPass(boardbean.getNum());
 	if(pass.equals(boardbean.getPassword())){
 		bdao.updateBoard(boardbean);
-		response.sendRedirect("BoardList.jsp");
+		response.sendRedirect("../index.jsp?page=Board/BoardList");
 		
 	}
 	else{

@@ -1,9 +1,9 @@
-<%@page import="model.Paging"%>
+<%@page import="Board.Paging"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="model.BoardBean"%>
+<%@page import="Board.BoardBean"%>
 <%@ page import="java.util.Vector"%>
-<%@ page import="model.BoardDAO"%>
+<%@ page import="Board.BoardDAO"%>
 <!DOCTYPE html>
 <html>
 <head>

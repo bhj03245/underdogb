@@ -77,8 +77,8 @@
             <div class="login_main">
                 <p class="login_sign" align="center">로그인</p>
                 <form class="login_form1" action="memberLogin.mb" method="get">
-                     <input class="login_username" type="text" align="center" placeholder="Username">
-                    <input class="login_password" type="password" align="center" placeholder="Password">
+                     <input class="login_username" type="text" align="center" placeholder="Username" id="id">
+                    <input class="login_password" type="password" align="center" placeholder="Password" id="pw">
                     <a class="login_submit" align="center" href="#">로그인</a>
                     <a class="login-window login_submit" align="center" href="#new-box">회원가입</a>
                     <p class="login_forgot" align="center" id="search_id"><a href="#idsearch-box" class="login-window">아이디 찾기</a></p>
@@ -92,10 +92,10 @@
         <a href="#" class="close"><img src="images/close.png" class="btn_close" title="Close Window" alt="Close" /></a>
             <div class="login_main">
                 <p class="login_sign" align="center">회원가입</p><br>
-                <form class="login_form1" action="membernew.mb" method="get">
-                     <input class="login_username" type="text" align="center" placeholder="아이디를 입력해주세요.">
-                    <input class="login_password" type="password" align="center" placeholder="비밀번호를 입력해주세요.">
-                    <input class="login_email" type="email" align="center" placeholder="사용하실 이메일을 입력해주세요.">
+                <form class="login_form1" action="memberResigter.mb" method="get">
+                     <input class="login_username" type="text" align="center" placeholder="아이디를 입력해주세요." id="id">
+                    <input class="login_password" type="password" align="center" placeholder="비밀번호를 입력해주세요." id="pw">
+                    <input class="login_email" type="email" align="center" placeholder="사용하실 이메일을 입력해주세요." id="email">
                     <a class="login_submit" align="center" href="#">가입하기</a>
                     <p class="login_forgot" align="center" id="search_id"><a href="index.jsp">메인으로</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 
@@ -107,8 +107,8 @@
         <a href="#" class="close"><img src="images/close.png" class="btn_close" title="Close Window" alt="Close" /></a>
             <div class="login_main">
                 <p class="login_sign" align="center">아이디 찾기</p><br>
-                <form class="login_form1">
-                    <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요.">
+                <form class="login_form1" action="memberSearch.mb" method="get">
+                    <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요." id="email">
                     <a class="login_submit" align="center" href="#">아이디 찾기</a>
                     <p class="login-window login_forgot" align="center" id="search_id"><a href="#new-box">뒤로가기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="index.jsp">메인으로</a></p>
@@ -121,9 +121,9 @@
         <a href="#" class="close"><img src="images/close.png" class="btn_close" title="Close Window" alt="Close" /></a>
             <div class="login_main">
                 <p class="login_sign" align="center">비밀번호 찾기</p><br>
-                <form class="login_form1">
-                    <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요.">
-                    <a class="login_submit" align="center" href="#">아이디 찾기</a>
+                <form class="login_form1" action="pwSearch.mb" method="get">
+                    <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요." id="email">
+                    <a class="login_submit" align="center" href="#">비밀번호 찾기</a>
                     <p class="login-window login_forgot" align="center" id="search_id"><a href="#new-box">뒤로가기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="index.jsp">메인으로</a></p>
                            </form>

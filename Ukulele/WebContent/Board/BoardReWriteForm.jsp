@@ -21,7 +21,7 @@
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<h2 class="text-center">답변글 입력하기</h2><p></p>
-		<form action="BoardReWriteProc.jsp" method="post">
+		<form action="Board/BoardReWriteProc.jsp" method="post">
 			<div class="table table-responsive">
 					  <table class="table table-striped">
 		 	<tr>
@@ -56,7 +56,7 @@
 		 		
 		 			<input type="submit" value="답글쓰기완료" class="btn btn-success">
 		 			<input type="reset" value="취소" class="btn btn-warning">
-		 			<input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기">
+		 			<input type="button"  class="btn btn-primary" onclick="location.href='index.jsp?page=Board/BoardList.jsp'" value="전체글보기">
 		 		</td>
 		 	</tr>
 		 	

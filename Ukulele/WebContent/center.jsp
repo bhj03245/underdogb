@@ -20,7 +20,7 @@
 			<div class="hero-gallery js-flickity" data-js-module="hero-gallery">
 				<div class="hero-gallery__cell hero-gallery__cell--1">
 					<div class="hero-gallery__cell__content">
-						<h1>Flickity</h1>
+						<h1>Flikity</h1>
 						<p class="tagline">Touch, responsive, flickable&nbsp;galleries</p>
 					</div>
 				</div>

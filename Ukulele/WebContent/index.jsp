@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String pagefile=request.getParameter("page");
-	if(pagefile==null){
-	pagefile="center";
-}
+	String pagefile = request.getParameter("page");
+      if(pagefile == null){
+    	  pagefile = "center";
+      }
 %>   
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,7 @@
 </div>
 
 <div id="center">
-	<jsp:include page='<%=pagefile+".jsp" %>'></jsp:include>
+	<jsp:include page='<%=pagefile+".jsp" %>'/>
 </div>
 
 <div id="bottom">

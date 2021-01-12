@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
+
 <!-- style links -->
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/sildeshow.css">
-<link rel="stylesheet" href="css/login_.css">
-<link href="https://fonts.googleapis.com/css?family=Ubuntu"
-	rel="stylesheet">
+<link rel="stylesheet" href="css/main.css" type="text/css">
+<link rel="stylesheet" href="css/slideshow.css" type="text/css">
+<link rel="stylesheet" href="css/login_.css" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 <title>KHJSP</title>
 </head>
 <body class="homepage is-preload">

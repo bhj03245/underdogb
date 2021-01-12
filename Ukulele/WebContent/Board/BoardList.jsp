@@ -42,7 +42,7 @@
 						<th>작성일</th>
 						<th>조회수</th>
 					</tr>
-		
+					
 					<%
 						for (int i = 0; i < vec.size(); i++) {
 							BoardBean bean = vec.get(i); //벡터에 저장되어 있는 빈클래스를 하나씩 추출

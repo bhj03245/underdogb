@@ -1,5 +1,5 @@
-<%@page import="Board.BoardBean"%>
-<%@page import="Board.BoardDAO"%>
+<%@page import="model.BoardBean"%>
+<%@page import="model.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -44,17 +44,15 @@
 		 		<td class="danger">글내용</td>
 		 		<td colspan="3"><textarea  name="content" class="form-control"><%= bean.getContent() %></textarea></td>
 		 	</tr>
-		 	
+	
 		  	<tr>	
 		 		<td colspan="4"  class="text-center">
 		 			<input type="hidden" name="num"  value="<%= bean.getNum() %>">
 		 			<input type="submit" value="글수정" class="btn btn-warning">
-		 			<input type="button"  class="btn btn-primary" onclick="location.href='BoardList.jsp'" value="전체글보기">
+		 			<input type="button"  class="btn btn-primary" onclick="location.href='Board/BoardList.jsp'" value="전체글보기">
 		 		</td>
 		 	</tr>
 		  </table>
-		
-	
 			</div>
 		</form>	
 	</div>

@@ -84,6 +84,7 @@ public class MemberDAO implements Serializable {
 		 sql ="select pw from memberUK where email=?";
 		 pstmt = conn.prepareStatement(sql);
 		 pstmt.setString(1, pwSearch);
+		 rs = pstmt.executeQuery();
 		 String pw =null;
 		 while(rs.next()) {
 			 pw = rs.getString("pw");		 

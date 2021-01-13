@@ -65,10 +65,10 @@ public class MemberServlet extends HttpServlet {
 				out.print("<script>alert('비밀번호가 틀렸습니다');"
 						+"history.back();</script>");
 			}else {
-				out.print("환영합니다");
+				out.print("<script>alert('로그인되었습니다.'); location.href='index.jsp'</script>");
 				session.setAttribute("id", id);
 				session.setAttribute("pw", pw);
-				response.sendRedirect("index.jsp?page=center");
+				//response.sendRedirect("index.jsp?page=center");
 			}
 
 		}
@@ -83,17 +83,17 @@ public class MemberServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			out.print(cnt+"건 회원이 등록되었습니다.");
-			response.sendRedirect("index.jsp?page=center");
+			out.print("<script>alert('가입되었습니다.'); location.href='index.jsp'</script>");
 
 		}
 		//아이디찾기
 		else if(command.equals("/memberSearch.mb")) {
+			System.out.print("1");
 			String idSearch = request.getParameter("email");
 			try {
 				String id = memberDAO.memberSearch(idSearch);
 				out.print("찾는 아이디 : "+id);
-				response.sendRedirect("index.jsp?page=center");
+			//	response.sendRedirect("index.jsp?page=center");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -105,7 +105,7 @@ public class MemberServlet extends HttpServlet {
 			try {
 				String pw = memberDAO.pwSearch(pwSearch);
 				out.print("찾는 비밀번호는 :"+pw);
-				response.sendRedirect("index.jsp?page=center");
+			//	response.sendRedirect("index.jsp?page=center");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -127,16 +127,23 @@ public class MemberServlet extends HttpServlet {
 		//회원탈퇴
 		else if(command.equals("/memberDelete.mb")) {
 			String pw = request.getParameter("pw");
-			if(pw.equals(session.getAttribute("pw"))){
-				String deleteId = (String)session.getAttribute("id");
-				String deletePw = (String)session.getAttribute("pw");
+			if(pw.equals((String)session.getAttribute("pw"))){
+				
 				try {
-					cnt = memberDAO.memberDelete(deleteId, deletePw);
+					
+					String idDelete = (String)session.getAttribute("id");
+					String pwDelete = (String)session.getAttribute("pw");
+					
+					cnt = memberDAO.memberDelete(idDelete, pwDelete);
+					
+					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				out.print("<script>alert('회원이 탈퇴되었습니다.<br>그동안 이용해주셔서 감사합니다.); location.href= memberLogout.mb'</script>");
+				
+				out.print("<script>alert('탈퇴되었습니다.'); location.href='index.jsp'</script>");
+				session.invalidate();
 				
 			}else {
 				out.print("<script>alert('패스워드가 틀렸습니다.');historty.back();</script>");
@@ -179,6 +186,11 @@ public class MemberServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		}
+		//로그아웃
+		else if(command.equals("/memberLogout.mb")) {
+			session.invalidate();
+			response.sendRedirect("index.jsp?page=center");
 		}
 		
 	

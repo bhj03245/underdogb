@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.naming.Context;
@@ -23,6 +24,7 @@ public class BoardDAO {
 	public void getconn(){
 		try{
 			conn = DriverManager.getConnection("jdbc:mysql://underdogb.cafe24.com:3306/underdogb?characterEncoding=utf8", "underdogb", "khacademy1!");
+			//Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/underdogb?characterEncoding=utf8", "underdogb", "khacademy1!"); //cafe24 배포 이후 
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -353,6 +355,28 @@ public class BoardDAO {
 		return count;
 	}
 	
+	//검색
+	public Vector<BoardBean> searchBoard(String subjectSearch) throws SQLException{
+		Vector<BoardBean> v =new Vector<>();
+        getconn();
+        String sql = "select num,subject,writer,reg_date,readcount from notice where subject like ?";
+        pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, '%'+subjectSearch+'%');
+        rs = pstmt.executeQuery();
+        while(rs.next()){
+			//데이터를 패키징( 가방  = Boardbean 클래스를 이용)해줌
+			BoardBean bean =new BoardBean();
+			bean.setNum(rs.getInt("num"));
+			bean.setSubject(rs.getString("SUBJECT"));
+			bean.setContent(rs.getString("CONTENT"));
+			bean.setWriter(rs.getString("WRITER"));
+			bean.setReg_date(rs.getDate("REG_DATE").toString());
+			bean.setReadcount(rs.getInt("READCOUNT"));
+			//패키징한 데이터를 벡터에 저장
+			v.add(bean);
+		}
+        return v;
+     }
 	
 	
 }

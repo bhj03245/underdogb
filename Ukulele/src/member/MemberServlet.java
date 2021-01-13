@@ -177,7 +177,7 @@ public class MemberServlet extends HttpServlet {
 						out.print("이미 사용 중인 아이디 입니다.<br>");
 						out.print("<input type = 'button' value = '종료' onclick = 'self.close()'>");
 					}else {
-						out.print("사용 가능한 아이디 입니다.");
+						out.print("사용 가능한 아이디 입니다!.");
 						out.print("<input type = 'button' value = '종료' onclick = 'self.close()'>");
 					}
 				}

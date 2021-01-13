@@ -26,7 +26,7 @@
                         <label for="id">아이디</label>
                     </h3>
                     <span class="box int_id">
-                        <input type="text" id="id" class="int" maxlength="20" name="id" readonly>
+                        <input type="text" id="id" class="int" maxlength="20" name="id" readonly value=<%=session.getAttribute("id") %>>
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -35,7 +35,7 @@
                 <div>
                     <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                     <span class="box int_pass">
-                        <input type="text" id="pswd1" class="int" maxlength="20" name="pw" readonly>
+                        <input type="password" id="pswd1" class="int" maxlength="20" name="pw" readonly value=<%=session.getAttribute("pw") %>>
                         <span id="alertTxt">사용불가</span>
                         <img src="m_icon_pass.png" id="pswd1_img1" class="pswdImg">
                     </span>
@@ -122,7 +122,8 @@
                 <div>
                     <h3 class="join_title"><label for="email">이메일<span class="optional">(선택)</span></label></h3>
                     <span class="box int_email">
-                        <input type="text" id="email" class="int" maxlength="100" placeholder="선택입력" name="email" readonly>
+                        <input type="text" id="email" class="int" maxlength="100" name="email" readonly value=<%=session.getAttribute("email") %>>
+                         
                     </span>
                     <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>    
                 </div>
@@ -139,7 +140,7 @@
 
                 <!-- JOIN BTN-->
                 <div class="btn_area">
-                    <input type="submit" id="btnJoin" name="" value="회원수정" onclick="location.href='index.jsp?page=Member/RemakeForm'">
+                    <input type="submit" id="btnJoin" name="" value="회원수정" onclick="location.href='index.jsp?page=Member/MemberUpdateForm'">
                      
                    
                     <input type="submit" id="btnJoin" name="" value="회원탈퇴" onclick="location.href='index.jsp?page=Member/DeleteForm'"> 

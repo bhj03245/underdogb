@@ -157,14 +157,14 @@ public class MemberServlet extends HttpServlet {
 			memberDTO.setId(request.getParameter("id"));
 			memberDTO.setPw(request.getParameter("pw"));
 			memberDTO.setEmail(request.getParameter("email"));
-			String memberUpdate = request.getParameter("memberUpdate");
+			String UpdateId = request.getParameter("MemberUpdate");
 			try {
-				cnt = memberDAO.memberUpdate(memberDTO, memberUpdate);
+				cnt = memberDAO.memberUpdate(memberDTO,UpdateId);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			response.sendRedirect("index.jsp?page=center");
+			out.print("<script>alert('변경되었습니다.'); location.href='index.jsp'</script>");
 			
 		}
 		//아이디 중복체크

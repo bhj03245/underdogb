@@ -4,7 +4,7 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
-        <title>My page</title>
+        <title>회원탈퇴</title>
         <link rel="stylesheet" href="css/Mypage.css"> 
     </head>
     <body>

@@ -1,11 +1,24 @@
-<%@page import="Board.BoardBean"%>
-<%@page import="Board.BoardDAO"%>
+<%@page import="model.BoardBean"%>
+<%@page import="model.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="Header.jsp"/>
+<style>
+.btn {
+     color: #fff;
+     background-color: #007bff;
+     border-color: #007bff;
+}
+
+.btn:hover {
+     color: #fff;
+     background-color: gray;
+     border-color: #0062cc;
+}
+</style>
 </head>
 <body>
 <%
@@ -57,9 +70,9 @@
 			<td colspan="4" class="text-center">
 			  <input type="button" class="btn btn-success"  value="답글 쓰기" 
 onclick="location.href='index.jsp?page=Board/BoardReWriteForm&&num=<%=bean.getNum()%>&ref=<%=bean.getRef() %>&re_step=<%= bean.getRe_step() %>&re_level=<%=bean.getRe_level() %>'"  		  >
-	<input type="button" class="btn btn-warning" value="수정하기" onclick="location.href='index.jsp?page=Board/BoardUpdateForm&num=<%= bean.getNum()%>'">		  
+	<input type="button" class="btn btn-info" value="수정하기" onclick="location.href='index.jsp?page=Board/BoardUpdateForm&num=<%= bean.getNum()%>'">		  
 <input type="button" class="btn btn-danger" value="삭제하기" onclick="location.href='index.jsp?page=Board/BoardDeleteForm&num=<%= bean.getNum()%>'">
-<input type="button" class="btn btn-primary" value="목록보기" onclick="location.href='index.jsp?page=Board/BoardList'">
+<input type="button" class="btn" value="목록보기" onclick="location.href='index.jsp?page=Board/BoardList'">
 			</td>
 		</tr>
 	

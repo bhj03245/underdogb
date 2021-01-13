@@ -40,7 +40,7 @@
             <li>
                 <a href="no-sidebar.html">주요사업</a>
                 <ul>
-                    <li><a href="#">자격증</a></li>
+                    <li><a href="index.jsp?page=Bussiness/licenseIndex">자격증</a></li>
                     <li><a href="index.jsp?page=Bussiness/wayToCome">교육센터 위치</a></li>
                 </ul>
 
@@ -56,9 +56,20 @@
 
         </ul>
         <div class="btn-sign">
-            <!-- 스타일없음 -->
-            <a href ="#login-box" class="login-window" id="login_position">로그인</a>
+        <%
+        
+           String id  = (String)session.getAttribute("id");
+        if(id == null) {
+        	 out.print("<a href='#login-box' class='login-window' id='login_position'>로그인</a>");
+        }else{
+        	out.print("<a href='index.jsp?page=Member/Mypage' id='login_position'>마이페이지</a>");
+        	out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a>"); 
+        }
+        
+        %>
         </div>
+         
+      
         
         
         
@@ -76,9 +87,9 @@
             <div class="login_main">
                 <p class="login_sign" align="center">로그인</p>
                 <form class="login_form1" action="memberLogin.mb" method="get">
-                     <input class="login_username" type="text" align="center" placeholder="Username" id="id">
-                    <input class="login_password" type="password" align="center" placeholder="Password" id="pw">
-                    <a class="login_submit" align="center" href="#">로그인</a>
+                     <input class="login_username" type="text" align="center" placeholder="Username" name="id">
+                    <input class="login_password" type="password" align="center" placeholder="Password" name="pw">
+                    <input type="submit" class="login_submit" align="center" value="로그인">
                     <a class="login-window login_submit" align="center" href="#new-box">회원가입</a>
                     <p class="login_forgot" align="center" id="search_id"><a href="#idsearch-box" class="login-window">아이디 찾기</a></p>
                     <p align="center" id="search_pw"><a href="#pwsearch-box" class="login-window">비밀번호 찾기</a></p>
@@ -91,11 +102,11 @@
         <a href="#" class="close"><img src="images/close.png" class="btn_close" title="Close Window" alt="Close" /></a>
             <div class="login_main">
                 <p class="login_sign" align="center">회원가입</p><br>
-                <form class="login_form1" action="memberResigter.mb" method="get">
-                     <input class="login_username" type="text" align="center" placeholder="아이디를 입력해주세요." id="id">
-                    <input class="login_password" type="password" align="center" placeholder="비밀번호를 입력해주세요." id="pw">
-                    <input class="login_email" type="email" align="center" placeholder="사용하실 이메일을 입력해주세요." id="email">
-                    <a class="login_submit" align="center" href="#">가입하기</a>
+                <form class="login_form1" action="memberRegister.mb" method="get">
+                     <input class="login_username" type="text" align="center" placeholder="아이디를 입력해주세요." name="id">
+                    <input class="login_password" type="password" align="center" placeholder="비밀번호를 입력해주세요." name="pw">
+                    <input class="login_email" type="email" align="center" placeholder="사용하실 이메일을 입력해주세요." name="email">
+                    <input type="submit" class="login_submit" align="center" value="가입하기">
                     <p class="login_forgot" align="center" id="search_id"><a href="index.jsp">메인으로</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 
                 </form>
@@ -107,8 +118,8 @@
             <div class="login_main">
                 <p class="login_sign" align="center">아이디 찾기</p><br>
                 <form class="login_form1" action="memberSearch.mb" method="get">
-                    <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요." id="email">
-                    <a class="login_submit" align="center" href="#">아이디 찾기</a>
+                    <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요." name="email">
+                    <input type="submit" class="login_submit" align="center" value="아이디찾기">
                     <p class="login-window login_forgot" align="center" id="search_id"><a href="#new-box">뒤로가기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="index.jsp">메인으로</a></p>
                 </form>
@@ -121,8 +132,8 @@
             <div class="login_main">
                 <p class="login_sign" align="center">비밀번호 찾기</p><br>
                 <form class="login_form1" action="pwSearch.mb" method="get">
-                    <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요." id="email">
-                    <a class="login_submit" align="center" href="#">비밀번호 찾기</a>
+                    <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요." name="email">
+                    <input type="submit" class="login_submit" align="center" value="비밀번호 찾기">
                     <p class="login-window login_forgot" align="center" id="search_id"><a href="#new-box">뒤로가기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="index.jsp">메인으로</a></p>
                            </form>

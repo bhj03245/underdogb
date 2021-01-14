@@ -354,12 +354,12 @@ public class BoardDAO {
 	}
 	
 	//검색된 게시글의 개수를 리턴하는 메소드
-	public int getCount(String subjectSearch) { 
+	public int getCount(String subjectSearch, String keyword) { 
 		getConnection();
 		int count = 0;
 		try{
 			//쿼리준비
-			String sql ="select count(*) from board where subject like ?";
+			String sql ="select count(*) from board where " +keyword+ " like ?";
 			//쿼리를 실행할 객체 선언
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+subjectSearch+"%");

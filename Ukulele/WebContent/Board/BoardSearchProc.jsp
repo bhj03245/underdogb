@@ -17,7 +17,6 @@
 	color: white;
 }
 </style>
-
 </head>
 <body>
 	<%
@@ -49,7 +48,7 @@
 		
 		Paging paging = new Paging(pageNum);
 
-		paging.setTotalCount(bdao.getCount(searchSubject));
+		paging.setTotalCount(bdao.getCount(searchSubject,keyword));
 
 		Vector<BoardBean> vec = bdao.searchBoard(pageNum1, pageList, searchSubject, keyword);
 	%>
@@ -107,7 +106,7 @@
 										if (paging.getStartPage() > 10) {
 									%>
 									<li><a
-										href="../index.jsp?page=Board/BoardSearchProc&pageNum=<%=paging.getPrev()%>"
+										href="../index.jsp?page=Board/BoardSearchProc&keyword=<%=keyword%>&search=<%=searchSubject %>&pageNum=<%=paging.getPrev()%>"
 										aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 									<%
 										}
@@ -115,12 +114,12 @@
 									%>
 									<li
 										<%if (i == Integer.parseInt(pageNum))
-											out.print("class='active'");%>><a href="../index.jsp?page=Board/BoardSearchProc&pageNum=<%=i%>"><%=i%>
+											out.print("class='active'");%>><a href="../index.jsp?page=Board/BoardSearchProc&keyword=<%=keyword%>&search=<%=searchSubject %>&pageNum=<%=i%>"><%=i%>
 											<span class="sr-only">(current)</span></a></li>
 										<%}
 										if (paging.getEndPage() < paging.getPageCount()) {
 										%>
-									<li><a href="../index.jsp?page=Board/BoardSearchProc&pageNum=<%=paging.getNext()%>"
+									<li><a href="../index.jsp?page=Board/BoardSearchProc&keyword=<%=keyword%>&search=<%=searchSubject %>&pageNum=<%=paging.getNext()%>"
 										aria-label="next"><span aria-hidden="true">&raquo;</span></a></li>
 									<%}	%>
 								</ul>

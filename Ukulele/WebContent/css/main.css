@@ -76,10 +76,6 @@ input, select, textarea {
 		box-sizing: inherit;
 	}
 
-	body {
-		background: #f2f5f3;
-	}
-
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 			-moz-animation: none !important;
 			-webkit-animation: none !important;
@@ -2493,7 +2489,7 @@ input, select, textarea {
 
 		#banner .content {
 			position: relative;
-			background-color: rgba(21, 28, 23, 0.85); /* 검은색 띠 */
+			background-color: rgba(21, 28, 23, 0.85); /* 寃����깋 �씈 */
 			background-image: url("images/overlay.png"), url("images/highlight.png");
 			background-position: top left, center center;
 			background-size: auto, 100% 250%;
@@ -3111,7 +3107,7 @@ input, select, textarea {
 
 	}
 
-/* 2조 */
+/* 2議� */
         #centerlogo{
             margin-top: 10px;
             margin-left: 30px;

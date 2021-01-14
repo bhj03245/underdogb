@@ -13,6 +13,7 @@
 <%
 	String id = (String)session.getAttribute("id");
 	String pw = (String)session.getAttribute("pw");
+	String email = (String)session.getAttribute("email");
 %>
 
 
@@ -32,7 +33,7 @@
 		 	</tr>
 		 	<tr>
 		 		<td>이메일</td>
-		 		<td><input type="email"  class="form-control" name="email"></td>
+		 		<td><input type="email"  class="form-control" name="email" value="<%=email%>"></td>
 		 	</tr>
 		 	
 		 	<tr>

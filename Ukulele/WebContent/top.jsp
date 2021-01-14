@@ -57,7 +57,6 @@
         </ul>
         <div class="btn-sign">
         <%
-        
            String id  = (String)session.getAttribute("id");
         if(id == null) {
         	 out.print("<a href='#login-box' class='login-window' id='login_position'>로그인</a>");
@@ -72,7 +71,6 @@
         	out.print("<a href='index.jsp?page=Member/Mypage' id='login_position'>마이페이지</a>");
         	out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a>"); 
         }
-        
         %>
         </div>
   

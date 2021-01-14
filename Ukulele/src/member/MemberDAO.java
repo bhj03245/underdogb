@@ -43,13 +43,15 @@ public class MemberDAO implements Serializable {
     //로그인
 	public MemberDTO memberLogin(String id, String pw)throws SQLException {
 		conn = getConnection();
-		sql = "select id,pw from memberUK where id=?";
+		sql = "select id,pw,email from memberUK where id=? and pw=?";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
+		pstmt.setString(2, pw);
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
 			memberDTO.setId(rs.getString("id"));
 			memberDTO.setPw(rs.getString("pw"));
+			memberDTO.setEmail(rs.getString("email"));
 		}
 		return memberDTO;
 	}

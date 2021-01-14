@@ -39,14 +39,29 @@ width: 130px;
       paging.setTotalCount(ndao.getAllCount());
       Vector<NoticeBean> vec = ndao.getAllNotice(paging.getStartRow(), paging.getEndRow());
    %>
-
+   
+   <%
+   String id = (String)session.getAttribute("id");
+   
+   %>
    <div class="row">
       <div class="col-xs-2"></div>
       <div class="col-xs-8 col-md-8">
          <h2 class="text-center">공지사항</h2>
          <p class="text-right">
-            <input type="button" value="글쓰기"
-               onclick="location.href='index.jsp?page=notice/NoticeWrite'" class="btn">
+            <input type="button" value="글쓰기" 
+            <%
+            		if((session.getAttribute("id")).equals("1111")){
+            			%>
+            			onclick="location.href='index.jsp?page=notice/NoticeWrite'" 
+            			<%
+                    }
+            		else{
+            			%>
+            			onclick="alert('관리자만 작성 가능합니다')"
+            			<%
+            		}
+            %>class="btn">
          </p>
          <div class="table-responsive">
            <table class="table table-striped"> <!-- bordered 세로줄 / -->
@@ -63,11 +78,8 @@ width: 130px;
                %>
                <tr>
                   <td><%=paging.getNumber() - i%></td>
-                  <td><a href="index.jsp?page=notice/NoticeInfo&&num=<%=bean.getNum()%>"> <%
-                         if (bean.getRe_step() > 1) {
-                            for (int j = 0; j < (bean.getRe_step() * 5); j++) {%> &nbsp; 
-                            <%}
-                         } %> <%=bean.getSubject()%></a></td>
+                  <td><a href="index.jsp?page=notice/NoticeInfo&&num=<%=bean.getNum()%>">
+                  	  <%=bean.getSubject()%></a></td>
                   <td><%=bean.getWriter()%></td>
                   <td><%=bean.getReg_date()%></td>
                   <td><%=bean.getReadcount()%></td>

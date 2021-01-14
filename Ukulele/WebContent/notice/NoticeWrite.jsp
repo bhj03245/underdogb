@@ -9,6 +9,13 @@
 </head>
 
 <body>
+
+<%
+	String id = (String)session.getAttribute("id");
+	String pw = (String)session.getAttribute("pw");
+	String email = (String)session.getAttribute("email");
+%>
+
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
@@ -17,21 +24,19 @@
 		  <table class="table table-striped">
 		 	<tr>
 		 		<td>작성자</td>
-		 		<td><input type="text"  class="form-control" name="writer"></td>
+		 		<td><input type="text"  class="form-control" name="writer" value="<%=id%>"></td>
 		 	</tr>
 		 	<tr>
 		 		<td>제목</td>
 		 		<td><input type="text"  class="form-control" name="subject"></td>
 		 	</tr>
-		 	<!-- <tr>
-		 		<td>이메일</td>
-		 		<td><input type="email"  class="form-control" name="email"></td>
-		 	</tr> -->
+		 	<tr>
+		 		<td><input type="hidden"  class="form-control" name="email" value="<%=email%>"></td>
+		 	</tr> 
 		 	
 		 	<tr>
-		 		<td>비밀번호</td>
-		 		<td><input type="password"  class="form-control" name="password"></td>
-		 	</tr>
+		 		<td><input type="hidden"  class="form-control" name="password" value="<%=pw%>"></td>
+		 	</tr> 
 		 	
 		 	<tr>
 		 		<td>글내용</td>

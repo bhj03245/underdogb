@@ -21,7 +21,7 @@ public class NoticeDAO {
 		Class.forName("com.mysql.jdbc.Driver");
 	}
 	
-	public void getconn(){
+	public void getConnection(){
 		try{
 			conn = DriverManager.getConnection("jdbc:mysql://underdogb.cafe24.com:3306/underdogb?characterEncoding=utf8", "underdogb", "khacademy1!");
 			//conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/underdogb?characterEncoding=utf8", "underdogb", "khacademy1!"); 
@@ -34,7 +34,7 @@ public class NoticeDAO {
 	//하나의 새로운 게시글이 넘어와서 저장되는 메소드
 	public void insertNotice(NoticeBean bean) {
 		//빈클래스에 넘어오지 않았던 데이터들을 초기화 해주어야 합니다.
-		getconn();
+		getConnection();
 		//빈클래스에 넘어오지 않았던 데이터들을 초기화 해주어야 합니다.
 		int ref = 0; //글 번호 = 쿼리를 실행시켜서 가장큰 ref 값을 가져온 후  +1을 더해주면됨 
 		int re_step = 1; //새글이기에 = 부모글
@@ -73,7 +73,7 @@ public class NoticeDAO {
 	public Vector<NoticeBean> getAllNotice(int start, int end){		
 		//리넡할 객체 선언
 		Vector<NoticeBean> v =new Vector<>();
-		getconn();
+		getConnection();
 		try{
 			//쿼리 준비
 			String sql = "SELECT * FROM notice ORDER BY ref DESC, re_step ASC, num DESC LIMIT ?, ?";
@@ -112,7 +112,7 @@ public class NoticeDAO {
 	public NoticeBean getOneNotice(int num){
 		//리턴타입 선언
 		NoticeBean bean =new NoticeBean();
-		getconn();
+		getConnection();
 		try{
 			//조회수 증가쿼리
 			String readsql ="update notice set readcount= readcount+1 where num=?";
@@ -165,7 +165,7 @@ public class NoticeDAO {
 	public NoticeBean getOneUpdateNotice(int num){
 		//리턴타입 선언
 		NoticeBean bean =new NoticeBean();
-		getconn();
+		getConnection();
 		try{
 			//쿼리준비
 			String sql ="select * from notice where num=?";
@@ -200,7 +200,7 @@ public class NoticeDAO {
 	public String getPass(int num){
 		//리턴할 변수 객체 선언
 		String pass ="";
-		getconn();
+		getConnection();
 		System.out.println(num);
 		try{
 			//쿼리준비
@@ -224,7 +224,7 @@ public class NoticeDAO {
 	
 	//하나의 게시글을 수정하는 메소드
 	public void updateNotice(NoticeBean bean){
-		getconn();
+		getConnection();
 		try{
 			//쿼리 준비
 			String sql ="update notice set subject=?, content=? where num=?";
@@ -243,7 +243,7 @@ public class NoticeDAO {
 	
 	//하나의 게시글을 삭제하는 메소드 입니다.
 	public void deleteNotice(int num) {
-		getconn();
+		getConnection();
 		try{
 			//쿼리 준비
 			String sql ="delete from notice where num=?";
@@ -258,31 +258,9 @@ public class NoticeDAO {
 		}
 	}
 	
-	public NoticeBean noticeSearch(String subjectSearch) {
-		NoticeBean bean =new NoticeBean();		
-		getconn();
-		try {
-		String sql = "select num, subject, writer, reg_date, readcount from board where num = ? "; //subject like ?
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "'%"+subjectSearch+"%'");//앞이든 뒤든 null을 포함한 모든 글자를 검색한다. pstmt.setString(1, "'%"+subjectSearch+"%'");
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				bean.setNum(rs.getInt("num"));
-				bean.setSubject(rs.getString("SUBJECT"));
-				bean.setWriter(rs.getString("WRITER"));
-				bean.setReg_date(rs.getDate("REG_DATE").toString());
-				bean.setReadcount(rs.getInt("READCOUNT"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return bean;
-	}
-	
-	
 	//전체 글의 갯수를 리턴하는 메소드
 	public int getAllCount() {
-		getconn();
+		getConnection();
 		//게시글 전체수를 저장하는 변수
 		int count =0;
 		try{
@@ -299,4 +277,48 @@ public class NoticeDAO {
 		}
 		return count;
 	}
+	
+	public int getCount(String subjectSearch, String keyword) {
+		getConnection();
+		int count = 0;
+		try {
+			String sql = "select count(*) from notice where" +keyword + " like ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+subjectSearch+"%");
+			//쿼리 실행 후 결과를 리턴
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	//검색
+	public Vector<NoticeBean> searchNotice(int pageNum, int pageList, String subjectSearch, String keyword) throws SQLException {
+		Vector<NoticeBean> v = new Vector<>();	
+		getConnection();
+		String sql = "select num, subject, content, writer, reg_date, readcount from notice where " +keyword+ " like ? "; //subject like ?
+		sql += "ORDER BY ref DESC, re_step ASC, num DESC LIMIT ?, ?";	
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, "%"+subjectSearch+"%");//앞이든 뒤든 null을 포함한 모든 글자를 검색한다. pstmt.setString(1, "'%"+subjectSearch+"%'");
+		pstmt.setInt(2, pageList*(pageNum-1));
+		pstmt.setInt(3, pageList);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			NoticeBean bean = new NoticeBean();
+			bean.setNum(rs.getInt("num"));
+			bean.setSubject(rs.getString("SUBJECT"));
+			bean.setContent(rs.getString("CONTENT"));
+			bean.setWriter(rs.getString("WRITER"));
+			bean.setReg_date(rs.getDate("REG_DATE").toString());
+			bean.setReadcount(rs.getInt("READCOUNT"));
+			//패키징한 데이터를 백터에 저장
+			v.add(bean);
+		}
+			return v;
+	}	
 }

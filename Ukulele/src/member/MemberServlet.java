@@ -49,8 +49,7 @@ public class MemberServlet extends HttpServlet {
 		//로그인
 		if(command.equals("/memberLogin.mb")){
 			String id = request.getParameter("id");
-			String pw = request.getParameter("pw");
-
+			String pw = request.getParameter("pw");			
 			try {
 				memberDTO = memberDAO.memberLogin(id,pw);
 			} catch (SQLException e) {
@@ -68,6 +67,7 @@ public class MemberServlet extends HttpServlet {
 				out.print("<script>alert('로그인되었습니다.'); location.href='index.jsp'</script>");
 				session.setAttribute("id", id);
 				session.setAttribute("pw", pw);
+				session.setAttribute("email", memberDTO.getEmail());
 				//response.sendRedirect("index.jsp?page=center");
 			}
 

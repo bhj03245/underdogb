@@ -1,9 +1,9 @@
-<%@page import="model.Paging"%>
+<%@page import="board.Paging"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="model.BoardBean"%>
+<%@page import="board.BoardBean"%>
 <%@ page import="java.util.Vector"%>
-<%@ page import="model.BoardDAO"%>
+<%@ page import="board.BoardDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,15 +97,18 @@
 									<%}	%>
 								</ul>
 								<p class="text-left">
+								<form action="Board/BoardSearchProc.jsp" method="get">
 								<div class="search" style="position: center;">
-									<select name="shwhere" style="vertical-align: text-top; font-size: 12pt; text-align-last: center; width: 50px; height: 30px; background-color: #D4F4FA; color: black; border: 1px solid gray;">
+									<select name="keyword" style="vertical-align: text-top; font-size: 12pt; text-align-last: center; width: 50px; height: 30px; background-color: #D4F4FA; color: black; border: 1px solid gray;">
 										<option value="subject">제목</option>
 										<option value="writer">작성자</option>
-										<option value="writer">작성자</option>
-									</select> <input type="text" name="search" value autocomplete="off" style="vertical-align: sub; border: 1px solid #888ca5; border-width: 1 0 1 0; width: 150px; height: 30px; overflow: visible;">
-									<input type="button" value="검색" name="searchSubject" onclick="location.href='index.jsp?page=Board/boardSearchProc'" class="btn1"
+										<option value="content">내용</option>
+									</select> 
+									<input type="text" name="search" autocomplete="off" style="vertical-align: sub; border: 1px solid #888ca5; border-width: 1 0 1 0; width: 150px; height: 30px; overflow: visible;">
+									<input type="submit" value="검색" name="searchSubject" class="btn1"
 										style="vertical-align: text-top; color: white; font-size: 12pt; width: 50px; height: 33px; background-color: #8C8C8C; border-width: 0 0 0 0;">
 								</div>
+								</form>
 								</p>
 							</nav>
 						</td>

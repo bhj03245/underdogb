@@ -97,8 +97,9 @@
 									<%}	%>
 								</ul>
 								<p class="text-left">
-								<form action="Board/BoardSearchProc.jsp" method="get">
+								<form action="index.jsp?" method="get">
 								<div class="search" style="position: center;">
+								<input type="hidden" name="page" value="Board/BoardSearchProc">
 									<select name="keyword" style="vertical-align: text-top; font-size: 12pt; text-align-last: center; width: 50px; height: 30px; background-color: #D4F4FA; color: black; border: 1px solid gray;">
 										<option value="subject">제목</option>
 										<option value="writer">작성자</option>

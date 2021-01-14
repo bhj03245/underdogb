@@ -59,7 +59,7 @@
 			<h2 class="text-center">자유게시판</h2>
 			<p class="text-right">
 				<input type="button" value="글쓰기"
-					onclick="location.href='../index.jsp?page=Board/BoardWrite'"
+					onclick="location.href='index.jsp?page=Board/BoardWrite'"
 					class="btn">
 			</p>
 
@@ -80,7 +80,7 @@
 					%>
 					<tr>
 						<td><%=paging.getNumber() - i%></td>
-						<td><a href="../index.jsp?page=Board/BoardInfo&&num=<%=bean.getNum()%>">
+						<td><a href="index.jsp?page=Board/BoardInfo&&num=<%=bean.getNum()%>">
 								<%
 									if (bean.getRe_step() > 1) {
 											for (int j = 0; j < (bean.getRe_step() * 5); j++) {
@@ -106,7 +106,7 @@
 										if (paging.getStartPage() > 10) {
 									%>
 									<li><a
-										href="../index.jsp?page=Board/BoardSearchProc&keyword=<%=keyword%>&search=<%=searchSubject %>&pageNum=<%=paging.getPrev()%>"
+										href="index.jsp?page=Board/BoardSearchProc&keyword=<%=keyword%>&search=<%=searchSubject %>&pageNum=<%=paging.getPrev()%>"
 										aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 									<%
 										}
@@ -114,17 +114,17 @@
 									%>
 									<li
 										<%if (i == Integer.parseInt(pageNum))
-											out.print("class='active'");%>><a href="../index.jsp?page=Board/BoardSearchProc&keyword=<%=keyword%>&search=<%=searchSubject %>&pageNum=<%=i%>"><%=i%>
+											out.print("class='active'");%>><a href="index.jsp?page=Board/BoardSearchProc&keyword=<%=keyword%>&search=<%=searchSubject %>&pageNum=<%=i%>"><%=i%>
 											<span class="sr-only">(current)</span></a></li>
 										<%}
 										if (paging.getEndPage() < paging.getPageCount()) {
 										%>
-									<li><a href="../index.jsp?page=Board/BoardSearchProc&keyword=<%=keyword%>&search=<%=searchSubject %>&pageNum=<%=paging.getNext()%>"
+									<li><a href="index.jsp?page=Board/BoardSearchProc&keyword=<%=keyword%>&search=<%=searchSubject %>&pageNum=<%=paging.getNext()%>"
 										aria-label="next"><span aria-hidden="true">&raquo;</span></a></li>
 									<%}	%>
 								</ul>
 								<p class="text-left">
-								<input type="button" value="목록" name="list" class="btn1" onclick="location.href='../index.jsp?page=Board/BoardList'"
+								<input type="button" value="목록" name="list" class="btn1" onclick="location.href='index.jsp?page=Board/BoardList'"
 										style="vertical-align: text-top; color: white; font-size: 12pt; width: 50px; height: 33px; background-color: #8C8C8C; border-width: 0 0 0 0;">
 								</p>
 							</nav>

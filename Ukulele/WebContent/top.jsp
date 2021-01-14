@@ -47,7 +47,7 @@
             </li>
             <li><a href="#">커뮤니티</a>
                 <ul>
-                    <li><a href="#">공지사항</a></li>
+                    <li><a href="index.jsp?page=notice/NoticeList">공지사항</a></li>
                     <li><a href="index.jsp?page=Board/BoardList">자유게시판</a></li>
                     <li><a href="#">갤러리(연주회 영상/악보공유)</a></li>
                 </ul>

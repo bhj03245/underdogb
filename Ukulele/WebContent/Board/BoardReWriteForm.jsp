@@ -38,11 +38,7 @@
 		 		<td>이메일</td>
 		 		<td><input type="email"  class="form-control" name="email" value="<%=email%>" readonly="readonly"></td>
 		 	</tr>
-		 	
-		 	<tr>
-		 		<td><input type="hidden"  class="form-control" name="password" value="<%=pw%>"></td>
-		 	</tr>
-		 	
+		 			 	
 		 	<tr>
 		 		<td>글내용</td>
 		 		<td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
@@ -57,13 +53,12 @@
 		 		
 		 			<input type="submit" value="답글쓰기완료" class="btn btn-success">
 		 			<input type="reset" value="취소" class="btn btn-warning">
-		 			<input type="button"  class="btn btn-primary" onclick="location.href='index.jsp?page=Board/BoardList.jsp'" value="전체글보기">
+		 			<input type="button"  class="btn btn-primary" onclick="location.href='index.jsp?page=Board/BoardList'" value="전체글보기">
 		 		</td>
 		 	</tr>
 		 	
 		  </table>
-		
-	
+		 	<input type="hidden"  class="form-control" name="password" value="<%=pw%>">
 			</div>
 		</form>	
 	</div>

@@ -37,10 +37,6 @@
 		 	</tr>
 		 	
 		 	<tr>
-		 		<td><input type="hidden"  class="form-control" name="password" value="<%=pw%>"></td>
-		 	</tr>
-		 	
-		 	<tr>
 		 		<td>글내용</td>
 		 		<td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
 		 	</tr>
@@ -54,8 +50,7 @@
 		 	</tr>
 		 	
 		  </table>
-		
-		
+		 	<input type="hidden"  class="form-control" name="password" value="<%=pw%>">	 
 		</form>
 	</div>
 </div>

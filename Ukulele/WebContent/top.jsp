@@ -22,6 +22,7 @@
 <title>KHJSP</title>
 </head>
 <body>
+
 <!-- Header -->
     <header id="header">
     </header>
@@ -47,9 +48,34 @@
             </li>
             <li><a href="#">커뮤니티</a>
                 <ul>
-                    <li><a href="index.jsp?page=notice/NoticeList">공지사항</a></li>
-                    <li><a href="index.jsp?page=Board/BoardList">자유게시판</a></li>
-                    <li><a href="#">갤러리(연주회 영상/악보공유)</a></li>
+                    <li><% 
+                    String id = (String)session.getAttribute("id");
+                          id = (String)session.getAttribute("id");
+                          if(id!=null){
+                             out.print("<a href=index.jsp?page=notice/NoticeList>공지사항</a>");
+                          } else {
+                             out.print("<a href=index.jsp?page=center onclick=alert('로그인&nbsp먼저&nbsp해주세요')>공지사항</a>");
+                          }
+                    %></li>
+               <!-- <a href="index.jsp?page=notice/NoticeList">공지사항</a></li> -->
+                    <li><%
+                       id = (String)session.getAttribute("id");
+                       if(id!=null){
+                          out.print("<a href=index.jsp?page=Board/BoardList>자유게시판</a>");
+                       } else {
+                          out.print("<a href=index.jsp?page=center onclick=alert('로그인&nbsp먼저&nbsp해주세요')>자유게시판</a>");
+                       }
+                    %></li>
+               <!-- <a href="index.jsp?page=Board/BoardList">자유게시판</a></li> -->
+                    <li><%
+                    	id = (String)session.getAttribute("id");
+                    	if(id!=null){
+                    	    out.print("<a href=#>갤러리(연주회 영상/악보공유)</a>");
+                        } else {
+                           out.print("<a href=index.jsp?page=center onclick=alert('로그인&nbsp먼저&nbsp해주세요')>갤러리(연주회 영상/악보공유)</a>");
+                        }
+                     %>
+<!--                     <a href="#">갤러리(연주회 영상/악보공유)</a></li> -->
                 </ul>
             </li>
             <li class="current"><a href="index.jsp">쇼핑몰바로가기</a></li>
@@ -57,34 +83,24 @@
         </ul>
         <div class="btn-sign">
         <%
-           String id  = (String)session.getAttribute("id");
+
         if(id == null) {
-        	 out.print("<a href='#login-box' class='login-window' id='login_position'>로그인</a>");
-        	 
+            out.print("<a href='#login-box' class='login-window' id='login_position'>로그인</a>");
+            
         }else if((session.getAttribute("id")).equals("1111")){
-        	
-           	out.print("<a href='index.jsp?page=Member/MasterPage' id='login_position'>관리자</a>");
-        	out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a>"); 
-        	
+           
+              out.print("<a href='index.jsp?page=Member/MasterPage' id='login_position'>관리자</a>");
+           out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a>"); 
+           
         }
         else{
-        	out.print("<a href='index.jsp?page=Member/Mypage' id='login_position'>마이페이지</a>");
-        	out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a>"); 
+           out.print("<a href='index.jsp?page=Member/Mypage' id='login_position'>마이페이지</a>");
+           out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a>"); 
         }
+        
         %>
         </div>
   
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         <!-- 로그인 팝업 -->
     <div id="login-box" class="login-popup">
         <a href="#" class="close"><img src="images/close.png" class="btn_close" title="Close Window" alt="Close" /></a>

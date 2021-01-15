@@ -13,7 +13,9 @@
 	int ref =Integer.parseInt(request.getParameter("ref"));
  	int re_step =Integer.parseInt(request.getParameter("re_step"));
  	int re_level =Integer.parseInt(request.getParameter("re_level"));
-
+	String id = (String)session.getAttribute("id");
+	String pw = (String)session.getAttribute("pw");
+	String email = (String)session.getAttribute("email");
 %>
 
 
@@ -26,20 +28,19 @@
 					  <table class="table table-striped">
 		 	<tr>
 		 		<td>작성자</td>
-		 		<td><input type="text"  class="form-control" name="writer"></td>
+		 		<td><input type="text"  class="form-control" name="writer" value="<%=id%>" readonly="readonly"></td>
 		 	</tr>
 		 	<tr>
 		 		<td>제목</td>
-		 		<td><input type="text"  class="form-control" name="subject" value="[답변]"></td>
+		 		<td><input type="text"  class="form-control" name="subject" value="┗[답변]"></td>
 		 	</tr>
 		 	<tr>
 		 		<td>이메일</td>
-		 		<td><input type="email"  class="form-control" name="email"></td>
+		 		<td><input type="email"  class="form-control" name="email" value="<%=email%>" readonly="readonly"></td>
 		 	</tr>
 		 	
 		 	<tr>
-		 		<td>비밀번호</td>
-		 		<td><input type="password"  class="form-control" name="password"></td>
+		 		<td><input type="hidden"  class="form-control" name="password" value="<%=pw%>"></td>
 		 	</tr>
 		 	
 		 	<tr>

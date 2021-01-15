@@ -24,39 +24,29 @@
 		  <table class="table table-striped">
 		 	<tr>
 		 		<td>작성자</td>
-		 		<td><input type="text"  class="form-control" name="writer" value="<%=id%>"></td>
+		 		<td><input type="text"  class="form-control" name="writer" value="<%=id%>" readonly="readonly"></td>
 		 	</tr>
 		 	<tr>
 		 		<td>제목</td>
 		 		<td><input type="text"  class="form-control" name="subject"></td>
 		 	</tr>
 		 	<tr>
-		 		<td><input type="hidden"  class="form-control" name="email" value="<%=email%>"></td>
-		 	</tr> 
-		 	
-		 	<tr>
-		 		<td><input type="hidden"  class="form-control" name="password" value="<%=pw%>"></td>
-		 	</tr> 
-		 	
-		 	<tr>
 		 		<td>글내용</td>
 		 		<td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
 		 	</tr>
 		  	<tr>
 		 		<td colspan="2"  class="text-center">
-		 			<input type="submit" value="글쓰기" class="btn btn-info">
-		 			<input type="reset" value="다시작성" class="btn btn-info">
-		 			<button type="button"  class="btn btn-info" onclick="location.href='index.jsp?page=notice/NoticeList'">전체 게시글보기</button>
+		 			<input type="submit" value="글쓰기" class="btn btn-success">
+		 			<input type="reset" value="다시작성" class="btn btn-warning">
+		 			<button type="button"  class="btn btn-primary" onclick="location.href='index.jsp?page=notice/NoticeList'">전체 게시글보기</button>
 		 		</td>
 		 	</tr>
-		 	
 		  </table>
-		
-		
+		  <input type="hidden"  class="form-control" name="email" value="<%=email%>">
+		  <input type="hidden"  class="form-control" name="password" value="<%=pw%>">
 		</form>
 	</div>
 </div>
-
 <script>
 CKEDITOR.replace('content', {
 		

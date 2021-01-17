@@ -13,27 +13,27 @@
 	<div id="wayToCome">
 		<div id="waytocome_top">
 			<h1>오시는 길</h1>
-			<p>각 교육센터로 오시는 길입니다.</p>
+			<p>교육센터로 오시는 길입니다.</p>
 		</div>
 		<ul>
-			<li><a href="#" onclick="center1()">센터1</a></li>
-			<li><a href="#" onclick="center2()">센터2</a></li>
-			<li><a href="#" onclick="center3()">센터3</a></li>
+			<li><a href="#" onclick="center1()">오즈에듀 평생교육원</a></li>
+<!-- 			<li><a href="#" onclick="center2()">센터2</a></li> -->
+<!-- 			<li><a href="#" onclick="center3()">센터3</a></li> -->
 		</ul>
 		<div>
 			<table id="centerinfo">
 				<tr>
 					<td><label for="address">주소</label></td>
-					<td id="address">서대문구 창천동 100-78</td>
+					<td id="address">경기 성남시 분당구 판교동 618-3</td>
 				</tr>
-				<tr>
-					<td><label for="bus">버스</label></td>
-					<td id="bus">123/234/345/456</td>
-				</tr>
-				<tr>
-					<td><label for="subway">지하철</label></td>
-					<td id="subway">신촌역 1번출구 300m</td>
-				</tr>
+								<tr>
+									<td><label for="bus">버스</label></td>
+									<td id="bus">103/220/330/340/341/350/누리3/1303/4000/9003/9004/9007</td>
+								</tr>
+								<tr>
+									<td><label for="subway">지하철</label></td>
+									<td id="subway">판교역 4번 출구에서 버스로 20분</td>
+								</tr>
 			</table>
 		</div>
 		<div id="map"></div>
@@ -45,16 +45,14 @@
 			var subway = document.getElementById('subway');
 			var container = document.getElementById('map');
 			var options = {
-				center : new kakao.maps.LatLng(37.5597866987963,
-						126.931673172095),
+				center : new kakao.maps.LatLng(37.3906970406967,127.089101943711),
 				level : 3
 			};
 
 			var map = new kakao.maps.Map(container, options);
 
 			// 마커가 표시될 위치입니다 
-			var markerPosition = new kakao.maps.LatLng(37.5597866987963,
-					126.931673172095);
+			var markerPosition = new kakao.maps.LatLng(37.3906970406967,127.089101943711);
 
 			// 마커를 생성합니다
 			var marker = new kakao.maps.Marker({
@@ -65,18 +63,18 @@
 			marker.setMap(map);
 			var infowindow = new kakao.maps.InfoWindow(
 					{
-						content : '<div class = "infowindow" style="width:150px;text-align:center;padding:6px 0;">센터1<br><a href="https://map.kakao.com/link/map/center1,37.5597866987963, 126.931673172095" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/센터1,37.5597866987963, 126.931673172095" style="color:blue" target="_blank" display="flex">길찾기</a></div>'
+						content : '<div class = "infowindow" style="width:150px;text-align:center;padding:6px 0;">오즈에듀평생교육원<br><a href="https://map.kakao.com/link/map/center1,37.3906970406967,127.089101943711" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/오즈에듀 평생교육원,37.3906970406967,127.089101943711" style="color:blue" target="_blank" display="flex">길찾기</a></div>'
 					});
 			infowindow.open(map, marker);
 			var geocoder = new kakao.maps.services.Geocoder();
 
 			function center1() {
-				address.textContent = '서대문구 창천동 100-78';
-				bus.textContent = '123/234/345/456';
-				subway.textContent = '신촌역 1번출구 300m';
+				address.textContent = '경기 성남시 분당구 판교동 618-3';
+				bus.textContent = '103/220/330/340/341/350/누리3/1303/4000/9003/9004/9007';
+				subway.textContent = '판교역 4번 출구에서 버스로 20분';
 				geocoder
 						.addressSearch(
-								'서대문구 창천동 100-78',
+								'경기 성남시 분당구 판교동 618-3',
 								function(result, status) {
 									// 정상적으로 검색이 완료됐으면 
 									if (status === kakao.maps.services.Status.OK) {
@@ -92,7 +90,8 @@
 										// 인포윈도우로 장소에 대한 설명을 표시합니다
 										var infowindow = new kakao.maps.InfoWindow(
 												{
-													content : '<div class = "infowindow" style="width:150px;text-align:center;padding:6px 0;">센터1<br><a href="https://map.kakao.com/link/map/center1,' + result[0].y + ',' + result[0].x + '" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/센터1,' + result[0].y + ',' + result[0].x + '" style="color:blue" target="_blank" display="flex">길찾기</a></div>'
+// 													content : '<div class = "infowindow" style="width:150px;text-align:center;padding:6px 0;">' + result[0].y + ',' + result[0].x + '</div>'
+													content : '<div class = "infowindow" style="width:150px;text-align:center;padding:6px 0;">오즈에듀평생교육원<br><a href="https://map.kakao.com/link/map/center1,' + result[0].y + ',' + result[0].x + '" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/오즈에듀평생교육원,' + result[0].y + ',' + result[0].x + '" style="color:blue" target="_blank" display="flex">길찾기</a></div>'
 												});
 										infowindow.open(map, marker);
 

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>licenseGuidance</div>
+<div><img src="images/licenseGuidance.png"></div>
 </body>
 </html>

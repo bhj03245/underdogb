@@ -12,7 +12,6 @@
 	ldao.apply(licensebean);
 %>
 <script type="text/javascript">
-	alert("신청 완료 되었습니다.");
-	location.href='../index.jsp'
+	location.href='../index.jsp?page=Bussiness/licenseIndex&subpage=depositGuide'
 </script>
 

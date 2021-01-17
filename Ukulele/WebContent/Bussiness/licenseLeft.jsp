@@ -10,7 +10,7 @@
 <div>
 <ul>
 <li><a href="index.jsp?page=Bussiness/licenseIndex&subpage=licenseGuidance" id="guidance">자격증 정보</a></li>
-<li><a href="index.jsp?page=Bussiness/licenseIndex&subpage=applyLicense" id="apply" onclick="sessioncheck()">자격증 신청</a></li>
+<li><a href="index.jsp?page=Bussiness/licenseIndex&subpage=applyLicenseGuidance" id="apply" onclick="sessioncheck()">자격증 신청</a></li>
 </ul>
 </div>
 <script type="text/javascript">

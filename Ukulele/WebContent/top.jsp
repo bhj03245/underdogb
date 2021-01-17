@@ -32,10 +32,10 @@
         <a href="index.jsp" id="centerlogo"><img src="images/logo.png"></a>
         <ul>
             <li>
-                <a href="no-sidebar.html">우쿠렐레예술협회</a>
+                <a href="no-sidebar.html">협회소개</a>
                 <ul>
-                    <li><a href="#">인사말</a></li>
-                    <li><a href="#">협회정보&연혁</a></li>
+                    <li><a href="index.jsp?page=hi">인사말</a></li>
+                    <li><a href="index.jsp?page=Association/information">연혁</a></li>
                 </ul>
             </li>
             <li>

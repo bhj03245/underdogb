@@ -8,6 +8,7 @@
 <head>
 <jsp:include page="Board/Header.jsp" />
 <%-- <jsp:include page = "left-sidebar.jsp"/> --%>
+
 </head>
 <meta charset="UTF-8">
 <title>인사말</title>
@@ -16,7 +17,7 @@
 <div class="all" style="margin-left:550px;  width: 50%; padding: 10px; font-size:1.5em; "><strong style="color: #CCA63D;">인사말</strong>
 </div>
 <hr>
-<div class="all_two" style="margin: auto; width: 30%; height:100%;  padding: 26px; text-align-last: left;">
+<div class="all_two" style="margin: auto; width: 600px; height:100%;  padding: 26px; text-align-last: left;">
 <img src="images/ukukuku.jpg" style="display: block; position:absolute; left:500px;display: inline-block; width:200px; height:250px;">
 <div style="line-height: 30px; font-size: 15px; text-align:center; ">
 <p style="color: #9FC93C; font-size: 22px; font-weight: 600; padding-bottom: 20px; ">&nbsp;"Ukulele for a better world 우쿨렐레와 함께 세상을 아름답게라는 모토와 함께하는 비영리민간단체 입니다."</p>

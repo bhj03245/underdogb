@@ -76,10 +76,9 @@ public class NoticeDAO {
 		getConnection();
 		try{
 			//쿼리 준비
-			String sql = "SELECT * FROM notice ORDER BY ref DESC, re_step ASC, num DESC LIMIT ?, ?";
+			String sql = "SELECT * FROM notice ORDER BY ref DESC, re_step ASC, num DESC LIMIT ?, 10";
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setInt(1, start-1);
-			pstmt.setInt(2, end);
 			rs=pstmt.executeQuery();
 			//데이터 개수가 몇개인지 모르기에 반복문을 이용하여 데이터를 추출
 			while(rs.next()){

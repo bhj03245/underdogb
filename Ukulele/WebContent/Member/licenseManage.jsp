@@ -39,7 +39,7 @@
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<tr>
-						
+
 						<th>신청번호</th>
 						<th>이름</th>
 						<th>전화번호</th>
@@ -57,25 +57,39 @@
 							LicenseBean bean = vec.get(i); //벡터에 저장되어 있는 빈클래스를 하나씩 추출
 					%>
 					<tr>
-						
+
 						<td><%=bean.getApply_no()%></td>
 						<td><%=bean.getName()%></td>
 						<td><%=bean.getTel()%></td>
 						<td><%=bean.getLicense_id()%></td>
 						<td><%=bean.getLicense_email()%></td>
 						<td><%=bean.getAddr()%></td>
-						<td><%=bean.getBirth() %></td>
+						<td><%=bean.getBirth()%></td>
 						<td><%=bean.getGrade()%></td>
 						<td><%=bean.getDate()%></td>
-						<%if(bean.getTrackingProgress()==0){
-							%>
-						<td><a href="">입금확인</a></td>
-							<%
-						}else if(bean.getTrackingProgress()==1){
-							%>
-							<td>입금완료</td>
-							<%
-						}
+						<%
+							if (bean.getTrackingProgress() == 0) {
+						%>
+						<td>
+						<form action="Member/Deposit.jsp" method="get">
+							<input type="hidden" value="<%=bean.getApply_no()%>" name="apply_no">
+							<input type="hidden" value="<%=pageNum%>" name="pageNum">
+							<input type="submit" value="입금확인">
+						</form>
+						</td>
+						<%
+							} else if (bean.getTrackingProgress() == 1) {
+						%>
+						<td>
+						입금완료
+						<form action="Member/DepositCancel.jsp" method="get">
+							<input type="hidden" value="<%=bean.getApply_no()%>" name="apply_no">
+							<input type="hidden" value="<%=pageNum%>" name="pageNum">
+							<input type="submit" value="취소">
+						</form>
+						</td>
+						<%
+							}
 						%>
 					</tr>
 					<%
@@ -97,14 +111,19 @@
 									%>
 									<li
 										<%if (i == Integer.parseInt(pageNum))
-											out.print("class='active'");%>><a href="index.jsp?page=Member/MasterPageIndex&subpage=licenseManage&&pageNum=<%=i%>"><%=i%>
+					out.print("class='active'");%>><a
+										href="index.jsp?page=Member/MasterPageIndex&subpage=licenseManage&&pageNum=<%=i%>"><%=i%>
 											<span class="sr-only">(current)</span></a></li>
-										<%}
+									<%
+										}
 										if (paging.getEndPage() < paging.getPageCount()) {
-										%>
-									<li><a href="index.jsp?page=Member/MasterPageIndex&subpage=licenseManage&&pageNum=<%=paging.getNext()%>"
+									%>
+									<li><a
+										href="index.jsp?page=Member/MasterPageIndex&subpage=licenseManage&&pageNum=<%=paging.getNext()%>"
 										aria-label="next"><span aria-hidden="true">&raquo;</span></a></li>
-									<%}	%>
+									<%
+										}
+									%>
 								</ul>
 							</nav>
 						</td>

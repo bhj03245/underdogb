@@ -89,7 +89,7 @@
             
         }else if((session.getAttribute("id")).equals("1111")){
            
-              out.print("<a href='index.jsp?page=Member/MasterPage' id='login_position'>관리자</a>");
+              out.print("<a href='index.jsp?page=Member/MasterPageIndex' id='login_position'>관리자</a>");
            out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a>"); 
            
         }

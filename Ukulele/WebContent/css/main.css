@@ -446,10 +446,10 @@ input::-moz-focus-inner {
 					padding-top: 25px;
 				}
 
-		.row {
-			margin-top: -50px;
-			margin-left: -50px;
-		}
+/* 		.row { */
+/* 			margin-top: -50px; */
+/* 			margin-left: -50px; */
+/* 		} */
 
 			.row > * {
 				padding: 50px 0 0 50px;

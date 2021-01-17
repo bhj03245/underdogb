@@ -75,7 +75,7 @@ public class LicenseDAO {
 		//게시글 전체수를 저장하는 변수
 		try{
 			//쿼리준비
-			String sql ="update licenseManage set trackingProgress = 1 where apply_no="+apply_no;
+			String sql ="update licenseManage set trackingProgress = 2 where apply_no="+apply_no;
 			//쿼리를 실행할 객체 선언
 			pstmt = conn.prepareStatement(sql);
 			//쿼리 실행 후 결과를 리턴
@@ -91,7 +91,7 @@ public class LicenseDAO {
 		//게시글 전체수를 저장하는 변수
 		try{
 			//쿼리준비
-			String sql ="update licenseManage set trackingProgress = 0 where apply_no="+apply_no;
+			String sql ="update licenseManage set trackingProgress = 1 where apply_no="+apply_no;
 			//쿼리를 실행할 객체 선언
 			pstmt = conn.prepareStatement(sql);
 			//쿼리 실행 후 결과를 리턴

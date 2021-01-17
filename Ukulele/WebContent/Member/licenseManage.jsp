@@ -13,6 +13,13 @@
 	background-color: gray;
 	color: white;
 }
+.depositCheck{
+	display: inline-block;
+	width: 100%;
+}
+.depositCheck form{
+	display: inline-block;
+}
 </style>
 
 </head>
@@ -68,9 +75,9 @@
 						<td><%=bean.getGrade()%></td>
 						<td><%=bean.getDate()%></td>
 						<%
-							if (bean.getTrackingProgress() == 0) {
+							if (bean.getTrackingProgress() == 1) {
 						%>
-						<td>
+						<td class="depositCheck">
 						<form action="Member/Deposit.jsp" method="get">
 							<input type="hidden" value="<%=bean.getApply_no()%>" name="apply_no">
 							<input type="hidden" value="<%=pageNum%>" name="pageNum">
@@ -78,9 +85,9 @@
 						</form>
 						</td>
 						<%
-							} else if (bean.getTrackingProgress() == 1) {
+							} else if (bean.getTrackingProgress() == 2) {
 						%>
-						<td>
+						<td class="depositCheck">
 						입금완료
 						<form action="Member/DepositCancel.jsp" method="get">
 							<input type="hidden" value="<%=bean.getApply_no()%>" name="apply_no">

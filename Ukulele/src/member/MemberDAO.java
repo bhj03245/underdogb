@@ -7,6 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
+
+import license.LicenseBean;
 
 
 
@@ -142,9 +145,57 @@ public class MemberDAO implements Serializable {
 		return rs;
 	}
 
-
-	
+	public int getAllCount() throws SQLException{
+		getConnection();
+		//게시글 전체수를 저장하는 변수
+		int count =0;
+		try{
+			//쿼리준비
+			String sql ="select count(*) from memberUK";
+			//쿼리를 실행할 객체 선언
+			pstmt = conn.prepareStatement(sql);
+			//쿼리 실행 후 결과를 리턴
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				count =rs.getInt(1);
+			}
+			conn.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return count;
 	}
+
+	public Vector<MemberBean> getAllMember(int start, int end) throws SQLException{		
+		//리넡할 객체 선언
+		Vector<MemberBean> v =new Vector<>();
+		getConnection();
+		try{
+			//쿼리 준비
+			String sql = "SELECT * FROM memberUK ORDER BY id DESC LIMIT ?, 10";
+			//쿼리를 실행할객체 선언
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setInt(1, start-1);
+//			pstmt.setInt(2, end);
+			//쿼리실행 후 결과 저장
+			rs=pstmt.executeQuery();
+			//데이터 개수가 몇개인지 모르기에 반복문을 이용하여 데이터를 추출
+			while(rs.next()){
+				MemberBean bean =new MemberBean();
+				bean.setId(rs.getString("id"));
+				bean.setPw(rs.getString("pw"));
+				bean.setEmail(rs.getString("email"));
+				bean.setTrackingProgress(rs.getInt("trackingProgress"));
+				//패키징한 데이터를 벡터에 저장
+				v.add(bean);
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return v;
+	}
+}
 	
 
 

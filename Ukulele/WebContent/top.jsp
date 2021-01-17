@@ -102,64 +102,87 @@
         </div>
   
         <!-- 로그인 팝업 -->
-    <div id="login-box" class="login-popup">
+   <div id="login-box" class="login-popup">
         <a href="#" class="close"><img src="images/close.png" class="btn_close" title="Close Window" alt="Close" /></a>
-            <div class="login_main">
-                <p class="login_sign" align="center">로그인</p>
-                <form class="login_form1" action="memberLogin.mb" method="get">
-                     <input class="login_username" type="text" align="center" placeholder="Username" name="id">
-                    <input class="login_password" type="password" align="center" placeholder="Password" name="pw">
-                    <input type="submit" class="login_submit" align="center" value="로그인">
-                    <a class="login-window login_submit" align="center" href="#new-box">회원가입</a>
-                    <p class="login_forgot" align="center" id="search_id"><a href="#idsearch-box" class="login-window">아이디 찾기</a></p>
-                    <p align="center" id="search_pw"><a href="#pwsearch-box" class="login-window">비밀번호 찾기</a></p>
-                </form>
-            </div>
+        <div class="login_main">
+            <p class="login_sign" align="center"><img src="images/logo.png"></p>
+            <form class="login_form1" action="memberLogin.mb" method="get">
+                <input class="login_username" type="text" align="center" placeholder="Username" name="id">
+                <input class="login_password" type="password" align="center" placeholder="Password" name="pw">
+                <p class="login_mid" align="center" id="search_id"><a href="#idsearch-box" class="login-window">아이디/비밀번호 찾기</a></p>
+
+                <input type="submit" class="login_submit" align="center" value="로그인">
+                <div class="socialBox">
+                    <div class="google">
+                        <img class="kakaoLogo" src="images/googleLogin.png">
+                    </div>
+
+                    <div class="kakao">
+                        <img class="kakaoLogo" src="images/kakaoLogin.png">
+                    </div>
+                    <div class="facebook">
+                        <img class="facebookLogo" src="images/facebookLogin.JPG">
+                    </div>
+                </div>
+
+                <div class="loginEnd">
+                    <div class="loginLine">
+                        회원이 아니신가요?
+                        <Link to="/signup">회원가입</Link>
+                    </div>
+                </div>
+                <!--    <a class="login-window login_submit" align="center" href="#new-box">회원가입</a> -->
+
+            </form>
+        </div>
 
     </div>
-      
-         <div id="new-box" class="login-popup">
+
+    <div id="new-box" class="login-popup">
         <a href="#" class="close"><img src="images/close.png" class="btn_close" title="Close Window" alt="Close" /></a>
-            <div class="login_main">
-                <p class="login_sign" align="center">회원가입</p><br>
-                <form class="login_form1" action="memberRegister.mb" method="get">
-                     <input class="login_username" type="text" align="center" placeholder="아이디를 입력해주세요." name="id">
-                    <input class="login_password" type="password" align="center" placeholder="비밀번호를 입력해주세요." name="pw">
-                    <input class="login_email" type="email" align="center" placeholder="사용하실 이메일을 입력해주세요." name="email">
-                    <input type="submit" class="login_submit" align="center" value="가입하기">
-                    <p class="login_forgot" align="center" id="search_id"><a href="index.jsp">메인으로</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                
-                </form>
-            </div>
-       </div>
-       
-         <div id="idsearch-box" class="login-popup">
+        <div class="login_main">
+            <p class="login_sign" align="center">회원가입</p><br>
+            <form class="login_form1" action="memberRegister.mb" method="get">
+                <input class="login_username" type="text" align="center" placeholder="아이디를 입력해주세요." name="id">
+                <input class="login_password" type="password" align="center" placeholder="비밀번호를 입력해주세요." name="pw">
+                <input class="login_email" type="email" align="center" placeholder="사용하실 이메일을 입력해주세요." name="email">
+                <input type="submit" class="login_submit" align="center" value="가입하기">
+                <p class="login_submit" align="center" id="search_id"><a href="index.jsp">메인으로</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            </form>
+        </div>
+    </div>
+
+    <div id="idsearch-box" class="login-popup">
         <a href="#" class="close"><img src="images/close.png" class="btn_close" title="Close Window" alt="Close" /></a>
-            <div class="login_main">
-                <p class="login_sign" align="center">아이디 찾기</p><br>
-                <form class="login_form1" action="memberSearch.mb" method="get">
-                    <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요." name="email">
-                    <input type="submit" class="login_submit" align="center" value="아이디찾기">
-                    <p class="login-window login_forgot" align="center" id="search_id"><a href="#new-box">뒤로가기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="index.jsp">메인으로</a></p>
-                </form>
-            </div>
-    
-         </div>
-         
-         <div id="pwsearch-box" class="login-popup">
+        <div class="login_main">
+            <p class="login_sign" align="center">아이디 찾기</p><br>
+            <form class="login_form1" action="memberSearch.mb" method="get">
+                <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요." name="email">
+                <input type="submit" class="login_submit" align="center" value="아이디찾기">
+                <p class="login-window login_submit" align="center" id="search_id"><a href="#new-box">뒤로가기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="index.jsp" class="login_submit">메인으로</a>
+                </p>
+            </form>
+        </div>
+
+    </div>
+
+    <div id="pwsearch-box" class="login-popup">
         <a href="#" class="close"><img src="images/close.png" class="btn_close" title="Close Window" alt="Close" /></a>
-            <div class="login_main">
-                <p class="login_sign" align="center">비밀번호 찾기</p><br>
-                <form class="login_form1" action="pwSearch.mb" method="get">
-                    <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요." name="email">
-                    <input type="submit" class="login_submit" align="center" value="비밀번호 찾기">
-                    <p class="login-window login_forgot" align="center" id="search_id"><a href="#new-box">뒤로가기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="index.jsp">메인으로</a></p>
-                           </form>
-            </div>
-    
-         </div>
+        <div class="login_main">
+            <p class="login_sign" align="center">비밀번호 찾기</p><br>
+            <form class="login_form1" action="pwSearch.mb" method="get">
+                <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요." name="email">
+                <input type="submit" class="login_submit" align="center" value="비밀번호 찾기">
+                <p class="login-window login_submit" align="center" id="search_id"><a href="#new-box">뒤로가기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="index.jsp">메인으로</a>
+                </p>
+            </form>
+        </div>
+
+    </div>
+
     </nav>
     
     <!-- 로그인 팝업 -->

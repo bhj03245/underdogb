@@ -1,5 +1,6 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="org.apache.catalina.connector.OutputBuffer"%>
+<%@page import="gallery.GalleryDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,43 +11,54 @@
 
 <body>
 
-<%
-	String id = (String)session.getAttribute("id");
-	String pw = (String)session.getAttribute("pw");
-	String email = (String)session.getAttribute("email");
-%>
+
 
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<h2 class="text-center">게시글 쓰기</h2>
-		<form action="notice/NoticeWriterProc.jsp" method="post" \>
+		<form action="Gallery/GalleryWriterProc.jsp" method="post" enctype = "multipart/form-data">
 		  <table class="table table-striped">
 		 	<tr>
 		 		<td>작성자</td>
-		 		<td><input type="text"  class="form-control" name="writer" value="<%=id%>" readonly="readonly"></td>
+		 		<td><input type="text"  class="form-control" name="writer"></td>
 		 	</tr>
 		 	<tr>
 		 		<td>제목</td>
 		 		<td><input type="text"  class="form-control" name="subject"></td>
 		 	</tr>
 		 	<tr>
+		 		<td>이메일</td>
+		 		<td><input type="email"  class="form-control" name="email"></td>
+		 	</tr>		 	
+		 	<tr>
+		 		<td>비밀번호</td>
+		 		<td><input type="password"  class="form-control" name="password"></td>
+		 	</tr>
+<!-- 		 	<tr> -->
+<!-- 		 	<td>파일</td> -->
+<!-- 		 	<td><input type = "file" name = "fileName" accept="image/png, image/jpeg"></td> -->
+<!-- 		 	</tr> -->
+		 	<tr>
 		 		<td>글내용</td>
 		 		<td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
 		 	</tr>
 		  	<tr>
+		 		
 		 		<td colspan="2"  class="text-center">
-		 			<input type="submit" value="글쓰기" class="btn btn-success">
-		 			<input type="reset" value="다시작성" class="btn btn-warning">
-		 			<button type="button"  class="btn btn-primary" onclick="location.href='index.jsp?page=notice/NoticeList'">전체 게시글보기</button>
+					<input type="submit" value="글쓰기" class="btn btn-success">		 			
+					<input type="reset" value="다시작성" class="btn btn-warning">
+		 			<button type="button"  class="btn btn-primary" onclick="location.href='index.jsp?page=Gallery/GalleryList'">전체 게시글보기</button>
 		 		</td>
 		 	</tr>
+		 	
 		  </table>
-		  <input type="hidden"  class="form-control" name="email" value="<%=email%>">
-		  <input type="hidden"  class="form-control" name="password" value="<%=pw%>">
+		
+		
 		</form>
 	</div>
 </div>
+
 <script>
 CKEDITOR.replace('content', {
 		

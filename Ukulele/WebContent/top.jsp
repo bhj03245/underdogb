@@ -128,7 +128,7 @@
                 <div class="loginEnd">
                     <div class="loginLine">
                         회원이 아니신가요?
-                        <Link to="/signup">회원가입</Link>
+                        <a href="#new-box" class="login-window">회원가입</a>
                     </div>
                 </div>
                 <!--    <a class="login-window login_submit" align="center" href="#new-box">회원가입</a> -->

@@ -58,7 +58,7 @@ public class MemberServlet extends HttpServlet {
 			}
 
 			if(!id.equals(memberDTO.getId())) {
-				out.print("<script>alert('아이디가 일치하지 않습니다');"
+				out.print("<script>alert('없는 아이디이거나 아이디가 일치하지 않습니다.');"
 						+ "history.back();</script>");
 			}else if(!pw.equals(memberDTO.getPw())) {
 				out.print("<script>alert('비밀번호가 틀렸습니다');"

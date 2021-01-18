@@ -2396,16 +2396,16 @@ input::-moz-focus-inner {
 				outline: 0;
 			}
 
-			#nav li:hover, #nav li.active,  # #login_position:hover{
+			#nav li:hover, #nav li.active, #login_position:hover, #login_position2:hover{
 				top: 3px;
 			}
 
-			#nav li:hover a, #nav li:hover span, #login_position:hover {
+			#nav li:hover a, #nav li:hover span, #login_position:hover, #login_position2:hover {
 				background: #C1CAC5;
 				color: #fff;
 			}
 
-			#nav li.active a, #nav li.active span,  #login_position:active {
+			#nav li.active a, #nav li.active span,  #login_position:active, #login_position2:hover {
 				background: #C1CAC5;
 				color: #fff;
 			}
@@ -3124,5 +3124,12 @@ input::-moz-focus-inner {
             text-transform: uppercase;
             color: #575d59;
 }
+
+.exchange {
+	display:flex;
+}
+
+
+
 
 

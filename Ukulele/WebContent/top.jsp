@@ -83,16 +83,18 @@
 		<div class="btn-sign">
 			<%
 				if (id == null) {
-					out.print("<a href='#login-box' class='login-window' id='login_position'>로그인</a>");
+					out.print("<div class='exchange'><a href='#new-box' class='login-window' id='login_position'>회원가입</a>");
+					out.print("<a href='#login-box' class='login-window' id='login_position'>로그인</a></div>");
+					
 
 				} else if ((session.getAttribute("id")).equals("1111")) {
 
-					out.print("<a href='index.jsp?page=Member/MasterPageIndex' id='login_position'>관리자</a>");
-					out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a>");
+					out.print("<div class='exchange'><a href='index.jsp?page=Member/MasterPageIndex' id='login_position'>관리자</a>");
+					out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a></div>");
 
 				} else {
-					out.print("<a href='index.jsp?page=Member/Mypage' id='login_position'>마이페이지</a>");
-					out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a>");
+					out.print("<div class='exchange'><a href='index.jsp?page=Member/Mypage' id='login_position'>마이페이지</a>");
+					out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a></div>");
 				}
 			%>
 		</div>
@@ -105,7 +107,7 @@
 				<p class="login_sign" align="center">
 					<img src="images/logo.png">
 				</p>
-				<form class="login_form1" action="memberLogin.mb" method="get">
+				<form class="login_form2" action="memberLogin.mb" method="get">
 					<input class="login_username" type="text" align="center"
 						placeholder="아이디" name="id" id="login_id" required="required"> <input
 						class="login_password" type="password" align="center"

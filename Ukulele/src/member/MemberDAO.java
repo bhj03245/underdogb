@@ -58,6 +58,25 @@ public class MemberDAO implements Serializable {
 		}
 		return memberDTO;
 	}
+	
+	public int checkID(String id) throws SQLException{
+		conn = getConnection();
+		int count =0;
+		try{
+			String sql ="select count(*) from memberUK where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				count =rs.getInt(1);
+			}
+			conn.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
 	//회원가입
 	public int memberRegister(MemberDTO memberDTO)throws SQLException {
 		conn = getConnection();

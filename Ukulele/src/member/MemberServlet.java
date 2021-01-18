@@ -77,13 +77,21 @@ public class MemberServlet extends HttpServlet {
 			memberDTO.setId(request.getParameter("id"));
 			memberDTO.setPw(request.getParameter("pw"));
 			memberDTO.setEmail(request.getParameter("email"));
+		     
 			try {
+				int count = memberDAO.checkID(memberDTO.getId());
+				if(count > 0 ) {
+					out.print("<script>alert('중복된 아이디가 있습니다.'); historty.back();</script>");
+				}else {
 				cnt = memberDAO.memberRegister(memberDTO);
+					
+				
+				out.print("<script>alert('가입되었습니다.'); location.href='index.jsp'</script>");
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			out.print("<script>alert('가입되었습니다.'); location.href='index.jsp'</script>");
 
 		}
 		//아이디찾기
@@ -92,7 +100,7 @@ public class MemberServlet extends HttpServlet {
 			String idSearch = request.getParameter("email");
 			try {
 				String id = memberDAO.memberSearch(idSearch);
-				out.print("찾는 아이디 : "+id);
+				out.print("<script>alert('찾는 아이디 : '+id); location.href='index.jsp'</script>");
 			//	response.sendRedirect("index.jsp?page=center");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

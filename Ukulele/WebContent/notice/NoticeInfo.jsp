@@ -30,66 +30,40 @@
 			<th class="success">조회수</th>
 			<td><%= bean.getReadcount() %></td>
 		</tr>
-		  
-		
 		<tr>
 			<th class="success">작성자</th>
 			<td><%= bean.getWriter() %></td>
 			<th class="success">작성일</th>
 			<td><%= bean.getReg_date() %></td>
 		</tr>
-		
 		<tr>
 			<th class="success">이메일</th>
 			<td colspan="3"><%= bean.getEmail() %></td>
 		</tr>
-		
 		<tr>
 			<th class="success">제목</th>
 			<td colspan="3"><%= bean.getSubject() %></td>
 		</tr>
-		
 		<tr>
 			<th class="success">글 내용</th>
 			<td colspan="3"><%= bean.getContent() %></td>
 		</tr>
-		
 		<tr>
 			<td colspan="4" class="text-center">
-	<input type="button" value="수정하기" 
-	<%
-	if((session.getAttribute("id").equals("1111"))){
-	%>
-	onclick="location.href='index.jsp?page=notice/NoticeUpdateForm&num=<%= bean.getNum()%>'"
-	<%
-	} else{
-		%>
-		onclick="alert('관리자만 작성 가능합니다')"
-		<%
-	}	
-	%> class="btn btn-warning">	  
-	<input type="button" value="삭제하기"
-	<%
-	if((session.getAttribute("id").equals("1111"))){
-	%> 
-	onclick="location.href='index.jsp?page=notice/NoticeDeleteForm&num=<%= bean.getNum()%>'"
-	<%
-	} else{
-	%>
-	onclick="alert('관리자만 작성 가능합니다.')"
-	<%
-	}
-	%> class="btn btn-danger">
+<%
+	if(session.getAttribute("id").equals("1111")){
+%>
+	<input type="button" class="btn btn-warning" value="수정하기" 
+	onclick="location.href='index.jsp?page=notice/NoticeUpdateForm&num=<%= bean.getNum()%>'">		  
+	<input type="button" class="btn btn-danger" value="삭제하기" 
+	onclick="location.href='index.jsp?page=notice/NoticeDeleteForm&num=<%= bean.getNum()%>'">
+<% } %>
 	<input type="button" class="btn btn-primary" value="목록보기" 
 	onclick="location.href='index.jsp?page=notice/NoticeList'">
 			</td>
 		</tr>
-	
-			
-		
-		</table>
+	</table>
 	</div>
-	
 	</div>
 </div>
 </body>

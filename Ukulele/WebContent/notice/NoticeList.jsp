@@ -41,27 +41,19 @@ width: 130px;
    %>
    
    <%
-   String id = (String)session.getAttribute("id");
-   
+   String id = (String)session.getAttribute("id"); 
    %>
    <div class="row">
       <div class="col-xs-2"></div>
       <div class="col-xs-8 col-md-8">
          <h2 class="text-center">공지사항</h2>
          <p class="text-right">
-            <input type="button" value="글쓰기" 
-            <%
-            		if((session.getAttribute("id")).equals("1111")){
-            			%>
-            			onclick="location.href='index.jsp?page=notice/NoticeWrite'" 
-            			<%
-                    }
-            		else{
-            			%>
-            			onclick="alert('관리자만 작성 가능합니다')"
-            			<%
-            		}
-            %>class="btn">
+           <%
+	if(session.getAttribute("id").equals("1111")){
+%>
+	<input type="button" value="글쓰기" class="btn"
+	onclick="location.href='index.jsp?page=notice/NoticeWrite'">
+<% } %>
          </p>
          <div class="table-responsive">
            <table class="table table-striped"> <!-- bordered 세로줄 / -->

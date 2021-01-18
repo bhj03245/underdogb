@@ -15,7 +15,9 @@
 	NoticeBean bean =bdao.getOneNotice(num);
 	
 %>
-
+ <%
+   String id = (String)session.getAttribute("id"); 
+ %>
 <div class="row">
 	<div class="col-xs-2 col-md-2"></div>
 	<div class="col-xs-8 col-md-8">
@@ -54,11 +56,32 @@
 		
 		<tr>
 			<td colspan="4" class="text-center">
-			 <!-- <input type="button" class="btn btn-success"  value="답글 쓰기" 
-onclick="location.href='index.jsp?page=Board/BoardReWriteForm&&num=<%=bean.getNum()%>&ref=<%=bean.getRef() %>&re_step=<%= bean.getRe_step() %>&re_level=<%=bean.getRe_level() %>'"> -->
-	<input type="button" class="btn btn-warning" value="수정하기" onclick="location.href='index.jsp?page=notice/NoticeUpdateForm&num=<%= bean.getNum()%>'">		  
-<input type="button" class="btn btn-danger" value="삭제하기" onclick="location.href='index.jsp?page=notice/NoticeDeleteForm&num=<%= bean.getNum()%>'">
-<input type="button" class="btn btn-primary" value="목록보기" onclick="location.href='index.jsp?page=notice/NoticeList'">
+	<input type="button" value="수정하기" 
+	<%
+	if((session.getAttribute("id").equals("1111"))){
+	%>
+	onclick="location.href='index.jsp?page=notice/NoticeUpdateForm&num=<%= bean.getNum()%>'"
+	<%
+	} else{
+		%>
+		onclick="alert('관리자만 작성 가능합니다')"
+		<%
+	}	
+	%> class="btn btn-warning">	  
+	<input type="button" value="삭제하기"
+	<%
+	if((session.getAttribute("id").equals("1111"))){
+	%> 
+	onclick="location.href='index.jsp?page=notice/NoticeDeleteForm&num=<%= bean.getNum()%>'"
+	<%
+	} else{
+	%>
+	onclick="alert('관리자만 작성 가능합니다.')"
+	<%
+	}
+	%> class="btn btn-danger">
+	<input type="button" class="btn btn-primary" value="목록보기" 
+	onclick="location.href='index.jsp?page=notice/NoticeList'">
 			</td>
 		</tr>
 	

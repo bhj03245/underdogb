@@ -79,6 +79,7 @@ public class MemberServlet extends HttpServlet {
 			memberDTO.setEmail(request.getParameter("email"));
 		     
 			try {
+				//memberDAO에서 COUNT(건수(정수))로 리턴값을 주었음
 				int count = memberDAO.checkID(memberDTO.getId());
 				if(count > 0 ) {
 					out.print("<script>alert('중복된 아이디가 있습니다.'); historty.back();</script>");
@@ -175,26 +176,7 @@ public class MemberServlet extends HttpServlet {
 			out.print("<script>alert('변경되었습니다.'); location.href='index.jsp'</script>");
 			
 		}
-		//아이디 중복체크
-		else if(command.equals("/nodoubleid")) {
-			String doubleid = request.getParameter("id");
-			try {
-				rs = memberDAO.doubleIDcheck(doubleid);
-				while(rs.next()) {
-					if(doubleid.equals(memberDTO.getId())) {
-						out.print("이미 사용 중인 아이디 입니다.<br>");
-						out.print("<input type = 'button' value = '종료' onclick = 'self.close()'>");
-					}else {
-						out.print("사용 가능한 아이디 입니다!.");
-						out.print("<input type = 'button' value = '종료' onclick = 'self.close()'>");
-					}
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
+	
 		//로그아웃
 		else if(command.equals("/memberLogout.mb")) {
 			session.invalidate();

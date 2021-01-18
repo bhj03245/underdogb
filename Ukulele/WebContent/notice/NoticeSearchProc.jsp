@@ -29,6 +29,10 @@ width: 70px;
 .th2 {
 width: 130px;
 }
+
+a {
+text-decoration: none;
+}
 </style>
 
 </head>

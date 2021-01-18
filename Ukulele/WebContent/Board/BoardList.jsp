@@ -13,6 +13,9 @@
 	background-color: gray;
 	color: white;
 }
+a {
+text-decoration: none;
+}
 </style>
 
 </head>

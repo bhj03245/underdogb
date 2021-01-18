@@ -1,5 +1,5 @@
-<%@page import="gallery.GalleryBean"%>
-<%@page import="gallery.GalleryDAO"%>
+<%@page import="file.FileVO"%>
+<%@page import="file.FileDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,10 +10,10 @@
 </head>
 <body>
 <%
-	GalleryDAO dao = new GalleryDAO();
+	FileDAO dao = new FileDAO();
 	int num = Integer.parseInt(request.getParameter("num"));
 	// 하나의 게시글을 리턴
-	GalleryBean bean = dao.getOneUpdateGallery(num);
+	FileVO vo = dao.getOneUpdateGallery(num);
 %>
 <div class="row">
  <div class="col-xs-2 col-md-2"></div>
@@ -24,13 +24,13 @@
 	 		<table class="table">
 	 			<tr>
 	 				<td class="danger">작성자</td>
-	 				<td><%= bean.getWriter() %></td>
+	 				<td><%= vo.getWriter() %></td>
 	 				<td class="danger">작성일</td>
-	 				<td><%= bean.getReg_date() %></td>
+	 				<td><%= vo.getReg_date() %></td>
 	 			</tr>
 	 			<tr>
 	 			  <td class="danger">제목</td>
-	 			  <td colspan="3"><%= bean.getSubject() %></td>
+	 			  <td colspan="3"><%= vo.getSubject() %></td>
 	 			</tr>
 	 			
 	 			<tr>
@@ -42,7 +42,7 @@
 	 			  <td colspan="4" class="text-center">
 	 			  	 <input type="hidden"  value="<%= num %>"  name="num" >
 	 			  	 <input type="submit" value="글삭제" class="btn btn-danger">&nbsp;&nbsp;
-	 			  	 <input type="button" class="btn btn-primary" onclick="location.href='index.jsp?page=Gallery/GalleryList'" value="목록보기">
+	 			  	 <input type="button" class="btn btn-primary" onclick="location.href='selectService'" value="목록보기">
 	 			  </td>
 	 			</tr>
 	 			

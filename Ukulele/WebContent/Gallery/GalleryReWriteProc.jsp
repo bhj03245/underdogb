@@ -12,7 +12,7 @@
 	GalleryDAO dao =new GalleryDAO();
 	dao.reWriteGallery(gallerybean);
 	
-	response.sendRedirect("../index.jsp?page=Gallery/GalleryList");
+	response.sendRedirect("../selectService");
 %>
 
 

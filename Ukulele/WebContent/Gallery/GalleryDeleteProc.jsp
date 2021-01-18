@@ -1,4 +1,4 @@
-<%@page import="gallery.GalleryDAO"%>
+<%@page import="file.FileDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -6,12 +6,12 @@
 	String pass=request.getParameter("password");
 	int num = Integer.parseInt(request.getParameter("num"));
 	
-	GalleryDAO dao =new GalleryDAO();
+	FileDAO dao =new FileDAO();
 	String password =dao.getPass(num);
 	
 	if(pass.equals(password)){
 		dao.deleteGallery(num);	
-		response.sendRedirect("../index.jsp?page=Gallery/GalleryList");
+		response.sendRedirect("../selectService");
 	}
 	else{
 %>

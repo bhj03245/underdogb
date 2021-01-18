@@ -49,7 +49,7 @@
 		 		<td colspan="4"  class="text-center">
 		 			<input type="hidden" name="num"  value="<%= bean.getNum() %>">
 		 			<input type="submit" value="글수정" class="btn btn-warning">
-		 			<input type="button"  class="btn btn-primary" onclick="location.href='Board/BoardList.jsp'" value="전체글보기">
+		 			<input type="button"  class="btn btn-primary" onclick="location.href='index.jsp?page=Board/BoardList'" value="전체글보기">
 		 		</td>
 		 	</tr>
 		  </table>

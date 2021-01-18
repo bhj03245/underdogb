@@ -227,15 +227,9 @@ input::placeholder{
 
 a{
     color: black;
-    text-decoration: underline;
+    text-decoration: none;
     cursor: pointer;
 }
-
-
-
-
-
-
 
 @media (max-width: 600px) {
     .login_main {

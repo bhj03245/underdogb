@@ -27,7 +27,7 @@ public class selectService extends HttpServlet {
 			}else {
 				System.out.println("비었습니다");
 			}
-			RequestDispatcher dis = request.getRequestDispatcher("Gallery/Galleryllist.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("index.jsp?page=Gallery/GalleryList");
 			dis.forward(request, response);
 			
 		}catch(Exception e) {

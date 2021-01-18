@@ -15,10 +15,9 @@
 <div class="center-block">
 <div id="information_top">
 			<h1>연혁</h1>
-		</div>
-<img src="images/back2.png" class="center-block"><br>
-<!-- <p id="moto">한국 우쿨렐레 예술협회는 "Ukulele for a better world, 우쿨렐레와 함께 세상을 아름답게" 라는 모토와 함께합니다.</p> -->
-<br><br>
+</div>
+<img src="images/back2.png" class="image-block">
+<br><br><br>
 <table id="info" style="margin-left: auto; margin-right: auto;">
 <tr>
 	<td><label for="year">2011</label></td>
@@ -40,6 +39,7 @@
 	<td>10월</td>
 	<td id="year">하남 문화예술한마당 공연<br></td>
 </tr>
+<tr><td></td><td></td><td></td></tr>
 <tr>
 	<td><label for="year">2012</label></td>
 	<td>&nbsp;&nbsp;5월</td>
@@ -50,6 +50,7 @@
 	<td>10월</td>
 	<td id="year">고양 호수 예술축제 공연</td>
 </tr>
+<tr><td></td><td></td><td></td></tr>
 <tr>
 	<td><label for="year">2013</label></td>
 	<td>&nbsp;&nbsp;1월</td>
@@ -85,6 +86,7 @@
 	<td>12월</td>
 	<td id="year">강북 장애인복지관 봉사</td>
 </tr>
+<tr><td></td><td></td><td></td></tr>
 <tr>
 	<td><label for="year">2014</label></td>
 	<td>&nbsp;&nbsp;4월</td>
@@ -120,6 +122,7 @@
 	<td>11월</td>
 	<td id="year">에듀클래식 우쿠렐레 뮤직 콩쿠르 참가</td>
 </tr>
+<tr><td></td><td></td><td></td></tr>
 <tr>
 	<td><label for="year">2015</label></td>
 	<td>&nbsp;&nbsp;2월</td>
@@ -135,6 +138,7 @@
 	<td>&nbsp;&nbsp;</td>
 	<td id="year">제주중앙병원 위문 공연</td>
 </tr>
+<tr><td></td><td></td><td></td></tr>
 <tr>
 	<td><label for="year">2016</label></td>
 	<td>&nbsp;&nbsp;3월</td>
@@ -145,6 +149,7 @@
 	<td>&nbsp;&nbsp;9월</td>
 	<td id="year">우크페페 공연</td>
 </tr>
+<tr><td></td><td></td><td></td></tr>
 <tr>
 	<td><label for="year">2017</label></td>
 	<td>&nbsp;&nbsp;9월</td>
@@ -160,6 +165,7 @@
 	<td>11월</td>
 	<td id="year">제5회 한식의날 기념 봉사 공연</td>
 </tr>
+<tr><td></td><td></td><td></td></tr>
 <tr>
 	<td><label for="year">2018</label></td>
 	<td>&nbsp;&nbsp;6월</td>
@@ -175,6 +181,8 @@
 	<td>10월</td>
 	<td id="year">판교 힐링로드 축제 봉사공연</td>
 </tr>
+<tr>
+<td></td><td></td><td></td></tr>
 <tr>
 	<td><label for="year">2019</label></td>
 	<td>&nbsp;&nbsp;1월</td>

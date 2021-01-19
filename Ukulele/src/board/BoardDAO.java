@@ -286,6 +286,33 @@ public class BoardDAO {
 		return pass;
 	}
 	
+	//update 와 delete 시 필요한 ID값을 리턴해주는 메소드
+		public String getID(int num){
+			//리턴할 변수 객체 선언
+			String id ="";
+			getConnection();
+			System.out.println(num);
+			try{
+				//쿼리준비
+				String sql ="select writer from board where num =?";
+				//쿼리실행할 객체 선언
+				pstmt =conn.prepareStatement(sql);
+				pstmt.setInt(1,  num);
+				rs=pstmt.executeQuery();
+				//패스워드값을 저장
+				if(rs.next()){
+					id = rs.getString(1);
+				}
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				//자원 반납
+				closed();
+			}
+			return id;
+		}
+	
 	//하나의 게시글을 수정하는 메소드
 	public void updateBoard(BoardBean bean){
 		getConnection();

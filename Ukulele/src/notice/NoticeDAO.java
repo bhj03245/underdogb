@@ -281,7 +281,7 @@ public class NoticeDAO {
 		getConnection();
 		int count = 0;
 		try {
-			String sql = "select count(*) from notice where" +keyword + " like ?";
+			String sql = "select count(*) from notice where " +keyword + " like ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+subjectSearch+"%");
 			//쿼리 실행 후 결과를 리턴

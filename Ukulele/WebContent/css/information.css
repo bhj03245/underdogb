@@ -43,16 +43,12 @@
 	text-align: left;
 }
 
-/* .center-block, #info { 
- 		max-width: 100%; 
- 		width: 800px; 
- 	} */
 		@media screen and (max-width: 1680px) {
 
 			.image-block, #info {
-				width: 90%;
-				margin-left: 5%;
-				margin-right: 5%;
+				width: 80%;
+				margin-left: 10%;
+				margin-right: 10%;
 			}
 
 		}
@@ -69,13 +65,15 @@
 
 		@media screen and (max-width: 980px) {
 		#information {
-			width: 90%;
-			margin-left: 5%;
-			margin-right: 5%;
+			width: 80%;
+			margin-left: 10%;
+			margin-right: 10%;
 		}
 		
 		.image-block{
-			width: 100%;
+			width: 90%;
+			margin-left: 10%;
+			margin-right: 10%;
 		}
 
 		}

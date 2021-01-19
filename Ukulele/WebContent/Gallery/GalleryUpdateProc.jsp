@@ -1,18 +1,24 @@
-<%@page import="gallery.GalleryDAO"%>
+<%@page import="file.FileDAO"%>
+<%@page import="file.FileBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
-<jsp:useBean id="gallerybean" class="gallery.GalleryBean">
-  <jsp:setProperty name="gallerybean" property="*" />
+<jsp:useBean id="filebean" class="file.FileBean">
+  <jsp:setProperty name="filebean" property="*" />
 </jsp:useBean>
 <%
- 	GalleryDAO dao =new GalleryDAO();
-	String pass=dao.getPass(gallerybean.getNum());
-	if(pass.equals(gallerybean.getPassword())){
-		dao.updateGallery(gallerybean);
-		response.sendRedirect("../index.jsp?page=Gallery/GalleryList");
+ 	FileDAO dao =new FileDAO();
+	FileBean bean = new FileBean();
+	String pass=dao.getPass(filebean.getNum());
+	if(pass.equals(filebean.getPassword())){
+		bean.setSubject(request.getParameter("subject"));
+        bean.setContent(request.getParameter("content"));
+        bean.setFileName(request.getParameter("fileName"));
+        bean.setNum(Integer.parseInt(request.getParameter("num")));
+		dao.updateGallery(filebean);
+		response.sendRedirect("../selectService");
 		
 	}
 	else{

@@ -1,5 +1,5 @@
-<%@page import="gallery.GalleryBean"%>
-<%@page import="gallery.GalleryDAO"%>
+<%@page import="file.FileBean"%>
+<%@page import="file.FileDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,15 +13,15 @@
 	int num =Integer.parseInt(request.getParameter("num").trim());
 
 	//하나의 게시글의 대한 정보를 리턴
-	GalleryDAO dao =new GalleryDAO();
-	GalleryBean bean = dao.getOneUpdateGallery(num);
+	FileDAO dao =new FileDAO();
+	FileBean bean = dao.getOneUpdateGallery(num);
 %>
 
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<h2 class="text-center">게시글 수정</h2><p>&nbsp;</p>
-		<form action="Gallery/GalleryUpdateProc.jsp" method="post" enctype = "multypart/form-data">
+		<form action="UpdateService" method="post" enctype = "multypart/form-data">
 			<div class="table table-responsive">
 					  <table class="table table-striped">
 		 	<tr>
@@ -41,7 +41,7 @@
 		 	</tr>
 		 	<tr>
 		 		<td class = "danger">파일</td>
-		 		<td><input type = "file" class = "f" name = "fileName"></td>
+		 		<td><input type = "file" class = "f" name = "newfileName"></td>
 		 	</tr>
 		 	<tr>
 		 		<td class="danger">글내용</td>
@@ -52,7 +52,7 @@
 		 		<td colspan="4"  class="text-center">
 		 			<input type="hidden" name="num"  value="<%= bean.getNum() %>">
 		 			<input type="submit" value="글수정" class="btn btn-warning">
-		 			<input type="button"  class="btn btn-primary" onclick="location.href='GalleryList.jsp'" value="전체글보기">
+		 			<input type="button"  class="btn btn-primary" onclick="location.href='selectService'" value="전체글보기">
 		 		</td>
 		 	</tr>
 		  </table>

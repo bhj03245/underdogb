@@ -101,7 +101,7 @@
 					if (paging.getStartPage() > 10) {
 				%>
 				<li><a
-					href="selectService&&pageNum=<%=paging.getPrev()%>"
+					href="selectService&&pageNum=<%=paging .getPrev()%>"
 					aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 				<%
 					}

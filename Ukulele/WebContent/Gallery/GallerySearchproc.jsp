@@ -64,7 +64,7 @@ text-decoration: none;
 			<h2 class="text-center">자유게시판</h2>
 			<p class="text-right">
 				<input type="button" value="글쓰기"
-					onclick="location.href='index.jsp?page=gallery/GalleryWrite'"
+					onclick="location.href='index.jsp?page=Gallery/GalleryWrite'"
 					class="btn">
 			</p>
 

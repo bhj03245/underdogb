@@ -10,16 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import file.FileBean;
 import file.FileDAO;
-import file.FileVO;
+import file.Paging;
 
 @WebServlet("/selectService")
 public class selectService extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//DB에 저장된 file정보를 모두 검색해서 jsp로 전송
 		FileDAO dao = new FileDAO();
+		String pageNum = request.getParameter("pageNum");
+		Paging paging = new Paging(pageNum);
+
 		try{
-			ArrayList<FileVO> list = dao.selectAll();
+			ArrayList<FileBean> list = dao.selectAll(paging.getStartRow(), paging.getEndRow());
 			
 			if(list!=null) {
 				request.setAttribute("list", list);

@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import file.FileBean;
 import file.FileDAO;
-import file.FileVO;
 
 @WebServlet("/SelectOne")
 public class SelectOne extends HttpServlet {
@@ -23,10 +23,10 @@ public class SelectOne extends HttpServlet {
 		FileDAO dao = FileDAO.getInstance();
 
 		try {
-			FileVO vo = dao.SelectOne(num);
+			FileBean bean = dao.SelectOne(num);
 
-			if (vo != null) {
-				request.setAttribute("vo", vo);
+			if (bean != null) {
+				request.setAttribute("bean", bean);
 			} else {
 				System.out.println("조회실패..");
 			}

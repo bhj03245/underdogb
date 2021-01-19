@@ -16,8 +16,8 @@ import file.FileDAO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet("/UploadService")
-public class UploadService extends HttpServlet {
+@WebServlet("/UpdateService")
+public class UpdateService extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String fileName = request.getParameter("file");
@@ -48,22 +48,20 @@ public class UploadService extends HttpServlet {
 //			String password = multi.getParameter("password");
 //			String file = multi.getFilesystemName("fileName");
 //			String content = multi.getParameter("content");
-			bean.setWriter(multi.getParameter("writer"));
 			bean.setSubject(multi.getParameter("subject"));
-			bean.setEmail(multi.getParameter("email"));
-			bean.setPassword(multi.getParameter("password"));
-			bean.setFileName(multi.getFilesystemName("fileName"));
 			bean.setContent(multi.getParameter("content"));
+			bean.setFileName(multi.getFilesystemName("newfileName"));
+			bean.setNum(Integer.parseInt(multi.getParameter("num")));
 
 			try {
-				int result = dao.uploadFile(bean);
+				int result = dao.updateGallery(bean);
 				String moveUrl = "";
 				if (result > 0) {
 					System.out.println("저장완료");
 					moveUrl = "selectService";
 				} else {
 					System.out.println("저장실패");
-					moveUrl = "Gallery/GalleryWrite.jsp";
+					moveUrl = "Gallery/GalleryUpdateForm.jsp";
 				}
 				response.sendRedirect(moveUrl);
 			} catch (Exception e) {

@@ -42,11 +42,17 @@ public class BoardServlet extends HttpServlet {
 		String command = requestURI.substring(contextPath.length());
 
 		if (command.equals("/BoardWrite.bo")) { // 게시판 등록
+			String fileBoardname = request.getParameter("fileBoardname");
+			String fileBoardid = request.getParameter("fileBoardid");
+			
 			bean.setWriter(request.getParameter("writer"));
 			bean.setEmail(request.getParameter("email"));
 			bean.setSubject(request.getParameter("subject"));
 			bean.setPassword(request.getParameter("password"));
 			bean.setContent(request.getParameter("content"));
+			bean.setFileBoardname(request.getParameter("fileBoardname"));
+			bean.setFileBoardid(request.getParameter("fileBoardid"));
+			
 			boardDAO.insertBoard(bean);
 			response.sendRedirect("index.jsp?page=Board/BoardList");
 		} // 게시판 등록
@@ -54,14 +60,19 @@ public class BoardServlet extends HttpServlet {
 		else if (command.equals("/BoardDelete.bo")) { // 게시판 글 삭제
 			String pw = request.getParameter("password");
 			int num = Integer.parseInt(request.getParameter("num"));
+			String fileBoardid = request.getParameter("fileBoardid");
 			String password =boardDAO.getPass(num);
 			String id = boardDAO.getID(num);
+			
 			if(!id.equals(request.getParameter("id"))){
 				out.print("<script>alert('자신이 작성한 게시글만 삭제할 수 있습니다.'); history.go(-1);</script>");
 			}
 			else {
 				if(pw.equals(password)){
-					boardDAO.deleteBoard(num);	
+					boardDAO.deleteBoard(num);
+					if(fileBoardid != null) {
+						boardDAO.deleteBoardFile(request, fileBoardid);
+					}
 					response.sendRedirect("index.jsp?page=Board/BoardList");
 				}
 				else{

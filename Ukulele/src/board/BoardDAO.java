@@ -1,5 +1,6 @@
 package board;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.util.Vector;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 public class BoardDAO {
@@ -55,8 +57,8 @@ public class BoardDAO {
 //			String sql =" insert into board values( board_seq.NEXTVAL, ?, ? , ?, ? , )";
 			
 		String sql =" insert into board (WRITER, EMAIL, SUBJECT, PASSWORD, REG_DATE, REF, ";
-			   sql +="	RE_STEP, RE_LEVEL, READCOUNT, CONTENT) "; 
-			   sql +=" values(? ,? , ?, ?, now(), ?, ?, ? , 0, ? ) ";
+			   sql +="	RE_STEP, RE_LEVEL, READCOUNT, CONTENT, FILEBOARDNAME, FILEBOARDID) "; 
+			   sql +=" values(? ,? , ?, ?, now(), ?, ?, ? , 0, ?, ?, ? ) ";
 			pstmt=conn.prepareStatement(sql);
 			//?에 값을 맵핑	  	
 			pstmt.setString(1, bean.getWriter());
@@ -67,6 +69,8 @@ public class BoardDAO {
 			pstmt.setInt(6, re_step);
 			pstmt.setInt(7, re_level);
 			pstmt.setString(8, bean.getContent());
+			pstmt.setString(9, bean.getFileBoardname());
+			pstmt.setString(10, bean.getFileBoardid());
 			//쿼리를 실행하시오
 			pstmt.executeUpdate();
 		}catch(Exception e){
@@ -76,8 +80,6 @@ public class BoardDAO {
 			closed();
 		}
 	}
-	
-	
 	
 	//모든 게시글을 리턴해주는 
 	public Vector<BoardBean> getAllBoard(int start, int end){		
@@ -152,7 +154,9 @@ public class BoardDAO {
 				bean.setRe_step(rs.getInt("RE_STEP"));
 				bean.setRe_level(rs.getInt("RE_LEVEL"));
 				bean.setReadcount(rs.getInt("READCOUNT"));
-				bean.setContent(rs.getString("CONTENT"));				
+				bean.setContent(rs.getString("CONTENT"));
+				bean.setFileBoardname(rs.getString("FILEBOARDNAME"));
+				bean.setFileBoardid(rs.getString("FILEBOARDID"));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -354,6 +358,12 @@ public class BoardDAO {
 			//자원 반납
 			closed();
 		}
+	}
+	
+	public void deleteBoardFile(HttpServletRequest request, String fileBoardid) {
+		String filePath = request.getRealPath("boardfile");
+		File file = new File(filePath + "/" + fileBoardid);
+		file.delete();	
 	}
 	
 	

@@ -12,6 +12,8 @@ public class BoardBean {
 	private int re_level;
 	private int readcount;
 	private String content;
+	private String fileBoardname;
+	private String fileBoardid;
 	
 	
 	public int getNum() {
@@ -80,14 +82,28 @@ public class BoardBean {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
+	public String getFileBoardname() {
+		return fileBoardname;
+	}
+	public void setFileBoardname(String fileBoardname) {
+		this.fileBoardname = fileBoardname;
+	}
+	public String getFileBoardid() {
+		return fileBoardid;
+	}
+	public void setFileBoardid(String fileBoardid) {
+		this.fileBoardid = fileBoardid;
+	}
 	@Override
 	public String toString() {
 		return "BoardBean [num=" + num + ", writer=" + writer + ", email=" + email + ", subject=" + subject
 				+ ", password=" + password + ", reg_date=" + reg_date + ", ref=" + ref + ", re_step=" + re_step
-				+ ", re_level=" + re_level + ", readcount=" + readcount + ", content=" + content + "]";
+				+ ", re_level=" + re_level + ", readcount=" + readcount + ", content=" + content + ", fileBoardname="
+				+ fileBoardname + ", fileBoardid=" + fileBoardid + "]";
 	}
+	
+	
+	
 	
 	
 	

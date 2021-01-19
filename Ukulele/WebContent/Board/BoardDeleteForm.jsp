@@ -12,14 +12,14 @@
 	int num =Integer.parseInt(request.getParameter("num"));
 	//하나의 게시글을 리턴
 	BoardBean bean=bdao.getOneUpdateBoard(num);
-	
+	String id = (String)session.getAttribute("id");
 	
 %>
 <div class="row">
  <div class="col-xs-2 col-md-2"></div>
  	<div class="col-xs-8 col-md-8">
  		<h2 class="text-center">글 삭제하기</h2><p>&nbsp;</p>
- 		<form action="Board/BoardDeleteProc.jsp" method="post">
+ 		<form action="BoardDelete.bo" method="post">
  		  <div class="table table-responsive">
 	 		<table class="table">
 	 			<tr>
@@ -41,6 +41,7 @@
 	 			<tr>
 	 			  <td colspan="4" class="text-center">
 	 			  	 <input type="hidden"  value="<%= num %>"  name="num" >
+	 			  	 <input type="hidden"  value="<%= id %>"  name="id" >
 	 			  	 <input type="submit" value="글삭제" class="btn btn-danger">&nbsp;&nbsp;
 	 			  	 <input type="button" class="btn btn-primary" onclick="location.href='index.jsp?page=Board/BoardList'" value="목록보기">
 	 			  </td>

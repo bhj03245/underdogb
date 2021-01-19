@@ -23,7 +23,7 @@
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<h2 class="text-center">답변글 입력하기</h2><p></p>
-		<form action="Board/BoardReWriteProc.jsp" method="post">
+		<form action="BoardReWrite.bo" method="post">
 			<div class="table table-responsive">
 					  <table class="table table-striped">
 		 	<tr>

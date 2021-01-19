@@ -20,7 +20,7 @@
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<h2 class="text-center">게시글 수정</h2><p>&nbsp;</p>
-		<form action="notice/NoticeUpdateProc.jsp" method="post">
+		<form action="NoticeUpdate.no" method="post">
 			<div class="table table-responsive">
 					  <table class="table table-striped">
 		 	<tr>

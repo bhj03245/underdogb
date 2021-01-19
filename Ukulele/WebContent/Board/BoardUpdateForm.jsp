@@ -15,13 +15,14 @@
 	//하나의 게시글의 대한 정보를 리턴
 	BoardDAO bdao =new BoardDAO();
 	BoardBean bean =bdao.getOneUpdateBoard(num);
+	String id = (String)session.getAttribute("id");
 %>
 
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<h2 class="text-center">게시글 수정</h2><p>&nbsp;</p>
-		<form action="Board/BoardUpdateProc.jsp" method="post">
+		<form action="BoardUpdate.bo" method="post">
 			<div class="table table-responsive">
 					  <table class="table table-striped">
 		 	<tr>
@@ -48,6 +49,7 @@
 		  	<tr>	
 		 		<td colspan="4"  class="text-center">
 		 			<input type="hidden" name="num"  value="<%= bean.getNum() %>">
+		 			<input type="hidden" name="id"  value="<%=id %>">
 		 			<input type="submit" value="글수정" class="btn btn-warning">
 		 			<input type="button"  class="btn btn-primary" onclick="location.href='index.jsp?page=Board/BoardList'" value="전체글보기">
 		 		</td>

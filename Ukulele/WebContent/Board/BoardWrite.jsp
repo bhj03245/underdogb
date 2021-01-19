@@ -21,7 +21,7 @@
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<h2 class="text-center">게시글 쓰기</h2>
-		<form action="Board/BoardWriterProc.jsp" method="post" \>
+		<form action="BoardWrite.bo" method="post" \>
 		  <table class="table table-striped">
 		 	<tr>
 		 		<td>작성자</td>

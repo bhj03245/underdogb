@@ -20,7 +20,7 @@
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<h2 class="text-center">게시글 쓰기</h2>
-		<form action="notice/NoticeWriterProc.jsp" method="post" \>
+		<form action="NoticeWrite.no" method="post" \>
 		  <table class="table table-striped">
 		 	<tr>
 		 		<td>작성자</td>

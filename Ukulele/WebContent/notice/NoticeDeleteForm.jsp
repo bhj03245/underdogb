@@ -18,7 +18,7 @@
  <div class="col-xs-2 col-md-2"></div>
  	<div class="col-xs-8 col-md-8">
  		<h2 class="text-center">글 삭제하기</h2><p>&nbsp;</p>
- 		<form action="notice/NoticeDeleteProc.jsp" method="post">
+ 		<form action="NoticeDelete.no" method="post">
  		  <div class="table table-responsive">
 	 		<table class="table">
 	 			<tr>

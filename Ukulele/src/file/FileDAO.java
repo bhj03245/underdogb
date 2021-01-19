@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Vector;
 
+import board.BoardBean;
+
 public class FileDAO {
 	
 	private Connection con = null;
@@ -45,7 +47,7 @@ public class FileDAO {
 	}
 	
 	//파일업로드
-	public int uploadFile(String writer, String subject, String email, String password, String fileName,String content) throws SQLException, ClassNotFoundException, IOException {
+	public int uploadFile(FileBean bean) throws SQLException, ClassNotFoundException, IOException {
 		getConnection();
 		
 		int ref = 0;
@@ -61,15 +63,15 @@ public class FileDAO {
 		
 //		psmt = con.prepareStatement("insert into fileboard values(file_num.nextval,?,?,?,to_char(sysdate, 'YYYY-MM-DD'))");
 	    psmt = con.prepareStatement("insert into gallery(writer, subject, email, password, fileName, reg_date, ref, re_step, re_level, readcount, content) values(?,?,?,?,?, now(), ?, ?, ?, 0, ?)");
-		psmt.setString(1, writer);
-		psmt.setString(2, subject);
-		psmt.setString(3, email);
-		psmt.setString(4, password);
-		psmt.setString(5, fileName);
+	    psmt.setString(1, bean.getWriter());
+		psmt.setString(2, bean.getSubject());
+		psmt.setString(3, bean.getEmail());
+		psmt.setString(4, bean.getPassword());
+		psmt.setString(5, bean.getFileName());
 		psmt.setInt(6, ref);
 		psmt.setInt(7, re_step);
 		psmt.setInt(8, re_level);
-		psmt.setString(9, content);
+		psmt.setString(9, bean.getContent());
 		
 		result = psmt.executeUpdate();
 		
@@ -78,66 +80,68 @@ public class FileDAO {
 		return result;
 	}
 
-	public ArrayList<FileVO> selectAll() throws ClassNotFoundException, IOException, SQLException {
+	public ArrayList<FileBean> selectAll(int start, int end) throws ClassNotFoundException, IOException, SQLException {
 		getConnection();
 		
-		ArrayList<FileVO> tempList = new ArrayList<>();
+		ArrayList<FileBean> v = new ArrayList<>();
 		psmt = con.prepareStatement("Select * from gallery order by num ASC");
 		rs = psmt.executeQuery();
 		
 		while(rs.next()) {
-			tempList.add(new FileVO(rs.getInt(1), //NUM
-					rs.getString(2), 			  //writer
-					rs.getString(3), 			  //subject
-					rs.getString(4), 			  //email
-					rs.getString(5), 			  //password
-					rs.getString(6),			  //fileName
-					rs.getString(7),			//reg_date
-					rs.getInt(8),				//ref
-					rs.getInt(9),				//re_step
-					rs.getInt(10),				//re_level
-					rs.getInt(11),				//readcount
-					rs.getString(12)));			//content
+			FileBean bean =new FileBean();
+			bean.setNum(rs.getInt("num"));
+			bean.setWriter(rs.getString("writer"));
+			bean.setSubject(rs.getString("subject"));
+			bean.setEmail(rs.getString("email"));
+			bean.setPassword(rs.getString("password"));
+			bean.setFileName(rs.getString("fileName"));
+			bean.setReg_date(rs.getDate("reg_date").toString());
+			bean.setRef(rs.getInt("ref"));
+			bean.setRe_step(rs.getInt("re_step"));
+			bean.setRe_level(rs.getInt("re_level"));
+			bean.setReadcount(rs.getInt("readcount"));
+			bean.setContent(rs.getString("content"));
+			v.add(bean);
 		}
 		
 		close();
 		
-		return tempList;
+		return v;
 	}
 
-	public FileVO SelectOne(int num) throws ClassNotFoundException, IOException, SQLException {
+	public FileBean SelectOne(int num) throws ClassNotFoundException, IOException, SQLException {
 		getConnection();
 		
 		psmt = con.prepareStatement("select * from gallery where num=?");
 		psmt.setInt(1, num);
 		rs = psmt.executeQuery();
 		
-		FileVO vo = null;
+		FileBean bean = new FileBean();
 		
 		if(rs.next()) {
-			vo = new FileVO(rs.getInt(1),
-					rs.getString(2), 			  //writer
-					rs.getString(3), 			  //subject
-					rs.getString(4), 			  //email
-					rs.getString(5), 			  //password
-					rs.getString(6),			  //fileName
-					rs.getString(7),			//reg_date
-					rs.getInt(8),				//ref
-					rs.getInt(9),				//re_step
-					rs.getInt(10),				//re_level
-					rs.getInt(11),				//readcount
-					rs.getString(12));			//content
+			bean.setNum(rs.getInt("num"));
+			bean.setWriter(rs.getString("writer"));
+			bean.setSubject(rs.getString("subject"));
+			bean.setEmail(rs.getString("email"));
+			bean.setPassword(rs.getString("password"));
+			bean.setFileName(rs.getString("fileName"));
+			bean.setReg_date(rs.getDate("reg_date").toString());
+			bean.setRef(rs.getInt("ref"));
+			bean.setRe_step(rs.getInt("re_step"));
+			bean.setRe_level(rs.getInt("re_level"));
+			bean.setReadcount(rs.getInt("readcount"));
+			bean.setContent(rs.getString("content"));
 		}
 		
 		close();
 		
-		return vo;
+		return bean;
 	}
 	
-	public void reWriteGallery(FileVO vo)throws ClassNotFoundException, SQLException, IOException {
-		int ref = vo.getRef();
-		int re_step = vo.getRe_step();
-		int re_level = vo.getRe_level();
+	public void reWriteGallery(FileBean bean)throws ClassNotFoundException, SQLException, IOException {
+		int ref = bean.getRef();
+		int re_step = bean.getRe_step();
+		int re_level = bean.getRe_level();
 		
 		
 		getConnection();
@@ -151,43 +155,43 @@ public class FileDAO {
 		 psmt = con.prepareStatement("insert into gallery(writer, subject, email, passwoard, fileName, reg_date,"
 		 		+ "ref, re_step, re_level, readcount, content");
 		 
-		 psmt.setString(1, vo.getWriter());
-		 psmt.setString(2, vo.getSubject());
-		 psmt.setString(3, vo.getEmail());
-		 psmt.setString(4, vo.getPassword());
-		 psmt.setString(5, vo.getFileName());
+		 psmt.setString(1, bean.getWriter());
+		 psmt.setString(2, bean.getSubject());
+		 psmt.setString(3, bean.getEmail());
+		 psmt.setString(4, bean.getPassword());
+		 psmt.setString(5, bean.getFileName());
 		 psmt.setInt(6, ref);
 		 psmt.setInt(7, re_step+1);
 		 psmt.setInt(8, re_level+1);
-		 psmt.setString(9, vo.getContent());
+		 psmt.setString(9, bean.getContent());
 		 psmt.executeUpdate();
 		
 		 close(); 		 
 	}
 	// galleryUpdate용 delete시 하나의 게시글을 리턴
-	public FileVO getOneUpdateGallery(int num)throws ClassNotFoundException, SQLException, IOException  {
-		FileVO vo = null;
+	public FileBean getOneUpdateGallery(int num)throws ClassNotFoundException, SQLException, IOException  {
+		FileBean bean = new FileBean();
 		getConnection();
 		
 	psmt = con.prepareStatement("select * from gallery where num=?");
 	psmt.setInt(1, num);
 	rs=psmt.executeQuery();
 	if(rs.next()) {
-		vo = new FileVO(rs.getInt(1),
-				rs.getString(2), 			  //writer
-				rs.getString(3), 			  //subject
-				rs.getString(4), 			  //email
-				rs.getString(5), 			  //password
-				rs.getString(6),			  //fileName
-				rs.getString(7),			//reg_date
-				rs.getInt(8),				//ref
-				rs.getInt(9),				//re_step
-				rs.getInt(10),				//re_level
-				rs.getInt(11),				//readcount
-				rs.getString(12));			//content
+		bean.setNum(rs.getInt("num"));
+		bean.setWriter(rs.getString("writer"));
+		bean.setSubject(rs.getString("subject"));
+		bean.setEmail(rs.getString("email"));
+		bean.setPassword(rs.getString("password"));
+		bean.setFileName(rs.getString("fileName"));
+		bean.setReg_date(rs.getDate("reg_date").toString());
+		bean.setRef(rs.getInt("ref"));
+		bean.setRe_step(rs.getInt("re_step"));
+		bean.setRe_level(rs.getInt("re_level"));
+		bean.setReadcount(rs.getInt("readcount"));
+		bean.setContent(rs.getString("content"));
 	}
 	close();		
-	return vo;
+	return bean;
 	}
 	public String getPass(int num)throws ClassNotFoundException, SQLException, IOException   {
 		String pass = "";
@@ -203,14 +207,16 @@ public class FileDAO {
 		close();
 		return pass;
 	}
-	public void updateGallery(FileVO vo)throws ClassNotFoundException, SQLException, IOException {
+	public int updateGallery(FileBean bean)throws ClassNotFoundException, SQLException, IOException {
 		getConnection();
-		psmt = con.prepareStatement("update gallery set subject = ?, content = ? where num = ?");
-		psmt.setString(1, vo.getSubject());
-		psmt.setString(2, vo.getContent());
-		psmt.setInt(3, vo.getNum());
-		psmt.executeUpdate();
+		psmt = con.prepareStatement("update gallery set subject = ?, content = ?, fileName = ? where num = ?");
+		psmt.setString(1, bean.getSubject());
+		psmt.setString(2, bean.getContent());
+		psmt.setString(3, bean.getFileName());
+		psmt.setInt(4, bean.getNum());
+		result = psmt.executeUpdate();
 		close();
+		return result;
 	}
 	public void deleteGallery(int num)throws ClassNotFoundException, SQLException, IOException {
 		getConnection();
@@ -245,8 +251,8 @@ public class FileDAO {
 		}
 		return count;
 	}
-	public Vector<FileVO> searchGallery(int pageNum, int pageList, String subjectSearch, String keyword)throws ClassNotFoundException, SQLException, IOException {
-		Vector<FileVO> v = new Vector<>();
+	public ArrayList<FileBean> searchGallery(int pageNum, int pageList, String subjectSearch, String keyword)throws ClassNotFoundException, SQLException, IOException {
+		ArrayList<FileBean> v = new ArrayList<>();
 		getConnection();
 		psmt = con.prepareStatement("select num, subject , content, writer, reg_date, readcount from gallery where" +keyword+ "like ? "
 				+"order by ref desc, re_step asc, num desc limit ?,?");
@@ -255,8 +261,15 @@ public class FileDAO {
 		psmt.setInt(3, pageList);
 		rs = psmt.executeQuery();
 		while(rs.next()) {
-			FileVO vo = new FileVO();
-			
+			FileBean bean = new FileBean();
+			bean.setNum(rs.getInt("num"));
+			bean.setSubject(rs.getString("subject"));
+			bean.setContent(rs.getString("content"));
+			bean.setWriter(rs.getString("wriger"));
+			bean.setReg_date(rs.getDate("reg_date").toString());
+			bean.setReadcount(rs.getInt("readcount"));
+			v.add(bean);
 		}
+		return v;
 	}
 }

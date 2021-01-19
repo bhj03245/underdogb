@@ -44,6 +44,14 @@
 			<th class="success">제목</th>
 			<td colspan="3"><%= bean.getSubject() %></td>
 		</tr>
+		<%
+ 		if(bean.getFilename() != null){
+ 			%>
+		<tr>
+			<th class="success">첨부파일</th>
+			<td colspan="3"><a href="notice/fileDownload.jsp?filename=<%=bean.getFilename()%>&fileSysname=<%=bean.getFileSysname()%>"><%= bean.getFilename() %></a></td>
+		</tr>
+ 		<% } %>
 		<tr>
 			<th class="success">글 내용</th>
 			<td colspan="3"><%= bean.getContent() %></td>
@@ -56,7 +64,7 @@
 	<input type="button" class="btn btn-warning" value="수정하기" 
 	onclick="location.href='index.jsp?page=notice/NoticeUpdateForm&num=<%= bean.getNum()%>'">		  
 	<input type="button" class="btn btn-danger" value="삭제하기" 
-	onclick="location.href='index.jsp?page=notice/NoticeDeleteForm&num=<%= bean.getNum()%>'">
+	onclick="location.href='index.jsp?page=notice/NoticeDeleteForm&num=<%= bean.getNum()%>&fileSysname=<%= bean.getFileSysname()%>'">
 <% } %>
 	<input type="button" class="btn btn-primary" value="목록보기" 
 	onclick="location.href='index.jsp?page=notice/NoticeList'">

@@ -20,7 +20,7 @@
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<h2 class="text-center">게시글 쓰기</h2>
-		<form action="NoticeWrite.no" method="post" \>
+		<form action="notice/fileUpload.jsp" method="post" enctype="multipart/form-data">
 		  <table class="table table-striped">
 		 	<tr>
 		 		<td>작성자</td>
@@ -29,6 +29,10 @@
 		 	<tr>
 		 		<td>제목</td>
 		 		<td><input type="text"  class="form-control" name="subject"></td>
+		 	</tr>
+		 	<tr>
+		 		<td>첨부파일</td>
+		 		<td><input type="file" name="filename"></td>
 		 	</tr>
 		 	<tr>
 		 		<td>글내용</td>

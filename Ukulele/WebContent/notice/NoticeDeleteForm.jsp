@@ -12,7 +12,7 @@
 	int num = Integer.parseInt(request.getParameter("num"));
 	//하나의 게시글을 리턴
 	NoticeBean bean = ndao.getOneUpdateNotice(num);
-	
+	String fileSysname = request.getParameter("fileSysname");
 %>
 <div class="row">
  <div class="col-xs-2 col-md-2"></div>
@@ -39,7 +39,8 @@
 	 			
 	 			<tr>
 	 			  <td colspan="4" class="text-center">
-	 			  	 <input type="hidden"  value="<%= num %>"  name="num" >
+	 			  	 <input type="hidden" value="<%= num %>" name="num" >
+	 			  	 <input type="hidden" value="<%= fileSysname %>" name="fileSysname">  
 	 			  	 <input type="submit" value="글삭제" class="btn btn-danger">&nbsp;&nbsp;
 	 			  	 <input type="button" class="btn btn-primary" onclick="location.href='index.jsp?page=notice/NoticeList'" value="목록보기">
 	 			  </td>

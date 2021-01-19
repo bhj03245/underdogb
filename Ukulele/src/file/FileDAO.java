@@ -1,5 +1,6 @@
 package file;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -9,9 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.Vector;
 
-import board.BoardBean;
+import javax.servlet.http.HttpServletRequest;
+
+import file.FileBean;
 
 public class FileDAO {
 	
@@ -242,7 +244,7 @@ public class FileDAO {
 		getConnection();
 		int count = 0;
 		
-		psmt = con.prepareStatement("select count(*) from gallery where");
+		psmt = con.prepareStatement("select count(*) from board where " +keyword+ " like ?");
 		psmt.setString(1, "%"+subjectSearch+"%");
 		rs = psmt.executeQuery();
 		if(rs.next()) {
@@ -254,7 +256,7 @@ public class FileDAO {
 	public ArrayList<FileBean> searchGallery(int pageNum, int pageList, String subjectSearch, String keyword)throws ClassNotFoundException, SQLException, IOException {
 		ArrayList<FileBean> v = new ArrayList<>();
 		getConnection();
-		psmt = con.prepareStatement("select num, subject , content, writer, reg_date, readcount from gallery where" +keyword+ "like ? "
+		psmt = con.prepareStatement("select num, subject, content, writer, reg_date, readcount from gallery where" +keyword+ "like ? "
 				+"order by ref desc, re_step asc, num desc limit ?,?");
 		psmt.setString(1, "%"+subjectSearch+"%");
 		psmt.setInt(2, pageList*(pageNum-1));
@@ -265,11 +267,17 @@ public class FileDAO {
 			bean.setNum(rs.getInt("num"));
 			bean.setSubject(rs.getString("subject"));
 			bean.setContent(rs.getString("content"));
-			bean.setWriter(rs.getString("wriger"));
+			bean.setWriter(rs.getString("writer"));
 			bean.setReg_date(rs.getDate("reg_date").toString());
 			bean.setReadcount(rs.getInt("readcount"));
 			v.add(bean);
 		}
 		return v;
 	}
+	public void deleteGalleryFile(HttpServletRequest request, String fileSysGallery) {
+	      String filePath = request.getRealPath("Upload");
+	      File file = new File(filePath + "/" + fileSysGallery);
+	      file.delete();   
+	   }
+	
 }

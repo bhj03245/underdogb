@@ -1,5 +1,6 @@
 package notice;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.util.Vector;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 public class NoticeDAO {
@@ -50,7 +52,7 @@ public class NoticeDAO {
 				ref = rs.getInt(1)+1;//최대값에 +1 를 더해서 글그룹을 설정
 			}
 			//실제로 게시글 전체값을 테이블에 저장	
-		String sql =" insert into notice (WRITER, EMAIL, SUBJECT, PASSWORD, REG_DATE, REF, RE_STEP, RE_LEVEL, READCOUNT, CONTENT) values(? ,? , ?, ?, now(), ?, ?, ? , 0, ? ) ";
+		String sql =" insert into notice (WRITER, EMAIL, SUBJECT, PASSWORD, REG_DATE, REF, RE_STEP, RE_LEVEL, READCOUNT, CONTENT, FILENAME, FILESYSNAME) values(?, ?, ?, ?, now(), ?, ?, ?, 0, ?, ?, ? ) ";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, bean.getWriter());
 			pstmt.setString(2, bean.getEmail());
@@ -60,6 +62,8 @@ public class NoticeDAO {
 			pstmt.setInt(6, re_step);
 			pstmt.setInt(7, re_level);
 			pstmt.setString(8, bean.getContent());
+			pstmt.setString(9, bean.getFilename());
+			pstmt.setString(10, bean.getFileSysname());
 			pstmt.executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -136,7 +140,9 @@ public class NoticeDAO {
 				bean.setRe_step(rs.getInt("RE_STEP"));
 				bean.setRe_level(rs.getInt("RE_LEVEL"));
 				bean.setReadcount(rs.getInt("READCOUNT"));
-				bean.setContent(rs.getString("CONTENT"));				
+				bean.setContent(rs.getString("CONTENT"));
+				bean.setFilename(rs.getString("FILENAME"));
+				bean.setFileSysname(rs.getString("FILESYSNAME"));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -255,6 +261,12 @@ public class NoticeDAO {
 		}finally{
 			closed();
 		}
+	}
+	
+	public void deleteNoticeFile(HttpServletRequest request, String fileSysname) {
+		String filePath = request.getRealPath("noticeUpload");
+        File file = new File(filePath + "/" + fileSysname);
+        file.delete();
 	}
 	
 	//전체 글의 갯수를 리턴하는 메소드

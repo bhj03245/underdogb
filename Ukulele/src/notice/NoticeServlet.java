@@ -43,11 +43,17 @@ public class NoticeServlet extends HttpServlet {
 		String command = requestURI.substring(contextPath.length());
 
 		if (command.equals("/NoticeWrite.no")) { // 공지사항 등록
+			String filename = request.getParameter("filename");
+			String fileSysname = request.getParameter("fileSysname");
+			
 			bean.setWriter(request.getParameter("writer"));
 			bean.setEmail(request.getParameter("email"));
 			bean.setSubject(request.getParameter("subject"));
 			bean.setPassword(request.getParameter("password"));
 			bean.setContent(request.getParameter("content"));
+			bean.setFilename(filename);
+			bean.setFileSysname(fileSysname);
+
 			noticeDAO.insertNotice(bean);
 			response.sendRedirect("index.jsp?page=notice/NoticeList");
 		} // 공지사항 등록
@@ -55,10 +61,14 @@ public class NoticeServlet extends HttpServlet {
 		else if (command.equals("/NoticeDelete.no")) { // 공지사항 삭제
 			String pw = request.getParameter("password");
 			int num = Integer.parseInt(request.getParameter("num"));
+			String fileSysname = request.getParameter("fileSysname");
 			String password = noticeDAO.getPass(num);
 
 			if (pw.equals(password)) {
 				noticeDAO.deleteNotice(num);
+				if(fileSysname != null) {
+					noticeDAO.deleteNoticeFile(request, fileSysname);
+				}
 				response.sendRedirect("index.jsp?page=notice/NoticeList");
 			} else {
 				out.print("<script>alert('패스워드가 틀려서 삭제 할 수 없습니다. 패스워드를 확인해 주세요.'); history.go(-1);</script>");

@@ -60,7 +60,14 @@
 			<th class="success">제목</th>
 			<td colspan="3"><%= bean.getSubject() %></td>
 		</tr>
-		
+		<%
+ 		if(bean.getFileBoardname() != null){
+ 			%>
+		<tr>
+			<th class="success">첨부파일</th>
+			<td colspan="3"><a href="Board/fileDownload.jsp?fileBoardname=<%=bean.getFileBoardname()%>&fileBoardid=<%=bean.getFileBoardid()%>"><%= bean.getFileBoardname() %></a></td>
+		</tr>
+ 		<% } %>
 		<tr>
 			<th class="success">글 내용</th>
 			<td colspan="3"><%= bean.getContent() %></td>
@@ -71,7 +78,7 @@
 			  <input type="button" class="btn btn-success"  value="답글 쓰기" 
 onclick="location.href='index.jsp?page=Board/BoardReWriteForm&&num=<%=bean.getNum()%>&ref=<%=bean.getRef() %>&re_step=<%= bean.getRe_step() %>&re_level=<%=bean.getRe_level() %>'"  		  >
 	<input type="button" class="btn btn-info" value="수정하기" onclick="location.href='index.jsp?page=Board/BoardUpdateForm&num=<%= bean.getNum()%>'">		  
-<input type="button" class="btn btn-danger" value="삭제하기" onclick="location.href='index.jsp?page=Board/BoardDeleteForm&num=<%= bean.getNum()%>'">
+<input type="button" class="btn btn-danger" value="삭제하기" onclick="location.href='index.jsp?page=Board/BoardDeleteForm&num=<%= bean.getNum()%>&fileBoardid=<%= bean.getFileBoardid()%>'">
 <input type="button" class="btn" value="목록보기" onclick="location.href='index.jsp?page=Board/BoardList'">
 			</td>
 		</tr>

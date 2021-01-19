@@ -13,6 +13,7 @@
 	//하나의 게시글을 리턴
 	BoardBean bean=bdao.getOneUpdateBoard(num);
 	String id = (String)session.getAttribute("id");
+	String fileBoardid = request.getParameter("fileBoardid");
 	
 %>
 <div class="row">
@@ -42,6 +43,7 @@
 	 			  <td colspan="4" class="text-center">
 	 			  	 <input type="hidden"  value="<%= num %>"  name="num" >
 	 			  	 <input type="hidden"  value="<%= id %>"  name="id" >
+	 			  	 <input type="hidden"  value="<%= fileBoardid %>" name="fileBoardid">
 	 			  	 <input type="submit" value="글삭제" class="btn btn-danger">&nbsp;&nbsp;
 	 			  	 <input type="button" class="btn btn-primary" onclick="location.href='index.jsp?page=Board/BoardList'" value="목록보기">
 	 			  </td>

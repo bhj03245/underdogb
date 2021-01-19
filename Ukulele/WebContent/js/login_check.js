@@ -6,7 +6,7 @@
 
 
 $(function() {
-	$('.login_form1').submit(function() {
+	$('.login_form1').focusout(function() {
 		var idcheck = $('#register_id').val().trim();
 		var reg1 = /^[a-z][a-z0-9]{3,9}/;
 		if (!reg1.test(idcheck)) {

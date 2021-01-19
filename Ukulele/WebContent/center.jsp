@@ -13,11 +13,16 @@
 <link rel="stylesheet" href="css/login_.css" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 <title>KHJSP</title>
+<style type="text/css">
+	#slidecontainer{
+		overflow: hidden;
+	}
+</style>
 </head>
 <body class="homepage is-preload">
 	<div id="page-wrapper">
 		<section>
-			<div class="hero-gallery js-flickity" data-js-module="hero-gallery">
+			<div class="hero-gallery js-flickity" data-js-module="hero-gallery" id="slidecontainer">
 				<div class="hero-gallery__cell hero-gallery__cell--1">
 					<div class="hero-gallery__cell__content">
 						<h1>Flikity</h1>
@@ -256,29 +261,6 @@
 	<script type="text/javascript"
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
-
-	<!-- 다른 것에 영향을 받지 않고 자신만의 스타일을 가져야 하는 것들 -->
-
-	<!-- 로그인팝업화면 -->
-	<div id="login-box" class="login-popup">
-		<form method="post" class="signin" action="#">
-			<div class="login_main">
-				<p class="login_sign" align="center">sign in</p>
-				<form class="login_form1">
-					<input class="login_username" type="text" align="center"
-						placeholder="Username"> <input class="login_password"
-						type="password" align="center" placeholder="Password"> <a
-						class="login_submit" align="center" href="#">sign in</a>
-					<p class="login_forgot" align="center" id="search_id">
-						<a href="#">searching ID</a>
-					</p>
-					<p align="center" id="search_pw">
-						<a href="#">searching PW</a>
-					</p>
-				</form>
-			</div>
-		</form>
-	</div>
 
 </body>
 </html>

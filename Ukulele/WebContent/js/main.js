@@ -9,6 +9,7 @@
 	var	$window = $(window),
 		$body = $('body'),
 		$nav = $('#nav');
+	    $exchange = $('.exchange');
 
 	// Breakpoints.
 		breakpoints({
@@ -19,15 +20,17 @@
 			xsmall:  [ null,      '360px'  ]
 		});
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+
 
 	// Dropdowns.
 		$('#nav > ul').dropotron({
+			mode: 'fade',
+			noOpenerFade: true,
+			speed: 300,
+			alignment: 'center'
+		});
+		
+		$('.exchange > li').dropotron({
 			mode: 'fade',
 			noOpenerFade: true,
 			speed: 300,
@@ -70,5 +73,24 @@
 					target: $body,
 					visibleClass: 'navPanel-visible'
 				});
+			
+			$(
+					'<div id="navPanel">' +
+						'<nav>' +
+							$('.exchange').navList() +
+						'</nav>' +
+					'</div>'
+				)
+					.appendTo($body)
+					.panel({
+						delay: 500,
+						hideOnClick: true,
+						hideOnSwipe: true,
+						resetScroll: true,
+						resetForms: true,
+						side: 'left',
+						target: $body,
+						visibleClass: 'navPanel-visible'
+					});
 
 })(jQuery);

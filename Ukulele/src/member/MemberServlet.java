@@ -82,7 +82,8 @@ public class MemberServlet extends HttpServlet {
 				//memberDAO에서 COUNT(건수(정수))로 리턴값을 주었음
 				int count = memberDAO.checkID(memberDTO.getId());
 				if(count > 0 ) {
-					out.print("<script>alert('중복된 아이디가 있습니다.'); historty.back();</script>");
+					out.print("<script>alert('중복된 아이디가 있습니다.'); </script>");
+					
 				}else {
 				cnt = memberDAO.memberRegister(memberDTO);
 					

@@ -37,7 +37,6 @@
                     <span class="box int_pass">
                         <input type="password" id="pswd1" class="int" maxlength="20" name="pw" readonly value=<%=session.getAttribute("pw") %>>
                         <span id="alertTxt">사용불가</span>
-                        <img src="m_icon_pass.png" id="pswd1_img1" class="pswdImg">
                     </span>
                     <span class="error_next_box"></span>
                 </div>

@@ -29,7 +29,6 @@
 .photo {
 	width: 200px;
 	height: 200px;
-	border: 1px solid pink;
 	margin: 10px;
 }
 
@@ -101,7 +100,7 @@
 					if (paging.getStartPage() > 10) {
 				%>
 				<li><a
-					href="selectService&&pageNum=<%=paging .getPrev()%>"
+					href="selectService&&pageNum=<%=paging.getPrev()%>"
 					aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 				<%
 					}

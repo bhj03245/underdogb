@@ -99,7 +99,7 @@ public class NoticeServlet extends HttpServlet {
 					out.println("location.href='index.jsp?page=notice/NoticeList.jsp?fileSysname="+fileSysname+"';");
 					out.println("</script>");
 				} else {
-					//noticeDAO.deleteNoticeFile(request, fileSysname);
+					noticeDAO.deleteNoticeFile(request, fileSysname);
 					noticeDAO.updateNotice(bean);
 					out.println("<script>alert('게시글이 수정되었습니다.');");
 					out.println("location.href='index.jsp?page=notice/NoticeList.jsp?fileSysname="+fileSysname+"';");

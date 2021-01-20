@@ -76,10 +76,11 @@
 		<tr>
 			<td colspan="4" class="text-center">
 			  <input type="button" class="btn btn-success"  value="답글 쓰기" 
-onclick="location.href='index.jsp?page=Board/BoardReWriteForm&&num=<%=bean.getNum()%>&ref=<%=bean.getRef() %>&re_step=<%= bean.getRe_step() %>&re_level=<%=bean.getRe_level() %>'"  		  >
-	<input type="button" class="btn btn-info" value="수정하기" onclick="location.href='index.jsp?page=Board/BoardUpdateForm&num=<%= bean.getNum()%>'">		  
-<input type="button" class="btn btn-danger" value="삭제하기" onclick="location.href='index.jsp?page=Board/BoardDeleteForm&num=<%= bean.getNum()%>&fileBoardid=<%= bean.getFileBoardid()%>'">
-<input type="button" class="btn" value="목록보기" onclick="location.href='index.jsp?page=Board/BoardList'">
+onclick="location.href='index.jsp?page=Board/BoardReWriteForm&&num=<%=bean.getNum()%>&ref=<%=bean.getRef() %>&re_step=<%= bean.getRe_step() %>&re_level=<%=bean.getRe_level() %>'" >
+
+			<input type="button" class="btn btn-info" value="수정하기" onclick="location.href='index.jsp?page=Board/BoardUpdateForm&num=<%= bean.getNum()%>&fileSysname=<%= bean.getFileBoardid()%>&filename=<%= bean.getFileBoardname()%>'">	  
+			<input type="button" class="btn btn-danger" value="삭제하기" onclick="location.href='index.jsp?page=Board/BoardDeleteForm&num=<%= bean.getNum()%>&fileBoardid=<%= bean.getFileBoardid()%>'">
+			<input type="button" class="btn" value="목록보기" onclick="location.href='index.jsp?page=Board/BoardList'">
 			</td>
 		</tr>
 	

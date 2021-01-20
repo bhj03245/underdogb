@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/greetings.css?v=1">
+<link rel="stylesheet" href="css/greetings.css?v=2">
 <jsp:include page="Header.jsp" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,10 +19,12 @@
 </div>
 
 <div id="greetings">
-
-<img src="images/ukukuku.jpg" class="image-block" align="left">
-
-<div id="info" style="margin-left: auto; margin-right: auto;">
+<div style="
+    text-align: center;
+">
+<img src="images/ukukuku.jpg" class="image-block">
+</div>
+<div id="info" style="margin-left: 2%;">
 	<p style="color: red;">Ukulele for a better world 우쿨렐레와 함께 세상을 아름답게라는 모토와 함께하는 비영리민간단체 입니다.</p>
 	<p>본 협회는 다양한 문화예술 나눔활동을 통해 소통과 공감을 이끄는 문화예술의 가치를 실현합니다.<br><br>
 	본 협회는 문화예술의 발전에 기여하는데 그 목적을 두기에 문화예술 전통 및 전문성 확립, 인재양성을 위한 프로그램 개발을 시행하고 있습니다.<br><br>

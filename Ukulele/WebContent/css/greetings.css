@@ -6,6 +6,7 @@
 /* 	   border:1px solid pink; */
 	margin-left: 23%;
 	margin-right: 15%;
+	    display: flex;
 }
 /*인사말*/
 #greetings_top {
@@ -16,7 +17,9 @@
 	margin-right: 13%;
 	margin-left: 13%
 }
-
+.image_block{
+	width:100%;
+}
 #greetings_top h1 {
 	font-size: 30px;
 }
@@ -24,7 +27,6 @@
 #info {
 	width: 750px;
 	font-family: sans-serif;
-	border: 1px solid black;
 	color: #353535;
 	font-weight: bold;
 	font-size: 1.2em;
@@ -77,13 +79,14 @@
       @media screen and (max-width: 768px) {
       
       #greetings {
-         width: 60%;
+         width: 70%;
          margin-left: 10%;
          margin-right: 10%;
+         display: inline-block;
       }
       
       .image-block{
-         width: 40%;
+         width: 80%;
       }
       
       #greetings_top h1 {
@@ -91,7 +94,7 @@
       }
       
       #info {
-           width: 40%;
+           width: 100%;
       }
          
       }
@@ -99,19 +102,16 @@
       @media screen and (max-width: 500px) {
       
      #greetings {
-         width: 30%;
-         margin-left: 35%;
-         margin-right: 35%;
-         border:1px solid pink;
+         width: 80%;
+         
          
       }
          .image-block{
-         	width:40%;
             display: none;
             
          }
          #info {
-             width: 50%;
+             width: 100%;
          }
       
 }

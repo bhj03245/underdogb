@@ -45,6 +45,11 @@ public class LicenseDAO {
 			pstmt.setString(8, bean.getDate());
 			//쿼리를 실행하시오
 			pstmt.executeUpdate();
+			sql="update memberUK set trackingProgress=1, licenseGrade=? where id=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(bean.getGrade()));
+			pstmt.setString(2, bean.getLicense_id());
+			pstmt.executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -80,6 +85,18 @@ public class LicenseDAO {
 			pstmt = conn.prepareStatement(sql);
 			//쿼리 실행 후 결과를 리턴
 			pstmt.execute();
+			
+			sql="select license_id from licenseManage where apply_no="+apply_no;
+			pstmt = conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			String getId = null;
+			while(rs.next()) {
+				getId=rs.getString("license_id");
+			}
+			
+			sql="update memberUK set trackingProgress = 2 where id='"+getId+"'";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.execute();
 			conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -95,6 +112,16 @@ public class LicenseDAO {
 			//쿼리를 실행할 객체 선언
 			pstmt = conn.prepareStatement(sql);
 			//쿼리 실행 후 결과를 리턴
+			pstmt.execute();
+			sql="select license_id from licenseManage where apply_no="+apply_no;
+			pstmt = conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			String getId = null;
+			while(rs.next()) {
+				getId=rs.getString("license_id");
+			}
+			sql="update memberUK set trackingProgress = 1 where id='"+getId+"'";
+			pstmt=conn.prepareStatement(sql);
 			pstmt.execute();
 			conn.close();
 		}catch(Exception e){

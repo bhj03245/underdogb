@@ -266,7 +266,6 @@ public class BoardDAO {
 		//리턴할 변수 객체 선언
 		String pass ="";
 		getConnection();
-		System.out.println(num);
 		try{
 			//쿼리준비
 			String sql ="select password from board where num =?";
@@ -293,7 +292,6 @@ public class BoardDAO {
 			//리턴할 변수 객체 선언
 			String id ="";
 			getConnection();
-			System.out.println(num);
 			try{
 				//쿼리준비
 				String sql ="select writer from board where num =?";

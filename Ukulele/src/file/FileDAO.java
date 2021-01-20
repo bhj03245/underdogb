@@ -256,8 +256,8 @@ public class FileDAO {
 	public ArrayList<FileBean> searchGallery(int pageNum, int pageList, String subjectSearch, String keyword)throws ClassNotFoundException, SQLException, IOException {
 		ArrayList<FileBean> v = new ArrayList<>();
 		getConnection();
-		psmt = con.prepareStatement("select num, subject, content, writer, reg_date, readcount from gallery where" +keyword+ "like ? "
-				+"order by ref desc, re_step asc, num desc limit ?,?");
+		psmt = con.prepareStatement("select num, subject, content, writer, reg_date, readcount from gallery where " +keyword+ " like ? "
+				+ "order by ref desc, re_step asc, num desc LIMIT ?,?");
 		psmt.setString(1, "%"+subjectSearch+"%");
 		psmt.setInt(2, pageList*(pageNum-1));
 		psmt.setInt(3, pageList);

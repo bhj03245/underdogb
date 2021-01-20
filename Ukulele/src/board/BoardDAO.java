@@ -340,23 +340,46 @@ public class BoardDAO {
 	
 	
 	//하나의 게시글을 삭제하는 메소드 입니다.
-	public void deleteBoard(int num){
+	public void deleteBoard(int ref, int re_step){
 		getConnection();
-		try{
-			//쿼리 준비
-			String sql ="delete from board where num=?";
-			pstmt=conn.prepareStatement(sql);
-			//?
-			pstmt.setInt(1, num);
-			//쿼리 실행
-			pstmt.executeUpdate();
-			//자원 반납
-			conn.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			//자원 반납
-			closed();
+		if(re_step>1) {
+			try{
+				//쿼리 준비
+				String sql ="delete from board where ref=? and re_step=?";
+				pstmt=conn.prepareStatement(sql);
+				//?
+				pstmt.setInt(1, ref);
+				pstmt.setInt(2, re_step);
+				//쿼리 실행
+				pstmt.executeUpdate();
+				//자원 반납
+		
+				conn.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				//자원 반납
+				closed();
+			}
+		}
+		else {
+			try{
+				//쿼리 준비
+				String sql ="delete from board where ref=?";
+				pstmt=conn.prepareStatement(sql);
+				//?
+				pstmt.setInt(1, ref);
+				//쿼리 실행
+				pstmt.executeUpdate();
+				//자원 반납
+		
+				conn.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				//자원 반납
+				closed();
+			}
 		}
 	}
 	

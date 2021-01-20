@@ -61,15 +61,18 @@ public class BoardServlet extends HttpServlet {
 			String pw = request.getParameter("password");
 			int num = Integer.parseInt(request.getParameter("num"));
 			String fileBoardid = request.getParameter("fileBoardid");
+			String ref1 = request.getParameter("ref");
+			String re_step1 = request.getParameter("re_step");
+			int ref = Integer.parseInt(ref1);
+			int re_step = Integer.parseInt(re_step1);
 			String password =boardDAO.getPass(num);
 			String id = boardDAO.getID(num);
-			
 			if(!id.equals(request.getParameter("id"))){
 				out.print("<script>alert('자신이 작성한 게시글만 삭제할 수 있습니다.'); history.go(-1);</script>");
 			}
 			else {
 				if(pw.equals(password)){
-					boardDAO.deleteBoard(num);
+					boardDAO.deleteBoard(ref,re_step);
 					if(fileBoardid != null) {
 						boardDAO.deleteBoardFile(request, fileBoardid);
 					}

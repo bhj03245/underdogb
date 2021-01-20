@@ -2397,7 +2397,7 @@ input::-moz-focus-inner {
 			}
 
 			#nav li:hover, #nav li.active, #login_position:hover, #login_position2:hover{
-				top: 3px;
+				top: -4px;
 			}
 
 			#nav li:hover a, #nav li:hover span, #login_position:hover, #login_position2:hover {

@@ -142,14 +142,14 @@ public class MemberDAO implements Serializable {
 		return cnt;
 	}
 	//회원수정
-	public int memberUpdate(MemberDTO memberDTO, String UpdateId)throws SQLException {
+	public int memberUpdate(MemberDTO memberDTO)throws SQLException {
 		conn = getConnection();
-		sql = "update memberUK set id=?, pw=?, email=? where id=?";
+		sql = "update memberUK set pw=?, email=? where id=?";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, memberDTO.getId());
-		pstmt.setString(2, memberDTO.getPw());
-		pstmt.setString(3, memberDTO.getEmail());
-		pstmt.setString(4, UpdateId);
+		pstmt.setString(1, memberDTO.getPw());
+		pstmt.setString(2, memberDTO.getEmail());
+		pstmt.setString(3, memberDTO.getId());
+
 		cnt = pstmt.executeUpdate();
 		return cnt;
 		

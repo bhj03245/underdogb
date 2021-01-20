@@ -72,7 +72,7 @@
                   
                      id = (String) session.getAttribute("id");
                      if (id != null) {
-                        out.print("<a href=selectService>갤러리(연주회 영상/악보공유)</a>");
+                    	 out.print("<a href=selectService>갤러리(연주회 영상/악보공유)</a>");
                      } else {
                         out.print("<a href=index.jsp?page=center onclick=alert('로그인&nbsp먼저&nbsp해주세요')>갤러리(연주회 영상/악보공유)</a>");
                      }
@@ -129,8 +129,7 @@
 
       <!-- 로그인 팝업 -->
       <div id="login-box" class="login-popup">
-         <a href="#" class="close"><img src="images/close.png"
-            class="btn_close" title="Close Window" alt="Close" /></a>
+         <a href="#" class="close"><img src="images/close.png" class="btn_close" title="Close Window" alt="Close" /></a>
          <div class="login_main">
             <p class="login_sign" align="center">
                <img src="images/logo.png">
@@ -195,8 +194,8 @@
             <form class="login_form2" action="memberSearch.mb" method="get">
                <input class="login_email" type="email" align="center"
                   placeholder="등록하신 이메일을 작성해주세요." name="email" id="email"
-                  required="required"> <input type="submit"
-                  class="login_submit" align="center" value="아이디찾기">
+                  required="required"> 
+                  <input type="submit" class="login_submit" align="center" value="아이디찾기">
                   <a href="index.jsp" class="login_submit">메인으로</a>
                </p>
             </form>
@@ -214,7 +213,7 @@
                <input class="login_email" type="email" align="center"
                   placeholder="등록하신 이메일을 작성해주세요." name="email" id="email"> <input
                   type="submit" class="login_submit" align="center" value="비밀번호 찾기">
-                  <a href="index.jsp">메인으로</a>
+                   <a href="index.jsp" class="login_submit">메인으로</a>
             
             </form>
          </div>

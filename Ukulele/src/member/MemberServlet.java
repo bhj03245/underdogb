@@ -58,7 +58,7 @@ public class MemberServlet extends HttpServlet {
 			}
 
 			if(!id.equals(memberDTO.getId())) {
-				out.print("<script>alert('없는 아이디이거나 아이디가 일치하지 않습니다.');"
+				out.print("<script>alert('없는 아이디이거나 비밀번호가 일치하지 않습니다.');"
 						+ "history.back();</script>");
 			}else if(!pw.equals(memberDTO.getPw())) {
 				out.print("<script>alert('비밀번호가 틀렸습니다');"
@@ -98,11 +98,10 @@ public class MemberServlet extends HttpServlet {
 		}
 		//아이디찾기
 		else if(command.equals("/memberSearch.mb")) {
-			System.out.print("1");
 			String idSearch = request.getParameter("email");
 			try {
 				String id = memberDAO.memberSearch(idSearch);
-				out.print("<script>alert('찾는 아이디 : '+id); location.href='index.jsp'</script>");
+				out.print("찾는 비밀번호는 :"+id);
 			//	response.sendRedirect("index.jsp?page=center");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -164,18 +163,26 @@ public class MemberServlet extends HttpServlet {
 		}
 		//회원수정
 		else if(command.equals("/memberUpdate.mb")) {
-			memberDTO.setId(request.getParameter("id"));
-			memberDTO.setPw(request.getParameter("pw"));
-			memberDTO.setEmail(request.getParameter("email"));
-			String UpdateId = request.getParameter("MemberUpdate");
-			try {
-				cnt = memberDAO.memberUpdate(memberDTO,UpdateId);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			out.print("<script>alert('변경되었습니다.'); location.href='index.jsp'</script>");
+			String idc = request.getParameter("id");
+			String pwc = request.getParameter("pw");
 			
+			if(idc == pwc) {
+				out.print("<script>alert('아이디와 비밀번흐는 같을 수 없습니다.');historty.back();</script>");
+			}else {
+			memberDTO.setId(idc);
+			memberDTO.setPw(pwc);
+			memberDTO.setEmail(request.getParameter("email"));
+		
+			
+				try {
+					cnt = memberDAO.memberUpdate(memberDTO);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+			out.print("<script>alert('변경되었습니다.'); location.href='index.jsp'</script>");
+			}
 		}
 	
 		//로그아웃

@@ -12,6 +12,7 @@
         <meta charset="UTF-8">
         <title>회원수정</title>
         <link rel="stylesheet" href="css/Mypage.css"> 
+        <script src="js/login_check.js"></script>
     </head>
     <body>
     
@@ -28,7 +29,7 @@
             <!-- content-->
             <div id="Mypage_content">
            
-               <form action="memberUpdate.mb" method="get">
+               <form action="memberUpdate.mb" method="get" class="update_form">
                
                  <!-- ID -->
                 <div>
@@ -36,9 +37,9 @@
                         <label for="id">아이디</label>
                     </h3>
                     <span class="box int_id">
-                        <input type="text" id="id" class="int" maxlength="20" name="id" readonly="readonly" value="<%=session.getAttribute("id")%>"> 
+                        <input type="text" id="update_id" class="int" maxlength="20" name="id" readonly="readonly" value="<%=session.getAttribute("id")%>"> 
                         </span>
-                        <input type="hidden" name="MemberUpdate" value="<%=session.getAttribute("id")%>"> <br>
+          
 
                 </div>   
                 
@@ -46,7 +47,18 @@
                 <div>
                     <h3 class="join_title"><label for="pswd1">수정 할 비밀번호</label></h3>
                     <span class="box int_pass">
-                        <input type="password" id="pswd1" class="int" maxlength="20" name="pw">
+                        <input type="password" id="update_pw" class="int" maxlength="20" name="pw">
+
+                    </span>
+                     <br>
+                   
+                </div>
+                
+                 <!-- PW2 -->
+                <div>
+                    <h3 class="join_title"><label for="pswd1">비밀번호 확인</label></h3>
+                    <span class="box int_pass">
+                        <input type="password" id="update_pwch" class="int" maxlength="20" name="pwch">
 
                     </span>
                      <br>

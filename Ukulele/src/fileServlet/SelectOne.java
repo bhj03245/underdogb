@@ -28,7 +28,6 @@ public class SelectOne extends HttpServlet {
 			if (bean != null) {
 				request.setAttribute("bean", bean);
 			} else {
-				System.out.println("조회실패..");
 			}
 			RequestDispatcher dis = request.getRequestDispatcher("index.jsp?page=Gallery/GalleryInfo");
 			dis.forward(request, response);

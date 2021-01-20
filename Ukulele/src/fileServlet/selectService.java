@@ -34,7 +34,6 @@ public class selectService extends HttpServlet {
 				request.setAttribute("list", list);
 				
 			}else {
-				System.out.println("비었습니다");
 			}
 			RequestDispatcher dis = request.getRequestDispatcher("index.jsp?page=Gallery/GalleryList");
 			dis.forward(request, response);

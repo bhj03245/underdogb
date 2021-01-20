@@ -40,12 +40,12 @@
 		 		<td colspan="3"><input type="password"  class="form-control" name="password"></td>
 		 	</tr>
 		 	<%
-		 		if(filename.equals("null")){
+		 		if(filename.equals(null)){
 		 	%>
 		 	<tr>
 		 		<td class="danger">첨부파일</td>
 		 		<td>
-		 		<input type="file" name="filename" id="fileSelect">
+		 		<input type="file" name="filename"  id="fileSelect">
 		 		</td>
 		 	</tr>
 		 	<%
@@ -56,7 +56,9 @@
 			 	<td>
 			 	<a href="#" id="hidename"><%= filename %></a>
 			 	<a href="#" id="hideX" onclick="namehide()">&nbsp;&nbsp;x</a>
-			 	<input type="file" name="filename" id="fileSelect" style="float: left; display: none;">
+			 	<input type="hidden" name="fileOrgname" value="<%= filename %>">
+			 	<input type="hidden" name="fileOrgsysname" value=<%= fileSysname %>">
+			 	<input type="file" name="filename" id="fileSelect" style="float: left; display: none;" value="<%= bean.getSubject()%>">
 			 	</td>
 			 </tr>
 		 	<% } %>

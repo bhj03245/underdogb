@@ -9,6 +9,8 @@
    String content = "";
    String filename = "";
    String fileSysname = "";
+   String fileOrgname = "";
+   String fileOrgsysname = "";
    String num = "";
    
    String uploadPath = request.getRealPath("noticeUpload"); // upload는 폴더명 / 폴더의 경로를 구해옴
@@ -26,6 +28,8 @@
       content = multi.getParameter("content");
       filename = multi.getOriginalFileName("filename"); // name=filename의 업로드된 원본파일 이름을 구함(중복 처리 전 이름)
       fileSysname = multi.getFilesystemName("filename"); // name=filename의 업로드된 시스템 파일명을 구함(중복된 파일이 있으면, 중복 처리 후 파일 이름)
+      fileOrgname = multi.getParameter("fileOrgname");
+      fileOrgsysname = multi.getParameter("fileOrgsysname");
       num = multi.getParameter("num");
    } catch (Exception e) {
       e.getStackTrace();
@@ -42,6 +46,8 @@
       <input type="hidden" name="content" value="<%=content%>">
       <input type="hidden" name="filename" value="<%=filename%>">
       <input type="hidden" name="fileSysname" value="<%=fileSysname%>">
+      <input type="hidden" name="fileOrgname" value="<%=fileOrgname%>">
+      <input type="hidden" name="fileOrgsysname" value="<%=fileOrgsysname%>">
       <input type="hidden" name="num" value="<%=num %>"> 
    </form>
 <script type="text/javascript">

@@ -9,7 +9,7 @@
 	var	$window = $(window),
 		$body = $('body'),
 		$nav = $('#nav');
-	    $exchange = $('.exchange');
+
 
 	// Breakpoints.
 		breakpoints({
@@ -29,13 +29,7 @@
 			speed: 300,
 			alignment: 'center'
 		});
-		
-		$('.exchange > li').dropotron({
-			mode: 'fade',
-			noOpenerFade: true,
-			speed: 300,
-			alignment: 'center'
-		});
+
 
 	// Scrolly
 		$('.scrolly').scrolly({

@@ -1980,7 +1980,7 @@ input::-moz-focus-inner {
 				}
 
 			ul.contact li:active {
-				top: 0;
+				top: 10px;
 			}
 
 /* Special */
@@ -3128,6 +3128,11 @@ input::-moz-focus-inner {
 #dltmdrl2, #dltmdrl {
 	float:right;
 	
+}
+
+#idpwsc {
+	display: flex;
+	justify-content: space-around;
 }
 
 

@@ -6,8 +6,7 @@
 <!-- Style -->
 <link rel="stylesheet" href="css/main.css?v=2">
 <link rel="stylesheet" href="css/login_.css">
-<link href="https://fonts.googleapis.com/css?family=Ubuntu"
-   rel="stylesheet">
+
 <!-- Scripts -->
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.dropotron.min.js"></script>
@@ -18,6 +17,8 @@
 <script src="js/main.js"></script>
 <script src="js/login_.js"></script>
 <script type="text/javascript" charset="utf-8"></script>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu"
+   rel="stylesheet">
 <script src="js/login_check.js"></script>
 
 <meta charset="UTF-8">
@@ -94,10 +95,10 @@
          out.print("<a href='index.jsp?page=Member/MasterPageIndex' id='login_position'>관리자</a>");
          out.print("<ul>");
          out.print("<li>");
-         out.print("<a href='index.jsp?page=notice/NoticeList'>자격증신청현황</a>");
+         out.print("<a href='index.jsp?page=Member/MasterPageIndex&subpage=licenseManage'>자격증신청현황</a>");
          out.print("</li>");
          out.print("<li>");
-         out.print("<a href='index.jsp?page=notice/NoticeList'>회원목록</a>");
+         out.print("<a href='index.jsp?page=Member/MasterPageIndex&subpage=memberManage'>회원목록</a>");
          out.print("</li>");
          out.print("</ul>");
          
@@ -141,7 +142,10 @@
                   placeholder="비밀번호" name="pw" id="login_pw" required="required">
 
                <p class="login_mid" align="center" id="search_id">
-                  <a href="#idsearch-box" class="login-window">아이디/비밀번호 찾기</a>
+                  <div id="idpwsc">
+                  <a href="#idsearch-box" class="login-window">아이디 찾기&nbsp;</a>
+                   <a href="#pwsearch-box" class="login-window">비밀번호 찾기</a>
+                   </div>
                </p>
 
                <input type="submit" class="login_submit" align="center"
@@ -176,7 +180,7 @@
                   placeholder="사용하실 이메일을 입력해주세요." name="email" id="email"
                   required="required"> 
                   <input type="submit" class="login_submit" align="center" value="가입하기" id="btn2">
-                  <a href="index.jsp" class="login_submit">메인으로</a>
+     
 
 
 
@@ -188,16 +192,16 @@
       <div id="idsearch-box" class="login-popup">
          <a href="#" class="close"><img src="images/close.png"
             class="btn_close" title="Close Window" alt="Close" /></a>
-         <div class="login_main">
-            <p class="login_sign" align="center">아이디 찾기</p>
+          <div class="login_main">
+            <p class="login_sign" align="center">아이디/비밀번호 찾기</p>
             <br>
             <form class="login_form2" action="memberSearch.mb" method="get">
                <input class="login_email" type="email" align="center"
                   placeholder="등록하신 이메일을 작성해주세요." name="email" id="email"
                   required="required"> 
                   <input type="submit" class="login_submit" align="center" value="아이디찾기">
-                  <a href="index.jsp" class="login_submit">메인으로</a>
-               </p>
+   
+       
             </form>
          </div>
 
@@ -206,14 +210,14 @@
       <div id="pwsearch-box" class="login-popup">
          <a href="#" class="close"><img src="images/close.png"
             class="btn_close" title="Close Window" alt="Close" /></a>
-         <div class="login_main">
+        <div class="login_main">
             <p class="login_sign" align="center">비밀번호 찾기</p>
             <br>
             <form class="login_form2" action="pwSearch.mb" method="get">
                <input class="login_email" type="email" align="center"
-                  placeholder="등록하신 이메일을 작성해주세요." name="email" id="email"> <input
-                  type="submit" class="login_submit" align="center" value="비밀번호 찾기">
-                   <a href="index.jsp" class="login_submit">메인으로</a>
+                  placeholder="등록하신 이메일을 작성해주세요." name="email" id="email"> 
+                  <input type="submit" class="login_submit" align="center" value="비밀번호 찾기">
+        
             
             </form>
          </div>

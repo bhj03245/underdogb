@@ -6,6 +6,8 @@
     	  pagefile = "center";
       }
 %>   
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,5 +26,8 @@
 <div id="bottom">
 	<jsp:include page="bottom.jsp"/>
 </div>
+
+
+
 </body>
 </html>

@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -82,11 +83,12 @@ public class FileDAO {
 		return result;
 	}
 
-	public ArrayList<FileBean> selectAll(int start, int end) throws ClassNotFoundException, IOException, SQLException {
+	public Vector<FileBean> selectAll(int start, int end) throws ClassNotFoundException, IOException, SQLException {
 		getConnection();
 		
-		ArrayList<FileBean> v = new ArrayList<>();
-		psmt = con.prepareStatement("Select * from gallery order by num ASC");
+		Vector<FileBean> v = new Vector<>();
+		psmt = con.prepareStatement("Select * from gallery order by num DESC LIMIT ?, 16");
+		psmt.setInt(1, start-1);
 		rs = psmt.executeQuery();
 		
 		while(rs.next()) {
@@ -244,7 +246,7 @@ public class FileDAO {
 		getConnection();
 		int count = 0;
 		
-		psmt = con.prepareStatement("select count(*) from board where " +keyword+ " like ?");
+		psmt = con.prepareStatement("select count(*) from gallery where " +keyword+ " like ?");
 		psmt.setString(1, "%"+subjectSearch+"%");
 		rs = psmt.executeQuery();
 		if(rs.next()) {
@@ -257,7 +259,7 @@ public class FileDAO {
 		ArrayList<FileBean> v = new ArrayList<>();
 		getConnection();
 		psmt = con.prepareStatement("select num, subject, content, writer, reg_date, readcount from gallery where " +keyword+ " like ? "
-				+ "order by ref desc, re_step asc, num desc LIMIT ?,?");
+				+"order by ref desc, re_step asc, num desc limit ?,?");
 		psmt.setString(1, "%"+subjectSearch+"%");
 		psmt.setInt(2, pageList*(pageNum-1));
 		psmt.setInt(3, pageList);

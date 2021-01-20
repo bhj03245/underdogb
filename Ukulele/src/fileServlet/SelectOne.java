@@ -30,7 +30,7 @@ public class SelectOne extends HttpServlet {
 			} else {
 				System.out.println("조회실패..");
 			}
-			RequestDispatcher dis = request.getRequestDispatcher("Gallery/GalleryInfo.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("index.jsp?page=Gallery/GalleryInfo");
 			dis.forward(request, response);
 
 		} catch (ClassNotFoundException e) {

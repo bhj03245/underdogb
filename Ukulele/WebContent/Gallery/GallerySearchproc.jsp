@@ -21,6 +21,32 @@
 a {
 text-decoration: none;
 }
+#Gallery2 {
+	float: left;
+	position: relative;
+	top: 100px;
+	left: 250px;
+}
+
+.photo {
+	width: 200px;
+	height: 200px;
+	border: 1px solid pink;
+	margin: 10px;
+}
+
+.gal {
+	display: inline-block;
+}
+
+#gal_line {
+	display: flex;
+}
+
+#preview {
+	display: flex;
+}
+</style>
 </style>
 </head>
 <body>
@@ -33,7 +59,7 @@ text-decoration: none;
 			pageNum = "1";
 		}
 		
-		int pageList = 10;
+		int pageList = 16;
 		
 		String keyword = request.getParameter("keyword");
 		if(keyword.equals("제목")){
@@ -68,36 +94,50 @@ text-decoration: none;
 					class="btn">
 			</p>
 
-			<div class="table-responsive">
-				<table class="table  table-striped">
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>조회수</th>
-					</tr>
-
-					<%
-					if(vec.size()>0){
+			
+				
+					
+					
+					
+					<div>
+			<%
+			if(vec.size()>0){
+						int k = 0;
 						for (int i = 0; i < vec.size(); i++) {
 							FileBean bean = vec.get(i); //벡터에 저장되어 있는 빈클래스를 하나씩 추출
 					%>
-					<tr>
-						<td><%=paging.getNumber() - i%></td>
-						<td><a href="index.jsp?page=Gallery/GalleryInfo&&num=<%=bean.getNum()%>">
-								<%
-									if (bean.getRe_step() > 1) {
-											for (int j = 0; j < (bean.getRe_step() * 5); j++) {
-								%> &nbsp; <%
- 												}
- 										}%> <%=bean.getSubject()%></a></td>
-						<td><%=bean.getWriter()%></td>
-						<td><%=bean.getReg_date()%></td>
-						<td><%=bean.getReadcount()%></td>
-					</tr>
+			<%
+				if(k%4==0){
+					out.print("<div id='gal_line'>");
+				}
+			%>
+				<table class="gal" border=1>
+				<tr>
+				<td colspan="4"><a id="preview"
+				href="SelectOne?num=<%=bean.getNum()%>"><img
+				src="Upload/<%=bean.getFileName() %>" class="photo"></a></td>
+				</tr>
+				<tr class="lll">
+				<td><%=paging.getNumber() - i%></td>
+				<td><a href="SelectOne?num=<%=bean.getNum()%>">
+				<%=bean.getSubject() %></a></td>
+				<td><%=bean.getNum()%></td>
+				<td><%=bean.getWriter()%></td>
+				</tr>
+				</table>
+			<%
+				if(k%4 == 3){
+					out.print("</div>");
+				}
+			k++;
+						}		 
+			
+			%>
+		
+	</div>
+	
 					<%
-							}
+						
 						}else{
 							out.println("<tr><td colspan='6'>게시글이 없습니다.</td></tr>");
 						}
@@ -105,7 +145,7 @@ text-decoration: none;
 					%>
 					<tr>
 						<td colspan="5" class="text-center">
-							<nav>
+							<nav style="text-align:center;">
 								<ul class="pagination">
 									<%
 										if (paging.getStartPage() > 10) {
@@ -135,8 +175,8 @@ text-decoration: none;
 							</nav>
 						</td>
 					</tr>
-				</table>
-			</div>
+				
+			
 		</div>
 	</div>
 </body>

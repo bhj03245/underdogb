@@ -2,6 +2,7 @@ package fileServlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,10 +21,14 @@ public class selectService extends HttpServlet {
 		//DB에 저장된 file정보를 모두 검색해서 jsp로 전송
 		FileDAO dao = new FileDAO();
 		String pageNum = request.getParameter("pageNum");
+		if (pageNum == null) {
+			pageNum = "1";
+		}
 		Paging paging = new Paging(pageNum);
-
+		
 		try{
-			ArrayList<FileBean> list = dao.selectAll(paging.getStartRow(), paging.getEndRow());
+			paging.setTotalCount(dao.getAllCount());
+			Vector<FileBean> list = dao.selectAll(paging.getStartRow(), paging.getEndRow());
 			
 			if(list!=null) {
 				request.setAttribute("list", list);

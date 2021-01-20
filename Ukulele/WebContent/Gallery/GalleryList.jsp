@@ -1,3 +1,4 @@
+<%@page import="java.util.Vector"%>
 <%@page import="file.FileDAO"%>
 <%@page import="file.FileBean"%>
 <%@page import="file.Paging"%>
@@ -54,7 +55,7 @@
 		FileDAO dao = new FileDAO();
 		Paging paging = new Paging(pageNum);
 		paging.setTotalCount(dao.getAllCount());
-		ArrayList<FileBean> list = dao.selectAll(paging.getStartRow(), paging.getEndRow());
+		Vector<FileBean> list = dao.selectAll(paging.getStartRow(), paging.getEndRow());
 	%>
 	<div class="row">
 		<div class="col-xs-2"></div>
@@ -66,39 +67,49 @@
 					class="btn">
 			</p>
 
-
-			<c:set var="i" value="0" />
-			<c:set var="j" value="4" />
-			<div>
-				<c:forEach items="${requestScope.list }" var="l">
-					<c:if test="${i%j == 0 }">
-						<div id="gal_line">
-					</c:if>
-					<table class="gal" border=1>
-						<tr>
-							<td colspan="3"><a id="preview"
-								href="SelectOne?num=${l.num }"><img
-									src="Upload/${l.fileName }" class="photo"></a></td>
-						</tr>
-						<tr class="lll">
-							<td>${l.num}</td>
-							<td>${l.subject}</td>
-							<td>${l.writer}</td>
-						</tr>
-					</table>
-					<c:if test="${i%j == j-1 }">
-			</div>
-			</c:if>
-			<c:set var="i" value="${i+1 }" />
-			</c:forEach>
-		</div>
+<div>
+			<%
+						int j = 0;
+						for (int i = 0; i < list.size(); i++) {
+							FileBean bean = list.get(i); //벡터에 저장되어 있는 빈클래스를 하나씩 추출
+					%>
+			<%
+				if(j%4==0){
+					out.print("<div id='gal_line'>");
+				}
+			%>
+				<table class="gal" border=1>
+				<tr>
+				<td colspan="3"><a id="preview"
+				href="SelectOne?num=<%=bean.getNum()%>"><img
+				src="Upload/<%=bean.getFileName() %>" class="photo"></a></td>
+				</tr>
+				<tr class="lll">
+				<td><%=bean.getNum()%></td>
+				<td><%=bean.getSubject()%></td>
+				<td><%=bean.getWriter()%></td>
+				</tr>
+				</table>
+			<%
+				if(j%4 == 3){
+					out.print("</div>");
+				}
+			j++;
+						} 
+			
+			%>
+		
+	</div>
+	</div>
+	</div>
 	</div>
 	<tr>
-		<td colspan="5" class="text-center"><nav>
+		<td colspan="5" class="text-center"><nav style="text-align: center;">
 			<ul class="pagination">
 				<%
 					if (paging.getStartPage() > 10) {
 				%>
+
 				<li><a
 					href="selectService&&pageNum=<%=paging.getPrev()%>"
 					aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
@@ -109,14 +120,13 @@
 				<li
 					<%if (i == Integer.parseInt(pageNum))
 					out.print("class='active'");%>><a
-					href="selectService&&pageNum=<%=i%>"><%=i%> <span
+					href="selectService?pageNum=<%=i%>"><%=i%> <span
 						class="sr-only">(current)</span></a></li>
 				<%
 					}
 					if (paging.getEndPage() < paging.getPageCount()) {
 				%>
-				<li><a
-					href="selectService&&pageNum=<%=paging.getNext()%>"
+				<li><a href="selectService?pageNum=<%=paging.getNext()%>"
 					aria-label="next"><span aria-hidden="true">&raquo;</span></a></li>
 				<%
 					}

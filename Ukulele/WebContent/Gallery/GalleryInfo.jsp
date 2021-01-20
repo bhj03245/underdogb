@@ -59,8 +59,6 @@
 		
 		<tr>
 			<td colspan="4" class="text-center">
-			  <input type="button" class="btn btn-success"  value="답글 쓰기" 
-onclick="location.href='index.jsp?page=Gallery/GalleryReWriteForm&&num=<%=bean.getNum()%>&ref=<%=bean.getRef() %>&re_step=<%= bean.getRe_step() %>&re_level=<%=bean.getRe_level() %>'"  		  >
 	<input type="button" class="btn btn-warning" value="수정하기" onclick="location.href='index.jsp?page=Gallery/GalleryUpdateForm&num=<%= bean.getNum()%>'">		  
 <input type="button" class="btn btn-danger" value="삭제하기" onclick="location.href='index.jsp?page=Gallery/GalleryDeleteForm&num=<%= bean.getNum()%>'">
 <input type="button" class="btn btn-primary" value="목록보기" onclick="location.href='selectService'">

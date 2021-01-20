@@ -84,7 +84,7 @@
 				href="SelectOne?num=<%=bean.getNum()%>"><img
 				src="Upload/<%=bean.getFileName() %>" class="photo"></a></td>
 				</tr>
-				<tr class="lll">
+				<tr class="cc" style = "text-align: center;">
 				<td><%=bean.getNum()%></td>
 				<td><%=bean.getSubject()%></td>
 				<td><%=bean.getWriter()%></td>

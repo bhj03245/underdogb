@@ -61,7 +61,7 @@ text-decoration: none;
 	<div class="row">
 		<div class="col-xs-2"></div>
 		<div class="col-xs-8 col-md-8">
-			<h2 class="text-center">자유게시판</h2>
+			<h2 class="text-center">갤러리</h2>
 			<p class="text-right">
 				<input type="button" value="글쓰기"
 					onclick="location.href='index.jsp?page=Gallery/GalleryWrite'"

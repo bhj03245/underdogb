@@ -17,7 +17,6 @@
 	String id = (String)session.getAttribute("id");
 	String fileSysname = request.getParameter("fileSysname");
 	String filename = request.getParameter("filename");
-	System.out.println(fileSysname);
 %>
 
 <div class="row">

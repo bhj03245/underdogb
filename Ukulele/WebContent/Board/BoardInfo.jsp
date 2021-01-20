@@ -15,7 +15,6 @@
 
 .btn:hover {
      color: #fff;
-     background-color: gray;
      border-color: #0062cc;
 }
 </style>

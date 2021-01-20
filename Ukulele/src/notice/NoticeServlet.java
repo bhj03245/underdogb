@@ -93,18 +93,10 @@ public class NoticeServlet extends HttpServlet {
 			String pass = noticeDAO.getPass(Integer.parseInt(num)); //패스워드값을 가져옴
 			
 			if(pass.equals(request.getParameter("password"))){
-				if(fileSysname.equals(null)) {
-					noticeDAO.updateNotice(bean);
-					out.println("<script>alert('게시글이 수정되었습니다.');");
-					out.println("location.href='index.jsp?page=notice/NoticeList.jsp?fileSysname="+fileSysname+"';");
-					out.println("</script>");
-				} else {
-					noticeDAO.deleteNoticeFile(request, fileSysname);
-					noticeDAO.updateNotice(bean);
-					out.println("<script>alert('게시글이 수정되었습니다.');");
-					out.println("location.href='index.jsp?page=notice/NoticeList.jsp?fileSysname="+fileSysname+"';");
-					out.println("</script>");
-				}
+				noticeDAO.updateNotice(bean);
+				out.println("<script>alert('게시글이 수정되었습니다.');");
+				out.println("location.href='index.jsp?page=notice/NoticeList.jsp?fileSysname="+fileSysname+"';");
+				out.println("</script>");
 			}
 			else{
 				out.print("<script>alert('패스워드가 틀려서 수정 할 수 없습니다. 패스워드를 확인해 주세요.'); history.go(-1);</script>");

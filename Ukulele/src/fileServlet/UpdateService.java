@@ -23,10 +23,8 @@ public class UpdateService extends HttpServlet {
 	   FileDAO dao = new FileDAO();
        FileBean bean = new FileBean();
       String fileName = request.getParameter("file");
-      System.out.println(fileName);
       ServletContext context = getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
       String saveDir = context.getRealPath("Upload"); // 절대경로를 가져옴
-      System.out.println("절대경로 >> " + saveDir);
 
       int maxSize = 3 * 1024 * 1024; // 3MB
       String encoding = "UTF-8";
@@ -50,10 +48,8 @@ public class UpdateService extends HttpServlet {
             int result = dao.updateGallery(bean);
             String moveUrl = "";
             if (result > 0) {
-               System.out.println("저장완료");
                moveUrl = "selectService";
             } else {
-               System.out.println("저장실패");
                moveUrl = "Gallery/GalleryUpdateForm.jsp";
             }
             response.sendRedirect(moveUrl);
@@ -61,7 +57,6 @@ public class UpdateService extends HttpServlet {
             e.printStackTrace();
          }
       } else {
-         System.out.println("일반 전송 form 입니다.");
       }
 
    }

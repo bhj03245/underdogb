@@ -1980,7 +1980,7 @@ input::-moz-focus-inner {
 				}
 
 			ul.contact li:active {
-				top: 0;
+				top: 10px;
 			}
 
 /* Special */

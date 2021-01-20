@@ -83,7 +83,8 @@
       }
       
       .image-block{
-         width: 40%;
+         width: 70%;
+         position: relative;
       }
       
       #greetings_top h1 {

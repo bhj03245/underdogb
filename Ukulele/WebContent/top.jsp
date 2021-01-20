@@ -35,7 +35,7 @@
       <ul>
          <li><a href="no-sidebar.html">협회소개</a>
             <ul>
-               <li><a href="index.jsp?page=hi">인사말</a></li>
+                       <li><a href="index.jsp?page=Greetings/hi2">인사말</a></li>
                <li><a href="index.jsp?page=Association/information">연혁</a></li>
             </ul></li>
          <li><a href="no-sidebar.html">주요사업</a>

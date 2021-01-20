@@ -30,4 +30,22 @@ $(function() {
 		}
 
 	});
+	
+	$('.update_form').focusout(function() {
+		var idcheck = $('#update_id').val().trim();
+		var pwcheck = $('#update_pw').val().trim();
+		var pwcheck2 = $('#update_pwch').val().trim();
+		if(pwcheck.length!=0 && pwcheck2.length!=0){
+			if(pwcheck != pwcheck2){
+				alert("비밀번호가 다릅니다. 비밀번호를 확인해주세요");
+				return false;
+			}
+		}
+
+		if(idcheck == pwcheck) {
+			alert("아이디와 비밀번호는 같을 수 없습니다");
+			return false;
+		}
+
+	});
 });

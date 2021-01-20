@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/greetings.css?v=2">
+<link rel="stylesheet" href="css/greetings.css">
 <jsp:include page="Header.jsp" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

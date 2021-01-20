@@ -44,6 +44,8 @@
 	 			  	 <input type="hidden"  value="<%= num %>"  name="num" >
 	 			  	 <input type="hidden"  value="<%= id %>"  name="id" >
 	 			  	 <input type="hidden"  value="<%= fileBoardid %>" name="fileBoardid">
+	 			  	 <input type="hidden" value="<%=bean.getRef() %>" name = "ref">
+	 			  	 <input type="hidden" value="<%=bean.getRe_step() %>" name="re_step">
 	 			  	 <input type="submit" value="글삭제" class="btn btn-danger">&nbsp;&nbsp;
 	 			  	 <input type="button" class="btn btn-primary" onclick="location.href='index.jsp?page=Board/BoardList'" value="목록보기">
 	 			  </td>

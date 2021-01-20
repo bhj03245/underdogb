@@ -197,20 +197,50 @@ public class FileDAO {
 	close();		
 	return bean;
 	}
-	public String getPass(int num)throws ClassNotFoundException, SQLException, IOException   {
+	public String getPass(int num){
 		String pass = "";
-		getConnection();
-		System.out.println(num);
-		
-		psmt = con.prepareStatement("select password from gallery where num = ?");
-		psmt.setInt(1, num);
-		rs = psmt.executeQuery();
-		if(rs.next()) {
-			pass = rs.getString(1);
+		try {
+			getConnection();
+			System.out.println(num);
+			
+			psmt = con.prepareStatement("select password from gallery where num = ?");
+			psmt.setInt(1, num);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				pass = rs.getString(1);
+			}
+			close();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		close();
 		return pass;
 	}
+	  public String getID(int num)  {
+	      String id = "";
+	      try {
+	         getConnection();
+	         System.out.println(num);
+	            psmt = con.prepareStatement("select writer from gallery where num = ?");
+	            psmt.setInt(1, num);
+	            rs = psmt.executeQuery();
+	            //패스워드 값 저장
+	            if(rs.next()) {
+	               id=rs.getString(1);
+	            }
+	            close();
+	      } catch (ClassNotFoundException e) {
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }
+	         return id;
+	   }
 	public int updateGallery(FileBean bean)throws ClassNotFoundException, SQLException, IOException {
 		getConnection();
 		psmt = con.prepareStatement("update gallery set subject = ?, content = ?, fileName = ? where num = ?");
@@ -222,13 +252,21 @@ public class FileDAO {
 		close();
 		return result;
 	}
-	public void deleteGallery(int num)throws ClassNotFoundException, SQLException, IOException {
-		getConnection();
-		
-		psmt = con.prepareStatement("delete from gallery where num = ?");
-		psmt.setInt(1, num);
-		psmt.executeUpdate();
-		con.close();
+	public void deleteGallery(int num) {
+		try {
+			getConnection();
+			
+			psmt = con.prepareStatement("delete from gallery where num = ?");
+			psmt.setInt(1, num);
+			psmt.executeUpdate();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	public int getAllCount()throws ClassNotFoundException, SQLException, IOException {
 		getConnection();
@@ -258,7 +296,7 @@ public class FileDAO {
 	public ArrayList<FileBean> searchGallery(int pageNum, int pageList, String subjectSearch, String keyword)throws ClassNotFoundException, SQLException, IOException {
 		ArrayList<FileBean> v = new ArrayList<>();
 		getConnection();
-		psmt = con.prepareStatement("select num, subject, content, writer, reg_date, readcount from gallery where " +keyword+ " like ? "
+		psmt = con.prepareStatement("select num, subject, content, writer, fileName, reg_date, readcount from gallery where " +keyword+ " like ? "
 				+"order by ref desc, re_step asc, num desc limit ?,?");
 		psmt.setString(1, "%"+subjectSearch+"%");
 		psmt.setInt(2, pageList*(pageNum-1));
@@ -270,6 +308,7 @@ public class FileDAO {
 			bean.setSubject(rs.getString("subject"));
 			bean.setContent(rs.getString("content"));
 			bean.setWriter(rs.getString("writer"));
+			bean.setFileName(rs.getString("fileName"));
 			bean.setReg_date(rs.getDate("reg_date").toString());
 			bean.setReadcount(rs.getInt("readcount"));
 			v.add(bean);

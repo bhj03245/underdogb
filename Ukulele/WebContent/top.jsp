@@ -35,7 +35,11 @@
       <ul>
          <li><a href="no-sidebar.html">협회소개</a>
             <ul>
+<<<<<<< HEAD
                        <li><a href="index.jsp?page=Greetings/hi2">인사말</a></li>
+=======
+               <li><a href="index.jsp?page=Greetings/hi2">인사말</a></li>
+>>>>>>> a21f2d9574b3ef5591e9c03081b645c53ee58a59
                <li><a href="index.jsp?page=Association/information">연혁</a></li>
             </ul></li>
          <li><a href="no-sidebar.html">주요사업</a>

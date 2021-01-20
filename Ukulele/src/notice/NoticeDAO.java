@@ -235,14 +235,13 @@ public class NoticeDAO {
 		
 		try{
 			//쿼리 준비
-			String sql ="update notice set subject=?, password=?, content=?, filename=?, fileSysname=? where num=?";
+			String sql ="update notice set subject=?, content=?, filename=?, fileSysname=? where num=?";
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1, bean.getSubject());
-			pstmt.setString(2, bean.getPassword());
-			pstmt.setString(3, bean.getContent());
-			pstmt.setString(4, bean.getFilename());
-			pstmt.setString(5, bean.getFileSysname());
-			pstmt.setInt(6, bean.getNum());
+			pstmt.setString(2, bean.getContent());
+			pstmt.setString(3, bean.getFilename());
+			pstmt.setString(4, bean.getFileSysname());
+			pstmt.setInt(5, bean.getNum());
 			pstmt.executeUpdate();
 		} catch(Exception e){
 			e.printStackTrace();

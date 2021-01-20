@@ -79,21 +79,27 @@ public class NoticeServlet extends HttpServlet {
 			String fileSysname = request.getParameter("fileSysname");
 			String num = request.getParameter("num");
 			
+			if(filename.equals("null") || fileSysname.equals("null")) {
+				filename = request.getParameter("fileOrgname");
+				fileSysname = request.getParameter("fileOrgsysname");
+			}
+			
 			bean.setSubject(request.getParameter("subject"));
 			bean.setContent(request.getParameter("content"));
 			bean.setFilename(filename);
 			bean.setFileSysname(fileSysname);
+			bean.setNum(Integer.parseInt(num));
 			
 			String pass = noticeDAO.getPass(Integer.parseInt(num)); //패스워드값을 가져옴
 			
 			if(pass.equals(request.getParameter("password"))){
-				if(fileSysname.equals("null")) {
+				if(fileSysname.equals(null)) {
 					noticeDAO.updateNotice(bean);
 					out.println("<script>alert('게시글이 수정되었습니다.');");
 					out.println("location.href='index.jsp?page=notice/NoticeList.jsp?fileSysname="+fileSysname+"';");
 					out.println("</script>");
 				} else {
-					noticeDAO.deleteNoticeFile(request, fileSysname);
+					//noticeDAO.deleteNoticeFile(request, fileSysname);
 					noticeDAO.updateNotice(bean);
 					out.println("<script>alert('게시글이 수정되었습니다.');");
 					out.println("location.href='index.jsp?page=notice/NoticeList.jsp?fileSysname="+fileSysname+"';");

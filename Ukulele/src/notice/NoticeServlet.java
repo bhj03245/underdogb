@@ -63,7 +63,6 @@ public class NoticeServlet extends HttpServlet {
 			int num = Integer.parseInt(request.getParameter("num"));
 			String fileSysname = request.getParameter("fileSysname");
 			String password = noticeDAO.getPass(num);
-
 			if (pw.equals(password)) {
 				noticeDAO.deleteNotice(num);
 				if(fileSysname != null) {
@@ -73,18 +72,33 @@ public class NoticeServlet extends HttpServlet {
 			} else {
 				out.print("<script>alert('패스워드가 틀려서 삭제 할 수 없습니다. 패스워드를 확인해 주세요.'); history.go(-1);</script>");
 			}
-
 		} // 공지사항 삭제
 		
 		else if(command.equals("/NoticeUpdate.no")) {//공지사항 수정
+			String filename = request.getParameter("filename");
+			String fileSysname = request.getParameter("fileSysname");
+			String num = request.getParameter("num");
+			
 			bean.setSubject(request.getParameter("subject"));
 			bean.setContent(request.getParameter("content"));
-			bean.setNum(Integer.parseInt(request.getParameter("num")));
-			String pass=noticeDAO.getPass(Integer.parseInt(request.getParameter("num")));
+			bean.setFilename(filename);
+			bean.setFileSysname(fileSysname);
+			
+			String pass = noticeDAO.getPass(Integer.parseInt(num)); //패스워드값을 가져옴
 			
 			if(pass.equals(request.getParameter("password"))){
-				noticeDAO.updateNotice(bean);
-				response.sendRedirect("index.jsp?page=notice/NoticeList");		
+				if(fileSysname.equals("null")) {
+					noticeDAO.updateNotice(bean);
+					out.println("<script>alert('게시글이 수정되었습니다.');");
+					out.println("location.href='index.jsp?page=notice/NoticeList.jsp?fileSysname="+fileSysname+"';");
+					out.println("</script>");
+				} else {
+					noticeDAO.deleteNoticeFile(request, fileSysname);
+					noticeDAO.updateNotice(bean);
+					out.println("<script>alert('게시글이 수정되었습니다.');");
+					out.println("location.href='index.jsp?page=notice/NoticeList.jsp?fileSysname="+fileSysname+"';");
+					out.println("</script>");
+				}
 			}
 			else{
 				out.print("<script>alert('패스워드가 틀려서 수정 할 수 없습니다. 패스워드를 확인해 주세요.'); history.go(-1);</script>");

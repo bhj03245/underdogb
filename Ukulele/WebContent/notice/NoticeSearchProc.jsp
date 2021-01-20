@@ -11,7 +11,6 @@
 <jsp:useBean id="noticebean" class="notice.NoticeBean">
 <jsp:setProperty name="noticebean" property="*" />
 </jsp:useBean>
-
 <style>
 .btn {
    background-color: gray;
@@ -34,17 +33,16 @@ a {
 text-decoration: none;
 }
 </style>
-
 </head>
 <body>
    <%
-   	  request.setCharacterEncoding("UTF-8");
-   	  
+   	  request.setCharacterEncoding("UTF-8");  
       String pageNum = request.getParameter("pageNum");
       
       if (pageNum == null || pageNum == "0") {
          pageNum = "1";
       }
+      
       int pageList = 10;
       
       String keyword = request.getParameter("keyword");
@@ -71,12 +69,11 @@ text-decoration: none;
       <div class="col-xs-2"></div>
       <div class="col-xs-8 col-md-8">
          <h2 class="text-center">공지사항</h2>
-         <p class="text-right">
-				<input type="button" value="글쓰기"
-					onclick="location.href='index.jsp?page=notice/NoticeWrite'"
-					class="btn">
+         	<p class="text-right">
+				<input type="button" value="글쓰기" class="btn"
+					onclick="location.href='index.jsp?page=notice/NoticeWrite'">
 			</p>
-         <div class="table-responsive">
+        <div class="table-responsive">
            <table class="table table-striped"> <!-- bordered 세로줄 / -->
                <tr>
                   <th class="th1">번호</th>
@@ -86,9 +83,9 @@ text-decoration: none;
                   <th class="th1">조회수</th>
                </tr>
                <%
-               	if(vec.size() > 0) {
-                  for (int i = 0; i < vec.size(); i++) {
-                     NoticeBean bean = vec.get(i); //벡터에 저장되어 있는 빈클래스를 하나씩 추출
+               		if(vec.size() > 0) {
+                	  for (int i = 0; i < vec.size(); i++) {
+                    	 NoticeBean bean = vec.get(i); //벡터에 저장되어 있는 빈클래스를 하나씩 추출
                %>
                <tr>
                   <td><%=paging.getNumber() - i%></td>
@@ -97,8 +94,8 @@ text-decoration: none;
                            if (bean.getRe_step() > 1) {
                                  for (int j = 0; j < (bean.getRe_step() * 5); j++) {
                         %> &nbsp; <%
-                                     }
-                            }%> 
+                              }
+                       }%> 
                       <%=bean.getSubject()%></a></td>
                   <td><%=bean.getWriter()%></td>
                   <td><%=bean.getReg_date()%></td>
@@ -111,7 +108,6 @@ text-decoration: none;
                	}
                %>
                <tr>
-
                   <td colspan="5" class="text-center">
                      <nav>
                         <ul class="pagination">
@@ -132,7 +128,6 @@ text-decoration: none;
                               }
                               if (paging.getEndPage() < paging.getPageCount()) {
                            %>
-
                            <li><a href="index.jsp?page=notice/NoticeSearchProc&keyword=<%=keyword%>&search=<%=searchSubject %>&pageNum=<%=paging.getNext()%>"
                               aria-label="next"><span aria-hidden="true">&raquo;</span></a></li>
                            <%
@@ -142,7 +137,7 @@ text-decoration: none;
                         <p class="text-left">
 								<input type="button" value="목록" name="list" class="btn1" onclick="location.href='index.jsp?page=notice/NoticeList'"
 										style="vertical-align: text-top; color: white; font-size: 12pt; width: 50px; height: 33px; background-color: #8C8C8C; border-width: 0 0 0 0;">
-								</p>
+						</p>
                      </nav>
                   </td>
                </tr>

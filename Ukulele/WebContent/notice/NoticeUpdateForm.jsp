@@ -12,18 +12,19 @@
 	//해당 게시글번호를 통하여 게시글을 수정
 	int num = Integer.parseInt(request.getParameter("num").trim());
 	//하나의 게시글의 대한 정보를 리턴
-	NoticeDAO ndao =new NoticeDAO();
-	NoticeBean bean =ndao.getOneUpdateNotice(num);
+	NoticeDAO ndao = new NoticeDAO();
+	NoticeBean bean = ndao.getOneUpdateNotice(num);
 	String fileSysname = request.getParameter("fileSysname");
+	String filename = request.getParameter("filename");
 %>
 
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<h2 class="text-center">게시글 수정</h2><p>&nbsp;</p>
-		<form action="NoticeUpdate.no" method="post">
+		<form action="notice/fileUpdateUpload.jsp" method="post" enctype="multipart/form-data">
 			<div class="table table-responsive">
-					  <table class="table table-striped">
+			<table class="table table-striped">
 		 	<tr>
 		 		<td class="danger">작성자</td>
 		 		<td><%= bean.getWriter() %></td>
@@ -34,27 +35,42 @@
 		 		<td class="danger">제목</td>
 		 		<td colspan="3"><input type="text"  class="form-control" name="subject" value="<%= bean.getSubject() %>"></td>
 		 	</tr>
-		 	
 		 	<tr>
 		 		<td class="danger">패스워드</td>
 		 		<td colspan="3"><input type="password"  class="form-control" name="password"></td>
 		 	</tr>
+		 	<%
+		 		if(filename.equals("null")){
+		 	%>
 		 	<tr>
 		 		<td class="danger">첨부파일</td>
-		 		<td><input type="file" name="filename">
+		 		<td>
+		 		<input type="file" name="filename" id="fileSelect">
 		 		</td>
 		 	</tr>
+		 	<%
+		 		} else {
+		 	%>
+			 <tr>
+			 	<td class="danger">첨부파일</td>
+			 	<td>
+			 	<a href="#" id="hidename"><%= filename %></a>
+			 	<a href="#" id="hideX" onclick="namehide()">&nbsp;&nbsp;x</a>
+			 	<input type="file" name="filename" id="fileSelect" style="float: left; display: none;">
+			 	</td>
+			 </tr>
+		 	<% } %>
 		 	<tr>
 		 		<td class="danger">글내용</td>
-		 		<td colspan="3"><textarea  name="content" class="form-control"><%= bean.getContent() %></textarea></td>
+		 		<td colspan="3"><textarea name="content" class="form-control"><%= bean.getContent() %></textarea></td>
 		 	</tr>
-		 	
 		  	<tr>	
 		 		<td colspan="4"  class="text-center">
 		 			<input type="hidden" name="num"  value="<%= bean.getNum() %>">
 		 			<input type="hidden" value="<%= fileSysname %>" name="fileSysname">
 		 			<input type="submit" value="글수정" class="btn btn-warning">
-		 			<input type="button"  class="btn btn-primary" onclick="location.href='index.jsp?page=notice/NoticeList'" value="전체글보기">
+		 			<input type="button" class="btn btn-primary" 
+		 			onclick="location.href='index.jsp?page=notice/NoticeList'" value="전체글보기">
 		 		</td>
 		 	</tr>
 		  </table>
@@ -69,6 +85,13 @@
 		height:'350'
 			
 	});
+	
+	function namehide(){
+		hidename.style.display = "none";
+		hideX.style.display = "none";
+		fileSelect.style.display = "";
+	}
+	
 </script>
 </body>
 </html>

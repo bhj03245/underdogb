@@ -40,12 +40,6 @@ public class UpdateService extends HttpServlet {
       if (isMulti) {
          MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 
-//         String writer = multi.getParameter("writer");
-//         String subject = multi.getParameter("subject");
-//         String email = multi.getParameter("email");
-//         String password = multi.getParameter("password");
-//         String file = multi.getFilesystemName("fileName");
-//         String content = multi.getParameter("content");
          
          bean.setSubject(multi.getParameter("subject"));
          bean.setContent(multi.getParameter("content"));

@@ -16,7 +16,7 @@
 <div id="information_top">
 			<h1>연혁</h1>
 </div>
-<img src="images/back2.png" class="image-block">
+<img src="images/back3.png" class="image-block">
 <br><br><br>
 <table id="info" style="margin-left: auto; margin-right: auto;">
 <tr>

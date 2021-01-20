@@ -106,7 +106,6 @@ public class BoardServlet extends HttpServlet {
 			else {
 				if(pass.equals(request.getParameter("password"))){
 					boardDAO.updateBoard(bean);
-					boardDAO.deleteBoardFile(request, fileSysname);
 					out.println("<script>alert('게시글이 수정되었습니다.');");
 					out.println("location.href='index.jsp?page=Board/BoardList.jsp?fileSysname="+fileSysname+"';");
 					out.println("</script>");

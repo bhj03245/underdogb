@@ -28,7 +28,7 @@
                     <span class="box int_id">
                         <input type="text" id="id" class="int" maxlength="20" name="id" readonly value=<%=session.getAttribute("id") %>>
                     </span>
-                    <span class="error_next_box"></span>
+                     <br>
                 </div>
 
                 <!-- PW1 -->
@@ -36,9 +36,8 @@
                     <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                     <span class="box int_pass">
                         <input type="password" id="pswd1" class="int" maxlength="20" name="pw" readonly value=<%=session.getAttribute("pw") %>>
-                        <span id="alertTxt">사용불가</span>
                     </span>
-                    <span class="error_next_box"></span>
+                     <br>
                 </div>
 
                 <!-- PW2

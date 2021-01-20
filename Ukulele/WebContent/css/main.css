@@ -2386,7 +2386,7 @@ input::-moz-focus-inner {
 				-ms-transition: background-color .075s ease-in-out, color .075s ease-in-out;
 				transition: background-color .075s ease-in-out, color .075s ease-in-out;
 				position: relative;
-				display: block;
+				display: inline-block;
 				text-decoration: none;
 				color: #6b7770;
 				top: -6px;
@@ -3125,11 +3125,7 @@ input::-moz-focus-inner {
             color: #575d59;
 }
 
-.exchange {
-	display:flex;
-}
-
-#dltmdrl2 {
+#dltmdrl2, #dltmdrl {
 	float:right;
 	
 }

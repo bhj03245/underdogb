@@ -78,32 +78,53 @@
                   %> <!--                     <a href="#">갤러리(연주회 영상/악보공유)</a></li> -->
             </ul></li>
          <li class="current"><a href="index.jsp">쇼핑몰바로가기</a></li>
-           <li id="dltmdrl2"><a href="index.jsp?page=Member/MasterPageIndex" id="dltmdrl">관리자</a>
-            <ul>
-               <li><a href="index.jsp?page=Member/MasterPageIndex&subpage=licenseManage">자격증신청현황</a></li>
-               <li><a href="index.jsp?page=Member/MasterPageIndex&subpage=memberManage">회원목록</a></li>
-            </ul></li>
+           
+
+<li id="dltmdrl">
+<%
+
+
+    if(id == null) {
+    
+          out.print("<a href='#new-box' class='login-window' id='login_position'>회원가입</a>");
+              
+    }else if((session.getAttribute("id")).equals("1111")){
+         
+         out.print("<a href='index.jsp?page=Member/MasterPageIndex' id='login_position'>관리자</a>");
+         out.print("<ul>");
+         out.print("<li>");
+         out.print("<a href='index.jsp?page=notice/NoticeList'>자격증신청현황</a>");
+         out.print("</li>");
+         out.print("<li>");
+         out.print("<a href='index.jsp?page=notice/NoticeList'>회원목록</a>");
+         out.print("</li>");
+         out.print("</ul>");
+         
+    
+    }else {
+          out.print("<div class='exchange'><a href='index.jsp?page=Member/Mypage' id='login_position'>마이페이지</a>");
+        
+    
+    }
+
+%>
+</li>
+<li id="dltmdrl2">
+<%
+
+    if( id == null) {
+    	 out.print("<a href='#login-box' class='login-window' id='login_position'>로그인</a></div>");
+    }else {
+    	out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a></div>");
+    }
+
+
+    
+
+%>
+</li>
       </ul>
-      <div class="btn-sign">
-         <%
-            if (id == null) {
-            //   out.print("<div class='exchange'><a href='#new-box' class='login-window' id='login_position'>회원가입</a>");
-               out.print("<a href='#login-box' class='login-window' id='login_position'>로그인</a></div>");
-               
-
-            } else if ((session.getAttribute("id")).equals("1111")) {
-
-            	 /* out.print("<div class='exchange'><a href='index.jsp?page=Member/MasterPageIndex' id='login_position'>관리자</a>");
-              /* out.print("<ul><li><a href=index.jsp?page=notice/NoticeList>자격증신청현황</a></li>");
-               out.print("<li><a href=index.jsp?page=notice/NoticeList>회원목록</a></li></ul>");  */
-               out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a></div>");
-
-            } else {
-               out.print("<div class='exchange'><a href='index.jsp?page=Member/Mypage' id='login_position'>마이페이지</a>");
-               out.print("<a href='memberLogout.mb' id='login_position'>로그아웃</a></div>");
-            }
-         %>
-      </div>
+      
 
       <!-- 로그인 팝업 -->
       <div id="login-box" class="login-popup">

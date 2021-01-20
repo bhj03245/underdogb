@@ -62,7 +62,7 @@
 	if(session.getAttribute("id").equals("1111")){
 %>
 	<input type="button" class="btn btn-warning" value="수정하기" 
-	onclick="location.href='index.jsp?page=notice/NoticeUpdateForm&num=<%= bean.getNum()%>'">		  
+	onclick="location.href='index.jsp?page=notice/NoticeUpdateForm&num=<%= bean.getNum()%>&fileSysname=<%= bean.getFileSysname()%>&filename=<%= bean.getFilename()%>'">		  
 	<input type="button" class="btn btn-danger" value="삭제하기" 
 	onclick="location.href='index.jsp?page=notice/NoticeDeleteForm&num=<%= bean.getNum()%>&fileSysname=<%= bean.getFileSysname()%>'">
 <% } %>

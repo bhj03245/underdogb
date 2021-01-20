@@ -142,8 +142,10 @@
                   placeholder="비밀번호" name="pw" id="login_pw" required="required">
 
                <p class="login_mid" align="center" id="search_id">
+                  <div id="idpwsc">
                   <a href="#idsearch-box" class="login-window">아이디 찾기&nbsp;</a>
                    <a href="#pwsearch-box" class="login-window">비밀번호 찾기</a>
+                   </div>
                </p>
 
                <input type="submit" class="login_submit" align="center"

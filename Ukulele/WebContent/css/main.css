@@ -3130,6 +3130,11 @@ input::-moz-focus-inner {
 	
 }
 
+#idpwsc {
+	display: flex;
+	justify-content: space-around;
+}
+
 
 
 

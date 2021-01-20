@@ -55,7 +55,25 @@
 						<td><%=bean.getId()%></td>
 						<td><%=bean.getEmail()%></td>
 						<td><%=bean.getPw() %></td>
-						<td><%=bean.getTrackingProgress()%></td>
+						<td><%
+							if(bean.getTrackingProgress()==0){
+								out.print("미신청");
+							}else if(bean.getTrackingProgress()==1){
+								if(bean.getLicenseGrade()==1){
+									out.print("1급 신청 : ");
+								}else if(bean.getLicenseGrade()==2){
+									out.print("2급신청 : ");
+								}
+								out.print("입금확인중");
+							}else{
+								if(bean.getLicenseGrade()==1){
+									out.print("1급 신청 : ");
+								}else if(bean.getLicenseGrade()==2){
+									out.print("2급신청 : ");
+								}
+								out.print("입금완료");
+							}
+						%></td>
 					</tr>
 					<%
 						}

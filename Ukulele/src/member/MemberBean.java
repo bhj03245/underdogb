@@ -5,11 +5,18 @@ public class MemberBean {
 	private String pw;
 	private String email;
 	private int trackingProgress;
+	private int licenseGrade;
 	
 	@Override
 	public String toString() {
 		return "MemberBean [id=" + id + ", pw=" + pw + ", email=" + email + ", trackingProgress=" + trackingProgress
-				+ "]";
+				+ ", licenseGrade=" + licenseGrade + "]";
+	}
+	public int getLicenseGrade() {
+		return licenseGrade;
+	}
+	public void setLicenseGrade(int licenseGrade) {
+		this.licenseGrade = licenseGrade;
 	}
 	public int getTrackingProgress() {
 		return trackingProgress;

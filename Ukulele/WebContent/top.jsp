@@ -95,10 +95,10 @@
          out.print("<a href='index.jsp?page=Member/MasterPageIndex' id='login_position'>관리자</a>");
          out.print("<ul>");
          out.print("<li>");
-         out.print("<a href='index.jsp?page=notice/NoticeList'>자격증신청현황</a>");
+         out.print("<a href='index.jsp?page=Member/MasterPageIndex&subpage=licenseManage'>자격증신청현황</a>");
          out.print("</li>");
          out.print("<li>");
-         out.print("<a href='index.jsp?page=notice/NoticeList'>회원목록</a>");
+         out.print("<a href='index.jsp?page=Member/MasterPageIndex&subpage=memberManage'>회원목록</a>");
          out.print("</li>");
          out.print("</ul>");
          

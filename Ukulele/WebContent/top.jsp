@@ -72,7 +72,7 @@
                   
                      id = (String) session.getAttribute("id");
                      if (id != null) {
-                        out.print("<a href=#>갤러리(연주회 영상/악보공유)</a>");
+                        out.print("<a href=selectService>갤러리(연주회 영상/악보공유)</a>");
                      } else {
                         out.print("<a href=index.jsp?page=center onclick=alert('로그인&nbsp먼저&nbsp해주세요')>갤러리(연주회 영상/악보공유)</a>");
                      }

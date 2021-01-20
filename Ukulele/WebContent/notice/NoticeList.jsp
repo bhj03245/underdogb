@@ -115,14 +115,18 @@ text-decoration: none;
                      <form action = "index.jsp?" method="get">
             		 <div class="search" style="position: center;">
             		 <input type="hidden" name="page" value="notice/NoticeSearchProc">
-            		 <select name="keyword" style="vertical-align:text-top; font-size:12pt; text-align-last:center; width:50px; height:30px; background-color:#D4F4FA; color:black; border: 1px solid gray;">
+            		 <select name="keyword" style="vertical-align:text-top; font-size:12pt; 
+            		 text-align-last:center; width:70px; height:30px; background-color:#D4F4FA; 
+            		 color:black; border: 1px solid gray;">
             			<option value="subject">제목</option>
             			<option value="writer">작성자</option>
             			<option value="content">내용</option>
             	</select>
-            <input type="text" name="search" autocomplete="off" style="vertical-align:sub; border:1px solid #888ca5; border-width:1 0 1 0; width:150px; height:30px; overflow:visible;">
+            <input type="text" name="search" autocomplete="off" style="vertical-align:sub; 
+            border:1px solid #888ca5; border-width:1 0 1 0; width:150px; height:30px; overflow:visible;">
             <input type="submit" value="검색" name="searchSubject" class="btn1" 
-            	   style="vertical-align:text-top; color:white; font-size:12pt; width:50px; height:33px; background-color:#8C8C8C; border-width:0 0 0 0;">
+            	   style="vertical-align:text-top; color:white; font-size:12pt; width:50px; height:33px; 
+            	   background-color:#8C8C8C; border-width:0 0 0 0;">
             </div>
             </form>
             </nav>

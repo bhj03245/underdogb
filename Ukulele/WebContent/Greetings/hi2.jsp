@@ -15,7 +15,6 @@
 <body>
 <div id="greetings_top">
 <h1>인사말</h1>
-<hr>
 </div>
 
 <div id="greetings">

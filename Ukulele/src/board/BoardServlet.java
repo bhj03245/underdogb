@@ -2,10 +2,7 @@ package board;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,8 +47,8 @@ public class BoardServlet extends HttpServlet {
 			bean.setSubject(request.getParameter("subject"));
 			bean.setPassword(request.getParameter("password"));
 			bean.setContent(request.getParameter("content"));
-			bean.setFileBoardname(request.getParameter("fileBoardname"));
-			bean.setFileBoardid(request.getParameter("fileBoardid"));
+			bean.setFileBoardname(fileBoardname);
+			bean.setFileBoardid(fileBoardid);
 			
 			boardDAO.insertBoard(bean);
 			response.sendRedirect("index.jsp?page=Board/BoardList");
@@ -85,18 +82,33 @@ public class BoardServlet extends HttpServlet {
 		} // 게시판 글 삭제
 		
 		else if(command.equals("/BoardUpdate.bo")) {//게시판 글 수정
+			String filename = request.getParameter("filename");
+			String fileSysname = request.getParameter("fileSysname");
+			int num = Integer.parseInt(request.getParameter("num")); 
+			
+			if(filename.equals("null") || fileSysname.equals("null")) {
+				filename = request.getParameter("fileOrgname");
+				fileSysname = request.getParameter("fileOrgsysname");
+			}
+			
 			bean.setSubject(request.getParameter("subject"));
 			bean.setContent(request.getParameter("content"));
-			bean.setNum(Integer.parseInt(request.getParameter("num")));
+			bean.setFileBoardname(filename);
+			bean.setFileBoardid(fileSysname);
+			bean.setNum(num);
+			
 			String pass=boardDAO.getPass(Integer.parseInt(request.getParameter("num")));
 			String id = boardDAO.getID(Integer.parseInt(request.getParameter("num")));
+			
 			if(!id.equals(request.getParameter("id"))){
 				out.print("<script>alert('자신이 작성한 게시글만 수정할 수 있습니다.'); history.go(-1);</script>");
 			}
 			else {
 				if(pass.equals(request.getParameter("password"))){
 					boardDAO.updateBoard(bean);
-					response.sendRedirect("index.jsp?page=Board/BoardList");		
+					out.println("<script>alert('게시글이 수정되었습니다.');");
+					out.println("location.href='index.jsp?page=Board/BoardList.jsp?fileSysname="+fileSysname+"';");
+					out.println("</script>");
 				}
 				else{
 					out.print("<script>alert('패스워드가 틀려서 수정 할 수 없습니다. 패스워드를 확인해 주세요.'); history.go(-1);</script>");

@@ -7,11 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.sql.DataSource;
+
 
 public class BoardDAO {
 
@@ -232,8 +229,7 @@ public class BoardDAO {
 		BoardBean bean =new BoardBean();
 		getConnection();
 		
-		try{
-			
+		try{	
 			//쿼리준비
 			String sql ="select * from board where num=?";
 			//쿼리실행객체
@@ -252,7 +248,9 @@ public class BoardDAO {
 				bean.setRe_step(rs.getInt("RE_STEP"));
 				bean.setRe_level(rs.getInt("RE_LEVEL"));
 				bean.setReadcount(rs.getInt("READCOUNT"));
-				bean.setContent(rs.getString("CONTENT"));				
+				bean.setContent(rs.getString("CONTENT"));
+				bean.setFileBoardname(rs.getString("fileboardname"));
+				bean.setFileBoardid(rs.getString("fileboardid"));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -322,13 +320,14 @@ public class BoardDAO {
 		getConnection();
 		try{
 			//쿼리 준비
-			String sql ="update board set subject=? , content=? where num=?";
+			String sql ="update board set subject=?, content=?, fileboardname=?, fileboardid=? where num=?";
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1, bean.getSubject());
 			pstmt.setString(2, bean.getContent());
-			pstmt.setInt(3, bean.getNum());
-			pstmt.executeUpdate();
-			
+			pstmt.setString(3, bean.getFileBoardname());
+			pstmt.setString(4, bean.getFileBoardid());
+			pstmt.setInt(5, bean.getNum());
+			pstmt.executeUpdate();	
 			
 		}catch(Exception e){
 			e.printStackTrace();

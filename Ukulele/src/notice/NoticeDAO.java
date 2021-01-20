@@ -166,7 +166,7 @@ public class NoticeDAO {
 		}
 	}	
 	
-	//boardUpdate용 Delete 시 하나의 게시글을 리턴
+	//Delete 시 하나의 게시글을 리턴
 	public NoticeBean getOneUpdateNotice(int num){
 		//리턴타입 선언
 		NoticeBean bean =new NoticeBean();
@@ -190,7 +190,9 @@ public class NoticeDAO {
 				bean.setRe_step(rs.getInt("RE_STEP"));
 				bean.setRe_level(rs.getInt("RE_LEVEL"));
 				bean.setReadcount(rs.getInt("READCOUNT"));
-				bean.setContent(rs.getString("CONTENT"));				
+				bean.setContent(rs.getString("CONTENT"));
+				bean.setFilename(rs.getString("FILENAME"));
+				bean.setFileSysname(rs.getString("FILESYSNAME"));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -230,13 +232,17 @@ public class NoticeDAO {
 	//하나의 게시글을 수정하는 메소드
 	public void updateNotice(NoticeBean bean){
 		getConnection();
+		
 		try{
 			//쿼리 준비
-			String sql ="update notice set subject=?, content=? where num=?";
+			String sql ="update notice set subject=?, password=?, content=?, filename=?, fileSysname=? where num=?";
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1, bean.getSubject());
-			pstmt.setString(2, bean.getContent());
-			pstmt.setInt(3, bean.getNum());
+			pstmt.setString(2, bean.getPassword());
+			pstmt.setString(3, bean.getContent());
+			pstmt.setString(4, bean.getFilename());
+			pstmt.setString(5, bean.getFileSysname());
+			pstmt.setInt(6, bean.getNum());
 			pstmt.executeUpdate();
 		} catch(Exception e){
 			e.printStackTrace();
@@ -245,7 +251,6 @@ public class NoticeDAO {
 			closed();
 		}
 	}
-	
 	//하나의 게시글을 삭제하는 메소드 입니다.
 	public void deleteNotice(int num) {
 		getConnection();

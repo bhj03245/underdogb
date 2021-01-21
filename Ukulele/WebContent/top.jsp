@@ -32,14 +32,14 @@
    <!-- Nav -->
    <nav id="nav">
       <a href="index.jsp" id="centerlogo"><img src="images/logo.png"></a>
-      <ul>
-         <li><a href="no-sidebar.html">협회소개</a>
+       <ul>
+         <li><a href="">협회소개</a>
             <ul>
                <li><a href="index.jsp?page=Greetings/hi2">인사말</a></li>
 
                <li><a href="index.jsp?page=Association/information">연혁</a></li>
             </ul></li>
-         <li><a href="no-sidebar.html">주요사업</a>
+         <li><a href="">주요사업</a>
             <ul>
                <li><a href="index.jsp?page=Bussiness/licenseIndex">자격증</a></li>
                <li><a href="index.jsp?page=Bussiness/wayToCome">교육센터 위치</a></li>

@@ -194,12 +194,11 @@
          <a href="#" class="close"><img src="images/close.png"
             class="btn_close" title="Close Window" alt="Close" /></a>
           <div class="login_main">
-            <p class="login_sign" align="center">아이디/비밀번호 찾기</p>
+            <p class="login_sign" align="center">아이디 찾기</p>
             <br>
             <form class="login_form2" action="memberSearch.mb" method="get">
                <input class="login_email" type="email" align="center"
-                  placeholder="등록하신 이메일을 작성해주세요." name="email" id="email"
-                  required="required"> 
+                  placeholder="등록하신 이메일을 작성해주세요." name="email" id="email" required="required"> 
                   <input type="submit" class="login_submit" align="center" value="아이디찾기">
    
        
@@ -215,8 +214,8 @@
             <p class="login_sign" align="center">비밀번호 찾기</p>
             <br>
             <form class="login_form2" action="pwSearch.mb" method="get">
-               <input class="login_email" type="email" align="center"
-                  placeholder="등록하신 이메일을 작성해주세요." name="email" id="email"> 
+            <input class="login_username" type="text" align="center" placeholder="등록하신 아이디를 작성해주세요." name="id" id="id"> 
+               <input class="login_email" type="email" align="center" placeholder="등록하신 이메일을 작성해주세요." name="email" id="email"> 
                   <input type="submit" class="login_submit" align="center" value="비밀번호 찾기">
         
             

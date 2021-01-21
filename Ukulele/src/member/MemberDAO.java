@@ -103,11 +103,12 @@ public class MemberDAO implements Serializable {
       return id;
    }
    //비밀번호 찾기
-   public String pwSearch(String pwSearch)throws SQLException {
+   public String pwSearch(String idSearch, String pwSearch)throws SQLException {
        conn= getConnection();
-       sql ="select pw from memberUK where email=?";
+       sql ="select pw from memberUK where id=? and email=?";
        pstmt = conn.prepareStatement(sql);
-       pstmt.setString(1, pwSearch);
+       pstmt.setString(1, idSearch);
+       pstmt.setString(2, pwSearch);
        rs = pstmt.executeQuery();
        String pw =null;
        while(rs.next()) {

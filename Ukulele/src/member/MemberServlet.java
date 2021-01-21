@@ -101,7 +101,7 @@ public class MemberServlet extends HttpServlet {
 			String idSearch = request.getParameter("email");
 			try {
 				String id = memberDAO.memberSearch(idSearch);
-				out.print("<script>alert('찾는 아이디는 : "+id+"'); location.href='index.jsp'</script>");
+				out.print("<script>alert('찾는 아이디는 : "+id+" 입니다.'); location.href='index.jsp'</script>");
 				
 			//	response.sendRedirect("index.jsp?page=center");
 			} catch (SQLException e) {
@@ -115,7 +115,7 @@ public class MemberServlet extends HttpServlet {
 			String pwSearch = request.getParameter("email");
 			try {
 				String pw = memberDAO.pwSearch(idSearch, pwSearch);
-				out.print("<script>alert('찾는 비밀번호는 : "+pw+"'); location.href='index.jsp'</script>");
+				out.print("<script>alert('찾는 비밀번호는 : "+pw+" 입니다.'); location.href='index.jsp'</script>");
 			//	response.sendRedirect("index.jsp?page=center");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

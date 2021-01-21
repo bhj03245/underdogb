@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="Header.jsp"/>
 <meta charset="UTF-8">
 <title>KHJSP</title>
 </head>

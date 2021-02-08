@@ -52,7 +52,7 @@ text-decoration: none;
          <h2 class="text-center">공지사항</h2>
          <p class="text-right">
            <%
-	if(session.getAttribute("id").equals("1111")){
+	if(session.getAttribute("id").equals("ukuaa4730")){
 %>
 	<input type="button" value="글쓰기" class="btn"
 	onclick="location.href='index.jsp?page=notice/NoticeWrite'">

@@ -59,7 +59,7 @@
 		<tr>
 			<td colspan="4" class="text-center">
 <%
-	if(session.getAttribute("id").equals("1111")){
+	if(session.getAttribute("id").equals("ukuaa4730")){
 %>
 	<input type="button" class="btn btn-warning" value="수정하기" 
 	onclick="location.href='index.jsp?page=notice/NoticeUpdateForm&num=<%= bean.getNum()%>&fileSysname=<%= bean.getFileSysname()%>&filename=<%= bean.getFilename()%>'">		  

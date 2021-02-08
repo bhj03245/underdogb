@@ -19,7 +19,7 @@
 <script type="text/javascript" charset="utf-8"></script>
 <link href="https://fonts.googleapis.com/css?family=Ubuntu"
    rel="stylesheet">
-<script src="js/login_check.js?v=2"></script>
+<script src="js/login_check.js?v=7"></script>
 
 <meta charset="UTF-8">
 <title>KHJSP</title>
@@ -91,7 +91,7 @@
     
           out.print("<a href='#new-box' class='login-window' id='login_position'>회원가입</a>");
               
-    }else if((session.getAttribute("id")).equals("1111")){
+    }else if((session.getAttribute("id")).equals("ukuaa4730")){
          
          out.print("<a href='index.jsp?page=Member/MasterPageIndex' id='login_position'>관리자</a>");
          out.print("<ul>");

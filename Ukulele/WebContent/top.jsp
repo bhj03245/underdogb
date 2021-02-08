@@ -19,7 +19,7 @@
 <script type="text/javascript" charset="utf-8"></script>
 <link href="https://fonts.googleapis.com/css?family=Ubuntu"
    rel="stylesheet">
-<script src="js/login_check.js"></script>
+<script src="js/login_check.js?v=2"></script>
 
 <meta charset="UTF-8">
 <title>KHJSP</title>
@@ -180,7 +180,7 @@
                <input class="login_email" type="email" align="center"
                   placeholder="사용하실 이메일을 입력해주세요." name="email" id="email"
                   required="required"> 
-                  <input type="submit" class="login_submit" align="center" value="가입하기" id="btn2">
+                  <input type="submit" class="login_submit" align="center" value="가입하기" id="btn2" >
      
 
 

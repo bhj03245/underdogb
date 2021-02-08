@@ -6,7 +6,7 @@
 
 
 $(function() {
-	$('.login_form1').focusout(function() {
+	$('#btn2').click(function() {
 		var idcheck = $('#register_id').val().trim();
 		var reg1 = /^[a-z][a-z0-9]{3,9}/;
 		if (!reg1.test(idcheck)) {
@@ -31,7 +31,7 @@ $(function() {
 
 	});
 	
-	$('.update_form').focusout(function() {
+	$('#update_sub').click(function() {
 		var idcheck = $('#update_id').val().trim();
 		var pwcheck = $('#update_pw').val().trim();
 		var pwcheck2 = $('#update_pwch').val().trim();

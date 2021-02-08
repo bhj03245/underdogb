@@ -29,7 +29,7 @@
             <!-- content-->
             <div id="Mypage_content">
            
-               <form action="memberUpdate.mb" method="get" class="update_form">
+               <form action="memberUpdate.mb" method="get" class="update_form" >
                
                  <!-- ID -->
                 <div>
@@ -76,7 +76,7 @@
 
                 <!-- JOIN BTN-->
                 <div class="btn_area">
-                    <input type="submit" id="btnJoin" name="" value="수정완료">
+                    <input type="submit" id="btnJoin" id="update_sub" value="수정완료">
                      
                 </div>
                   </form>

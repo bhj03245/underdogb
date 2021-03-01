@@ -16,7 +16,7 @@
       <property name="url"
          value="jdbc:mysql://127.0.0.1:3306/mysql?useUnicode=true&amp;characterEncoding=utf8&amp;allowPublicKeyRetrieval=true&amp;useSSL=false&amp;serverTimezone=Asia/Seoul" />
       <property name="username" value="root"></property>
-      <property name="password" value=""></property>
+      <property name="password" value="apmsetup"></property>
    </bean>
 
    <!-- SqlSessionFactory 객체 설정 -->
@@ -36,5 +36,8 @@
          ref="SqlSessionFactory" />
    </bean>
    
+   <mybatis-spring:scan base-package="com.traveler.web.mapper"/>
+   <context:component-scan base-package="com.traveler.web.model"></context:component-scan>
+   <context:component-scan base-package="com.traveler.web.service"></context:component-scan>
 <context:component-scan base-package="com.traveler.web.journal.dao"></context:component-scan>
 </beans>

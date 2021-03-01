@@ -50,6 +50,7 @@
         </svg>
         <input type="text" placeholder="email@domain.com">
         <input type="password" placeholder="Password">
+        <input type="button" value="·Î±×ÀÎ">
     </form>
     <script src="${path}/resources/js/ryan.js?v=1"></script>
     <script src="${path}/resources/js/home.js?v=3"></script>

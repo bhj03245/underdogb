@@ -20,7 +20,7 @@
 <link href="${CONTEXT_PATH}/resources/css/total.css" rel="stylesheet"/>
 <link href="${CONTEXT_PATH}/resources/css/headerStatic.css" rel="stylesheet"/>
 <link href="${CONTEXT_PATH}/resources/css/journal/journalNav.css" rel="stylesheet"/>
-<link href="${CONTEXT_PATH}/resources/css/journal/journalContent.css" rel="stylesheet"/>
+<link href="${CONTEXT_PATH}/resources/css/journal/createContent.css" rel="stylesheet"/>
 <style type="text/css">
 body{
 	height: 2000px;

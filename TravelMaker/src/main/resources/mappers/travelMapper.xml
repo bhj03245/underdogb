@@ -6,7 +6,7 @@
    <select id="getJournalList"
       resultType="com.traveler.web.journal.model.JournalVO">
       SELECT
-         JOURNAL_NO, TITLE, START_DT, END_DT, MARKER, AUTHOR, THUMBS, VIEW_CNT
+         TITLE, START_DT, END_DT, VIEW_CNT
       FROM
          TRAVELER_JOURNAL
    </select>
@@ -25,10 +25,9 @@
 
    <insert id="insertJournal"
       parameterType="com.traveler.web.journal.model.JournalVO">
-      INSERT INTO TRAVELER_JOURNAL (JOURNAL_NO, TITLE, START_DT, END_DT, MARKER, AUTHOR)
+      INSERT INTO TRAVELER_JOURNAL ( TITLE, START_DT, END_DT, MARKER, AUTHOR)
       VALUES (
-         #{journal_no}
-         , #{title}
+          #{title}
          , #{start_dt}
          , #{end_dt}
          , #{marker}

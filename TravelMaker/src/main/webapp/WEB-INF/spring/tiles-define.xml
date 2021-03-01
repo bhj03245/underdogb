@@ -10,4 +10,16 @@
 		<put-attribute name="content" value="/WEB-INF/views/content.jsp" />
 		<put-attribute name="foot" value="/WEB-INF/views/footer.jsp" />
 	</definition>
+	<!-- journal list layout -->
+	<definition name="journal/journalList" template="/WEB-INF/views/journal/journalList.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/journal/journalContent.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/views/journal/journalNav.jsp" />
+	</definition>
+	<!-- journal create layout -->
+	<definition name="journal/createJournal" template="/WEB-INF/views/journal/createJournal.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/journal/createContent.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/views/journal/journalNav.jsp" />
+	</definition>
 </tiles-definitions>

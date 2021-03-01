@@ -12,7 +12,13 @@ public class JournalServiceImpl implements JournalService{
 	@Inject
 	private JournalDAO journalDAO;
 	
+	@Override
 	public List<JournalVO> getJournalList() throws Exception{
 		return journalDAO.getJournalList();
+	}
+	
+	@Override
+	public void insertJournal(JournalVO journalVO) throws Exception {
+		journalDAO.insertJournal(journalVO);
 	}
 }

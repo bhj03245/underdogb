@@ -21,6 +21,8 @@ $( document ).ready( function() {
 			$('#search_btn').css('width','60px');
 			$('#search_btn').css('height','60px');
 			$('#search_title').blur();
+			$('#search_date').css('display','inline-block');
+			$('#search_author').css('display','inline-block');
 		}
 		if(scroll_top!=0){
 			$('.Header').css('position','fixed');
@@ -41,6 +43,8 @@ $( document ).ready( function() {
 			$('#search_author').css('width','0px');
 			$('#search_btn').css('width','30px');
 			$('#search_btn').css('height','30px');
+			$('#search_date').css('display','none');
+			$('#search_author').css('display','none');
 		}
 	});
 	

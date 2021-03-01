@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+#journalContentContainer{
+	float: left;
+    width: 70%;
+    height: 100%;
+}
+
+h1{
+	font-size: 50px;
+}
+
+#myJournalList{
+	float: left;
+    width: 70%;
+    height: 100%;
+}
+
+#createJournalBox{
+	float: left;
+    width: 30%;
+    background-color: #258FFF;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 20px;
+}

@@ -129,3 +129,27 @@ input {
 	text-align : center;
 	color : red;
 }
+/* 유효성 검사 문구 */
+.final_id_ck{
+	display: none;
+}
+.final_pw_ck{
+	display: none;
+}
+.final_pwck_ck{
+	display: none;
+}
+.final_name_ck{
+	display: none;
+}
+.final_email_ck{
+	display: none;
+}
+.input_pwck1 {
+	color : green;
+	display : none;
+}
+.input_pwck2 {
+	color : red;
+	display : none;
+}

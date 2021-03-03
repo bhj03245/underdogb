@@ -11,21 +11,36 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	UserMapper usermapper;
-	//ȸ������
+	// 회원가입
 	@Override
 	public void insertUser(UserVO vo)throws Exception {
 		
 		usermapper.insertUser(vo);
 	}
-	//���̵� �ߺ� �˻�
+	// 아이디 중복 검사
 	@Override
 	public int idCheck(String id)throws Exception {
 		return usermapper.idCheck(id);
 	}
-	//�α���
+	// 로그인
 	@Override
 	public UserVO userLogin(UserVO vo)throws Exception {
 		
 		return usermapper.userLogin(vo);
+	}
+	// 회원정보 보기
+	@Override
+	public UserVO readUser(String id)throws Exception {
+		return usermapper.readUser(id);
+	}
+	// 회원정보 수정
+	@Override
+	public void updateUser(UserVO vo)throws Exception {
+		usermapper.updateUser(vo);
+	}
+	// 회원정보 삭제
+	@Override
+	public void deleteUser(UserVO vo)throws Exception {
+		usermapper.deleteUser(vo);
 	}
 }

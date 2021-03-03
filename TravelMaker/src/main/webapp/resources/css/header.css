@@ -82,3 +82,8 @@
     -webkit-transition: width 0.5s, height 0.5s, -webkit-transform 0.5s;
     transition: width 0.5s, height 0.5s, transform 0.5s;
 }
+#logout {
+	color : white;
+	text-decoration: none;
+}
+

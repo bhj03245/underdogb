@@ -9,6 +9,10 @@
     Object islogin = session.getAttribute("login");
     String is_login = (String)islogin;
 %>
+<%
+String id = (String) session.getAttribute("id");
+// if(id == null) response.sendRedirect("/");
+%>
 <html>
 <head>
 <title>Home</title>
@@ -309,13 +313,13 @@ crossorigin="anonymous">
     
     <!-- 인증번호 이메일 전송 -->
     <script>
-/*	$('.email_checkbtn').click(function() {
+	$('.email_checkbtn').click(function() {
 		var email = $('.input_email').val();
 		$.ajax({
 			type:"GET",
 			url:"/mailCheck"
 		});
-	});*/
+	});
 	
    </script>
 </body>

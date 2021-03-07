@@ -55,7 +55,11 @@
          ref="SqlSessionFactory" />
    </bean>
    
+   
+   
    <mybatis-spring:scan base-package="com.traveler.web.user.mapper"/>
-   <context:component-scan base-package="com.traveler.web.diary.dao"></context:component-scan>
 <context:component-scan base-package="com.traveler.web.journal.dao"></context:component-scan>
+<mybatis-spring:scan base-package="com.traveler.web.diary.mapper"></mybatis-spring:scan>
+<context:component-scan base-package="com.traveler.web.diary.service"></context:component-scan>
+
 </beans>

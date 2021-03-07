@@ -4,8 +4,24 @@ import java.util.List;
 
 import com.traveler.web.diary.model.DiaryVO;
 
+
+
+
 public interface DiaryService {
-	public List<DiaryVO> getDiaryList() throws Exception;
 	
-	public void insertDiary(DiaryVO diaryVO) throws Exception;
+	List<DiaryVO> getList();
+	
+//	List<BoardVO> getList(Criteria cri);
+	
+	int write(DiaryVO diary);
+	
+	DiaryVO info(int diary_no);
+	
+	int delete(int diary_no);
+	
+	int update(DiaryVO diary);
+	
+	
+	
+
 }

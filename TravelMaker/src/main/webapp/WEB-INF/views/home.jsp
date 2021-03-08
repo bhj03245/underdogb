@@ -5,11 +5,12 @@
    pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-    HttpSession session = request.getSession();
-    Object islogin = session.getAttribute("login");
-    String is_login = (String)islogin;
+//     HttpSession session = request.getSession();
+//     Object islogin = session.getAttribute("login");
+//     String is_login = (String)islogin;
 %>
 <%
+HttpSession session = request.getSession();
 String id = (String) session.getAttribute("id");
 // if(id == null) response.sendRedirect("/");
 %>
@@ -28,7 +29,7 @@ crossorigin="anonymous">
 
 </head>
 <body>
-<input type="hidden" value="<%=is_login%>" id = "login_checkk">
+<%-- <input type="hidden" value="<%=is_login%>" id = "login_checkk"> --%>
    <div id="index_background">
       <div id="index_title">Travel Maker</div>
       <div class="sign">

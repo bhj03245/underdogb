@@ -7,8 +7,8 @@
 <title>MyTravel</title>
 </head>
 <body>
-<input type="button" value="회원정보조회" class="btn" onclick="location.href='/test/member/info'">
-<input type="button" value="회원정보수정" class="btn" onclick="location.href='/test/member/update'">
-<input type="button" value="회원탈퇴" class="btn" onclick="location.href='/test/member/delete'">
+<input type="button" value="회원정보조회" class="btn" onclick="location.href='/userInfo.do'">
+<input type="button" value="회원정보수정" class="btn" onclick="location.href='/user/userUpdateForm'">
+<input type="button" value="회원탈퇴" class="btn" onclick="location.href='/user/userDeleteForm'">
 </body>
 </html>

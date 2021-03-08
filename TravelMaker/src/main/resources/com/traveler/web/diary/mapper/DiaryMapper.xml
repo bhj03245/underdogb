@@ -11,8 +11,8 @@ select * from traveler_diary order by diary_no desc
 </select>
 
 <insert id="insert" parameterType="com.traveler.web.diary.model.DiaryVO">
-   INSERT INTO traveler_diary (TITLE, DIARY, WRITER, REGDATE, MARKER)
-    VALUES (#{title}, #{diary}, #{writer}, #{regdate}, #{marker})
+   INSERT INTO traveler_diary (TITLE, DIARY, WRITER, REGDATE, MARKER, IMGLOCS)
+    VALUES (#{title}, #{diary}, #{writer}, #{regdate}, #{marker}, #{imglocs})
 </insert>
 
 <select id="read" resultType="com.traveler.web.diary.model.DiaryVO">

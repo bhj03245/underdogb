@@ -49,10 +49,26 @@ public class DiaryController {
 	
 	@PostMapping("write")
 	public String write(DiaryVO diary, RedirectAttributes rtr) {
-		service.write(diary);
+		String imgchoose = diary.getDiary();	//본문 데이터 가져오기.
+		String imglocs="{\"imglocs\":[";		//json 형식의 String으로 이미지파일의 경로값만을 담기위한 변수 선언.
+		while(imgchoose.indexOf("src=\"")!=-1) {	// src=" 을 포함하는 경우에 계속 반복. 더이상 src=" 을 포함하지 않을 경우 종료.
+			imgchoose=imgchoose.substring(imgchoose.indexOf("src=\"")+5,imgchoose.length());	//본문의 맨처음 문자부터 src=" 이라는 문자열 까지 버림.
+			String imgloc = imgchoose.substring(0,62);		// 필요로 하는 경로값은 항상 62글자이므로 첫글자부터 62번 글자까지가 경로값이다.
+			if(imgloc.charAt(imgloc.length()-1)=='e') {		// 다만 한가지 예외가 확장자가 jpeg였을 경우인데 이 경우 jpe까지만 서브스트링으로 들어간다.
+				imgloc+="g";								// 마지막 글자가 e인 경우 확장자가 잘린 경우이니 g를 다시 붙혀준다.
+			}
+			imglocs += "{\"imgloc\":\"";					// json 형식 추가
+			imglocs +=imgloc;								// 경로값 저장
+			imglocs += "\"},";								// json 형식 추가
+			imgchoose=imgchoose.substring(62, imgchoose.length());		// 이미 사용한 경로값을 버린 다음 while문을 반복한다.
+		}
+		imglocs=imglocs.substring(0, imglocs.length()-2);	// 마지막 , 제거
+		imglocs+="}]}";										// json 포맷 마무리
+		diary.setImglocs(imglocs);							// json 포맷의 String으로 완성된 imglocs를 diaryVO에 넣어준다.
+		service.write(diary);								// db로 전달.
 		rtr.addFlashAttribute("result", diary.getDiary_no());
 		
-		return "redirect:/diary/diarylist";
+		return "redirect:/diary/diarylist";					// 목록 페이지로 이동.
 	}
 	
 	@GetMapping({"info", "update"})

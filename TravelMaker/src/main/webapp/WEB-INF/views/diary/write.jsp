@@ -36,32 +36,48 @@
     position:relative;
     width:100%; height:350px;
 }
+#menu_wrap {
+	position:absolute;
+	top:40; left:0; bottom:0;
+	width:230px;
+	height:37px;
+	margin:10px 0 30px 5px;
+	padding:5px;
+	overflow-y:auto;
+	background:rgba(255, 255, 255, 0.7);
+	z-index: 1;
+	font-size:12px;
+	border-radius: 10px;
+}
+.bg_white {
+	background:#fff;
+}
+#menu_wrap hr {
+	display: block; 
+	height: 1px;
+	border: 0; 
+	border-top: 2px solid #5F5F5F;
+	margin:3px 0;
+}
+#menu_wrap .option{
+	text-align: center;
+}
+#menu_wrap .option p {
+	margin:10px 0;
+}  
+#menu_wrap .option button {
+	margin-left:5px;
+}
 .title {
     font-weight:bold;
     font-size:14px;
     display:block;
-}
-.hAddr {
-    position:absolute;
-    left:10px; top:10px;
-    border-radius: 2px;
-    background:#fff; background:rgba(255,255,255,0.8);
-    z-index:1; padding:5px;
 }
 #centerAddr {
     display:block;
     margin-top:2px;
     font-weight: normal;
     font-size: 13px;
-}
-.dAddr {
-    font-size: 14px;
-}
-.bAddr {
-    padding:5px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
 }
 </style>
 </head>
@@ -95,8 +111,8 @@
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="우리집으로가자" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
+                    키워드 : <input type="text" value="" id="keyword" size="10"> 
+                    <button type="submit">검색</button> 
                 </form>
             </div>
         </div>
@@ -209,8 +225,8 @@ function displayPlaces(places) {
    
    var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
    mapOption = { 
-       center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-       level: 1 // 지도의 확대 레벨
+       center: new kakao.maps.LatLng(37.533934, 126.901143), // 지도의 중심좌표
+       level: 3 // 지도의 확대 레벨
    };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다

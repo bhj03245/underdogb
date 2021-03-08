@@ -15,6 +15,5 @@ public class DiaryVO {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date regdate;
 	private String marker;
-	
-
+	private String imglocs;
 }

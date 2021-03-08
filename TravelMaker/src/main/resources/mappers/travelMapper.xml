@@ -6,9 +6,10 @@
    <select id="getJournalList"
       resultType="com.traveler.web.journal.model.JournalVO">
       SELECT
-         TITLE, START_DT, END_DT, VIEW_CNT
+         JOURNAL_NO, TITLE, START_DT, END_DT, VIEW_CNT
       FROM
          TRAVELER_JOURNAL
+      ORDER BY JOURNAL_NO DESC
    </select>
    
 

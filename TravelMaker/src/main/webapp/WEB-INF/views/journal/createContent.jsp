@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 	<head>
 	<style>
     .map_wrap {position:relative;width:100%;height:350px;}
@@ -12,26 +15,43 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d625053b0732bfe46e3b6a75cb7c220a&libraries=services"></script>
 <div id="createContentContainer">
-	<h1>내 여행일지 생성</h1>
-	<form id="form"
+	<h1>내 여행일지</h1>
+	<form:form id="form"
 		action="${pageContext.request.contextPath}/journal/saveJournal"
+		modelAttribute="journalVO"
 		method="post">
+		<form:hidden path="journal_no" />
+		<input type="hidden" name="mode" />
 		<div id="mapdata"></div>
 		<div id="clickLatlng"></div>
 		<div id="titleBox">
-			<label id="titleLabel">제목</label> <input name="title" id="titleInput" type="text">
+			<label id="titleLabel">제목</label> <form:input path="title" name="title" id="titleInput" type="text" />
 		</div>
 		<div id="dateBox">
-			<label id="dateLabel">여행일자</label> <input name="start_dt" id="dateInput1" type="date">~<input name="end_dt" id="dateInput2" type="date">
+			<label id="dateLabel">여행일자</label> <form:input path="start_dt" name="start_dt" id="dateInput1" type="date"/>~<form:input path="end_dt" name="end_dt" id="dateInput2" type="date"/>
 		</div>
-		<input name="author" type="hidden" value="아이디">
+		<form:input  path="author" id="author" name="author" type="hidden" value="아이디"/>
 		<div id="createJournalBox">
 			<input id="createBtn" type="button" value="생성하기">
 		</div>
-	</form>
+	</form:form>
 </div>
 
 <script>
+	$(document).ready(function(){
+		var mode = '<c:out value="${mode}"/>';
+		if (mode=='edit'){
+			//입력 폼 셋팅
+			$("#author").prop('readonly', true);
+			$("input:hidden[name='journal_no']").val('<c:out value="${journalContent.journal_no}"/>');
+			$("input:hidden[name='mode']").val('<c:out value="${mode}"/>');
+			$("#titleInput").val('<c:out value="${journalContent.title}"/>');
+			$("#dateInput1").val('<c:out value="${journalContent.start_dt}"/>');
+			$("#dateInput2").val('<c:out value="${journalContent.end_dt}"/>');
+//			$("#marker").val('<c:out value="${journalContent.marker}"/>');
+		}
+	});
+
 	$(document).on('click', '#createBtn', function(e) {
 		e.preventDefault();
 		$("#form").submit();
@@ -58,8 +78,8 @@
 	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 	    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
 	        if (status === kakao.maps.services.Status.OK) {
-	            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '<input name="marker" type="hidden" value="' + result[0].road_address.address_name + '"></div>' : '';
-	            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+	            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+	            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '<input id="marker" name="marker" type="hidden" value="' +result[0].address.address_name + '"></div>';
 	            
 	            var content = '<div class="bAddr">' +
 	                            '<span class="title">주소정보</span>' + 

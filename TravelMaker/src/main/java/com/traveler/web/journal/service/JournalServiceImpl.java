@@ -21,4 +21,19 @@ public class JournalServiceImpl implements JournalService{
 	public void insertJournal(JournalVO journalVO) throws Exception {
 		journalDAO.insertJournal(journalVO);
 	}
+	@Override
+	public JournalVO getJournalContent(int journal_no) throws Exception{
+	      journalDAO.updateViewCnt(journal_no);
+	      return journalDAO.getJournalContent(journal_no);
+	}
+	
+	@Override
+	public void updateJournal(JournalVO journalVO) throws Exception{
+		journalDAO.updateJournal(journalVO);
+	}
+	
+	@Override
+	public void deleteJournal(int journal_no) throws Exception{
+		journalDAO.deleteJournal(journal_no);
+	}
 }

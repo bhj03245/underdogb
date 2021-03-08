@@ -10,3 +10,5 @@ marker VARCHAR(3000)
 SELECT * FROM traveler_diary
 
 DROP TABLE traveler_diary
+
+ALTER TABLE traveler_diary ADD imglocs VARCHAR(3000)

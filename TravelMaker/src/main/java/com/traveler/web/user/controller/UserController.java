@@ -23,6 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.traveler.web.user.model.UserVO;
 import com.traveler.web.user.service.UserService;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
 public class UserController {
 	
@@ -49,13 +51,13 @@ public class UserController {
 	// 회원가입
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public String signUpPOST(UserVO vo)throws Exception{
-//		logger.info("signUp");
+		logger.info("signUp");
 		
 		// 회원가입 서비스 실행
 		userserivce.insertUser(vo);
 		
 		logger.info("signUp service 성공");
-		return "redirect:/main";
+		return "redirect:/";
 	}
 	
 	// 아이디 중복 검사
@@ -97,7 +99,8 @@ public class UserController {
 	/* 로그아웃 */
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logoutGET(HttpServletRequest request)throws Exception {
-		
+		System.out.println("logout 메서드 진입");
+
 		logger.info("logoutGET 로그아웃");
 		
 		HttpSession session = request.getSession();
@@ -155,47 +158,70 @@ public class UserController {
 				
 	}
 	// 회원정보 보기
-	@RequestMapping(value = "/info", method = RequestMethod.GET)
-	public void infoGET(HttpSession session, Model model)throws Exception {
+	@RequestMapping(value = "/userInfo.do", method = RequestMethod.GET)
+	public String readUserGET(HttpSession session, Model model)throws Exception {
 		String id = (String) session.getAttribute("id");
-		logger.info("C: 회원정보보기 GET의 아이디 " + id);
 		
 		UserVO vo = userserivce.readUser(id);
 		
-		model.addAttribute("UserVO", vo);
+		model.addAttribute("VO", vo);
 		logger.info("C:회원정보보기 GET으 VO" + vo);
+		System.out.println("C: 회원정보보기 GET의 아이디 " + vo);
+		return "user/userInfo";
 	}
 	// 회원정보 수정
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/userUpdateForm", method = RequestMethod.GET)
 	public String updateGET(HttpSession session, Model model)throws Exception {
-		model.addAttribute("UserVO", userserivce.readUser((String)session.getAttribute("id")));
-		return "/user/userUpdateForm";
+		model.addAttribute("VO", userserivce.readUser((String)session.getAttribute("id")));
+		System.out.println("업데이트 폼간다");
+		
+		return "user/userUpdateForm";
 	}
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update.do", method = RequestMethod.POST)
 	public String updatePOST(UserVO vo)throws Exception {
 		logger.info("C: 회원정보 입력페이지 POST");
-		
+		System.out.println("바꿔준다");
 		userserivce.updateUser(vo);
-		return "redirect:/";
+		return "redirect:/main";
 	}
 	// 회원정보 삭제
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String deleteGET(HttpSession session)throws Exception {
-		logger.info("C: 회원정보 삭제 GET");
-		String id = (String) session.getAttribute("id");
-		if(id == null) {
-			return "redirect:/";
-		}
-		return "/user/userDeleteForm";
+	@RequestMapping(value = "/user/userDeleteForm", method = RequestMethod.GET)
+	public String deleteGET()throws Exception {
+		System.out.println("딜리트폼 간다");
+		return "user/userDeleteForm";
 	}
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String deletePOST(UserVO vo, HttpSession session)throws Exception {
-		logger.info("C: 회원정보 삭제 POST");
-		logger.info("C: deleteForm전달정보" + vo);
+	
+	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+	public String deletePOST(UserVO vo, HttpSession session, RedirectAttributes rttr)throws Exception {
+		System.out.println("C: 회원정보 삭제 GET");
+//		String id = (String) session.getAttribute("id");
+		UserVO user = (UserVO)session.getAttribute("user");
+		String sessionPass = user.getPassword();
+		String voPass = vo.getPassword();
+		if(!(session.equals(voPass))) {
+			rttr.addFlashAttribute("msg", false);
+			return "redirect:/user/userDeleteForm";
+		}
 		userserivce.deleteUser(vo);
 		session.invalidate();
 		return "redirect:/";
+//		userserivce.deleteUser(vo);
+//		if(vo == null) {
+//			System.out.println("헤헤");
+//			return "user/userDeleteForm";
+//		}
+//		System.out.println("하하하");
+//		return "redirect:/";
 	}
+//	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+//	public String deletePOST(UserVO vo, HttpSession session)throws Exception {
+//		System.out.println("C: 회원정보 삭제 POST");
+//		System.out.println("C: deleteForm전달정보" + vo);
+//		userserivce.deleteUser(vo);
+//		session.invalidate();
+//		return "redirect:/";
+//	}
+	
 	@RequestMapping(value = "/MyTravel.do", method = RequestMethod.GET)
 	public String MyTravelGET(HttpServletRequest request)throws Exception {
 		
@@ -203,7 +229,17 @@ public class UserController {
 		
 		HttpSession session = request.getSession();
 		
-		session.invalidate();
-		return "redirect:/MyTravel";
+//		session.invalidate();
+		return "/MyTravel";
 	}
+//	@RequestMapping(value = "/userInfo.do", method = RequestMethod.GET)
+//	public String userInfoGET(HttpServletRequest request)throws Exception {
+//		
+//		logger.info("userInfoGET 마이트래벌");
+//		
+//		HttpSession session = request.getSession();
+//		
+////		session.invalidate();
+//		return "/user/userInfo";
+//}
 }

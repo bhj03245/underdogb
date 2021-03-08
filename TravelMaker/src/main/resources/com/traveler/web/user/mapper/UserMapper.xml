@@ -18,18 +18,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 로그인 -->
 	<select id = "userLogin" resultType="com.traveler.web.user.model.UserVO">
-		select id, name from tbl_member where id = #{id} and password = #{password}
+		select id, password, name, email from tbl_member where id = #{id} and password = #{password}
 	</select>
 	<!-- 회원정보 보기  -->
 	<select id="readUser" resultType="com.traveler.web.user.model.UserVO">
 	select * from tbl_member where id = #{id} and password = #{password}
 	</select>
-	<!-- 호원정보 수정 -->
+	<!-- 회원정보 수정 -->
 	<update id="updateUser">
-	update tbl_member set name = #{name}, email = #{email} where id = #{id} and password = #{password}
+	update tbl_member set password = #{password}, name = #{name}, email = #{email} where id = #{id}
 	</update>
 	<!-- 회원 탈퇴 -->
 	<delete id="deleteUser">
-	delete from tbl_member where id = #{id} and password = #{password}
+	delete from tbl_member where id = #{id}
 	</delete>
 </mapper>

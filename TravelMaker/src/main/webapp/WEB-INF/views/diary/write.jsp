@@ -121,7 +121,6 @@
    <script>
    
    var sendsmap = '{"markers":[';
-   
    $(document).ready(function() {
          //여기 아래 부분
          $('#summernote').summernote({
@@ -162,6 +161,7 @@
       sendsmap=sendsmap.substr(0, sendsmap.length -1);
       sendsmap+="]}";
       $("#smap").val(sendsmap);
+      
       $("#form").submit();
    });
 // 장소 검색 객체를 생성합니다

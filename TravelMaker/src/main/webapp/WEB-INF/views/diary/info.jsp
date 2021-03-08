@@ -74,22 +74,15 @@ width: 330px;
    <div>
    <c:out escapeXml="false" value="${diary.diary}"/>
    </div>
-   <form id="actionForm" action="/board/boardlist" method='get'>
-      <input type='hidden' name='tno' value='${diary.diary_no}'>
-   </form>
    
-      <button type="button" class="btn btn-outline-secondary listBtn"><a href='/diary/diarylist'>목록으로</a></button>
-      <button type="button" class="btn btn-outline-secondary"><a href='/diary/update?diary_no=<c:out value="${diary.diary_no}"/>'>수정하기</a></button>
-      <button type="button" class="btn btn-outline-secondary"><a href='/diary/delete?diary_no=<c:out value="${diary.diary_no}"/>'>삭제하기</a></button>
+      <button type="button"><a href='/diary/diarylist'>목록으로</a></button>
+      <button type="button"><a href='/diary/update?diary_no=<c:out value="${diary.diary_no}"/>'>수정하기</a></button>
+      <button type="button"><a href='/diary/delete?diary_no=<c:out value="${diary.diary_no}"/>'>삭제하기</a></button>
    </div>
       
       <script>
       var actionForm = $("#actionForm");
       
-      $(".listBtn").click(function(e){
-         e.preventDefault();
-         actionForm.submit();
-      });
       
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
        mapOption = {

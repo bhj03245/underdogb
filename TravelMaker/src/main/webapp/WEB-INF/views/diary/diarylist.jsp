@@ -34,6 +34,9 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 .thumbnail{
 	width: 200px;
 	height: 200px;
+	background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 </style>
 </head>
@@ -88,7 +91,7 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 	 
 	 	var arr = new Array(); //imglocs전체 배열 
 	 	var imglist = new Array(); //첫번째 사진의 경로를 담은 배열
-	  <c:forEach items="${diarylist}" var="diary"> //db를 가져왔어
+	    <c:forEach items="${diarylist}" var="diary"> //db를 가져왔어
 	  	if('${diary.imglocs}'!='{"imglocs"}]}'){ //사진이 있는경우
 	  		arr.push('${diary.imglocs}'); //사진의 경로를 arr에 넣어준다 아직 형태는 json string
 	  	}else{ //없는경우

@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="false"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
@@ -99,7 +101,7 @@
     	<textarea id="summernote" name="diary"><c:out value="${diary.diary}"/></textarea>
      </div>
 	<input type="hidden" id="smap" name="marker">
-	<button id="upBtn">수정하기</button>
+	<button id="Btn" class="upBtn">수정하기</button>
 	<button id="Btn"><a href='/diary/diarylist'>목록으로</a></button>
 	</form>
 	<div id="menu_wrap" class="bg_white">
@@ -112,6 +114,7 @@
             </div>
         </div>
       </div>
+        <button type="button" id="reset">초기화</button>
 </div>
 <script>
 $(document).ready(function() {
@@ -125,13 +128,13 @@ $(document).ready(function() {
 				placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
 				callbacks : { 
                     onImageUpload : function(files, editor, welEditable) { // 파일 업로드(다중업로드를 위해 반복문 사용)
-                  for (var i = files.length - 1; i >= 0; i--) {
-                  uploadFile(files[i], this);
+                 	for (var i = files.length - 1; i >= 0; i--) {
+                  	uploadFile(files[i], this);
                          }
-                      }
-                   }
+                   	}
+                }
     	});
-    $('#summernote').summernote(setting);
+    //$('#summernote').summernote(setting);
 });
 
 	function uploadFile(file, el) {
@@ -150,13 +153,14 @@ $(document).ready(function() {
 	    });
 	 }
 	 
-	$(document).on('click', '#upBtn', function(e) {
+	$(document).on('click', '.upBtn', function(e) {
 	    sendsmap=sendsmap.substr(0, sendsmap.length -1);
 	    sendsmap+="]}";
 	    $("#smap").val(sendsmap);
 	    
 	    $("#form").submit();
 	 });
+	
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = {
@@ -171,8 +175,10 @@ $(document).ready(function() {
 	var geocoder = new kakao.maps.services.Geocoder();
 	
 	var marker1 = $("#marker").val();
-	var jsonmarker = JSON.parse(marker1);
-	console.log(marker);
+	var jsonmarker = JSON.parse(marker1); //json string을 json객체로 변환
+	//console.log(marker);
+	
+	var markerSave = [];
 	
 	for(var num=0; num<jsonmarker.markers.length; num++){
 	var coords = new kakao.maps.LatLng(jsonmarker.markers[num].Ma, jsonmarker.markers[num].La);
@@ -183,8 +189,16 @@ $(document).ready(function() {
 	     position: coords
 	 });
 	 map.setCenter(coords);
+	 
+	 markerSave[num] = marker;
 	}
 	
+	var reset = document.getElementById('reset'); 
+	reset.onclick = function() { 
+		for(var num=0; num<jsonmarker.markers.length; num++){ //좌표의 갯수만큼 돌린다
+			 markerSave[num].setMap(null);
+			}
+		}
 	
 	//장소 검색 객체를 생성합니다
 	var ps = new kakao.maps.services.Places(); 
@@ -243,6 +257,7 @@ $(document).ready(function() {
 	//지도를 클릭했을때 클릭한 위치에 마커를 추가하도록 지도에 클릭이벤트를 등록합니다
 	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
 	   // 클릭한 위치에 마커를 표시합니다 
+	   
 	   addMarker(mouseEvent.latLng);
 	   savemarkers(mouseEvent.latLng);
 	});
@@ -268,7 +283,6 @@ $(document).ready(function() {
 	
 	   // 마커가 지도 위에 표시되도록 설정합니다
 	   marker.setMap(map);
-	   
 	   // 생성된 마커를 배열에 추가합니다
 	   markers.push(marker);
 	}
@@ -280,15 +294,9 @@ $(document).ready(function() {
 	   }            
 	}
 	
-	//"마커 보이기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에 표시하는 함수입니다
-	function showMarkers() {
-	   setMarkers(map)    
-	}
-	
-	//"마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
-	function hideMarkers() {
-	   setMarkers(null);    
-	}
+	$("#reset").on('click', function() {
+		setMarkers(null);
+	});
 </script>
 </body>
 </html>

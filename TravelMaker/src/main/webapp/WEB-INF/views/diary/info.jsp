@@ -86,7 +86,7 @@ width: 330px;
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
        mapOption = {
            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-           level: 5 // 지도의 확대 레벨
+           level: 4 // 지도의 확대 레벨
        };  
 
    // 지도를 생성합니다    
@@ -97,16 +97,13 @@ width: 330px;
    
    var marker1 = $("#marker").val();
    var jsonmarker = JSON.parse(marker1);
-   // console.log(marker);
+   console.log(marker);
    
    for(var num=0; num<jsonmarker.markers.length; num++) {
       var coords = new kakao.maps.LatLng(jsonmarker.markers[num].Ma, jsonmarker.markers[num].La);
 
         // 결과값으로 받은 위치를 마커로 표시합니다
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords
-        });
+        var marker = new kakao.maps.Marker({ map: map, position: coords });
         map.setCenter(coords);
    }
 </script>

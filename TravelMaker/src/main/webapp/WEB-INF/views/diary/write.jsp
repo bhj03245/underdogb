@@ -119,8 +119,8 @@
       </div>
    </div>
    <script>
-   
    var sendsmap = '{"markers":[';
+   
    $(document).ready(function() {
          //여기 아래 부분
          $('#summernote').summernote({
@@ -237,8 +237,8 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
    savemarkers(mouseEvent.latLng);
 });
 function savemarkers(position){
-   sendsmap+='{"Ma":"';
-      sendsmap+=position.Ma;
+    sendsmap+='{"Ma":"';
+    sendsmap+=position.Ma;
     sendsmap+='","La":"';
     sendsmap+=position.La;
     sendsmap+='"},';

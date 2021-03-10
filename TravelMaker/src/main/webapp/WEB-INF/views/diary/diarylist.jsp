@@ -105,7 +105,7 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 //		  console.log(jsonimg.imglocs[0].imgloc);
 	  } // 현재 imglist에는 각 게시글의 첫번째 사진의 경로가 순서대로 저장되어있다.
 	  for(var i=0; i<imglist.length; i++){
-	  	$('.thumbnail').eq(i).attr("src",imglist[i]); //thumbnail i번째 요소의 src 속성을 첫번째 사진의 경로로 바꿔준다.
+	  	$('.thumbnail').eq(i).css('background-image','url('+imglist[i]+')'); //thumbnail i번째 요소의 src 속성을 첫번째 사진의 경로로 바꿔준다.
 	  }
 	});
 </script>

@@ -16,6 +16,7 @@ text-align: center;
 #Btn{
 float: right;
 }
+
 </style>
 <meta charset="UTF-8">
 <title>diary</title>
@@ -29,6 +30,12 @@ integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07j
 integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
 </script>
 <!-- <link rel="stylesheet" href="/resources/css/bootstrap1.min.css"> -->
+<style type="text/css">
+.thumbnail{
+	width: 200px;
+	height: 200px;
+}
+</style>
 </head>
 <body>
 <div id="table1">
@@ -37,16 +44,19 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 		<tr>
 			<th>no</th>
 			<th>제목</th>
+			<th>이미지</th>
 			<th>작성자</th>
 			<th>날짜</th>
 		</tr>
 	</thead>
 	<tbody>
-    <c:forEach items="${diarylist}" var="diary">
+    <c:forEach items="${diarylist}" var="diary" varStatus="status">
         <tr>
             <td>${diary.diary_no}</td>
             <td><a class='move' href='<c:out value="${diary.diary_no}"/>'>
-            <c:out value="${diary.title}"/></a></td>
+            	<c:out value="${diary.title}"/></a>
+            </td>
+            <td><img class="thumbnail"></td>
             <td>${diary.writer}</td>
             <td><fmt:formatDate pattern="yyyy/MM/dd" value="${diary.regdate}"/></td>
         </tr>
@@ -55,33 +65,13 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 	</table>
 	
 	<form id="actionForm" action="/diary/diarylist" method='get'></form>
-	<button type="button" id="Btn" class="btn btn-outline-secondary">Write</button>
+	<button type="button" id="Btn">Write</button>
 </div>
-	<!-- modal 추가 -->
-		<!-- <div class="modal" id="myModal">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title"></h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<p>Modal body text goes here.</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-						<button type="button" class="btn btn-secondary"data-dismiss="modal">닫기</button>
-					</div>
-				</div>
-			</div>
-		</div> -->
-	<script>
+<script>
 	$(document).ready(function() {
 	$('#Btn').on('click',  function(){
 	    location.href = "write";
+	    
 	 });
 	
 	 var actionForm = $("#actionForm");
@@ -96,8 +86,25 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 	    	
 	    });
 	 
+	 	var arr = new Array(); //imglocs전체 배열 
+	 	var imglist = new Array(); //첫번째 사진의 경로를 담은 배열
+	  <c:forEach items="${diarylist}" var="diary"> //db를 가져왔어
+	  	if('${diary.imglocs}'!='{"imglocs"}]}'){ //사진이 있는경우
+	  		arr.push('${diary.imglocs}'); //사진의 경로를 arr에 넣어준다 아직 형태는 json string
+	  	}else{ //없는경우
+	  		arr.push('{"imglocs":[{"imgloc":"noimage"}]}'); //noimage가 뜬다
+	  	}
+	  </c:forEach>
+	  
+	  for(var i=0; i<arr.length; i++){   
+		  var jsonimg = JSON.parse(arr[i]); //json string을 json객체로 변환을 하고
+		  imglist.push(jsonimg.imglocs[0].imgloc); //변환한 경로들 중 첫번째 경로의 첫번째 사진을 imglist에 넣어준다.
+//		  console.log(jsonimg.imglocs[0].imgloc);
+	  } // 현재 imglist에는 각 게시글의 첫번째 사진의 경로가 순서대로 저장되어있다.
+	  for(var i=0; i<imglist.length; i++){
+	  	$('.thumbnail').eq(i).attr("src",imglist[i]); //thumbnail i번째 요소의 src 속성을 첫번째 사진의 경로로 바꿔준다.
+	  }
 	});
-	</script>
-
+</script>
 </body>
 </html>

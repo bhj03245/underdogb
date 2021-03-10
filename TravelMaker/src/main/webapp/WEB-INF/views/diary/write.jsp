@@ -95,15 +95,15 @@
             <input name="writer" id="box" placeholder="작성자를 입력하세요" required="required">
          </div>
          <div class="map_wrap">
-        <div id="map" style="width:1050px; height:350px; position:relative; overflow:hidden;"></div>
-    </div>
-        <div class="ck">
+       		 <div id="map" style="width:1050px; height:350px; position:relative; overflow:hidden;"></div>
+    	 </div>
+         <div class="ck">
            <textarea id="summernote" name="diary"></textarea>
          </div>
          <input type="date" id="regdate" name="regdate">
          <input type="hidden" id="smap" name="marker">
          <div id="Btn">
-            <div id="btnsave">작성</div>
+            <button id="btnsave">작성</button>
             <button type="reset">다시쓰기</button>
          </div>
       </form>
@@ -116,7 +116,7 @@
                 </form>
             </div>
         </div>
-        </div>
+      </div>
    </div>
    <script>
    
@@ -208,16 +208,13 @@ function displayPlaces(places) {
     bounds = new kakao.maps.LatLngBounds(), 
     listStr = '';
     
-    
     for ( var i=0; i<places.length; i++ ) {
 
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x);
 
-        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-        // LatLngBounds 객체에 좌표를 추가합니다
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해 LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
     }
-
 
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
@@ -248,9 +245,6 @@ function savemarkers(position){
 }
 //지도에 표시된 마커 객체를 가지고 있을 배열입니다
 var markers = [];
-
-//마커 하나를 지도위에 표시합니다 
-//addMarker(new kakao.maps.LatLng(33.450701, 126.570667));
 
 //마커를 생성하고 지도위에 표시하는 함수입니다
 function addMarker(position) {

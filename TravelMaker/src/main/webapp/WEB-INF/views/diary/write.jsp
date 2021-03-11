@@ -5,7 +5,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
 <%@ page import="java.net.*"%>
-
+<% int journal_no = Integer.parseInt(request.getParameter("journal_no")); %>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,6 +86,7 @@
    <h1>editor check</h1>
    <div class="write">
       <form role="form" id="form" action="${pageContext.request.contextPath}/diary/write" method="post">
+      	<input type="hidden" name="journal_no" value="<%=journal_no%>">
          <div>
             <label>Title</label>
             <input name="title" id="box" placeholder="제목을 입력하세요" required="required">

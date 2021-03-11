@@ -3,6 +3,7 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<% int journal_no = Integer.parseInt(request.getParameter("journal_no")); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,13 +68,15 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
     </tbody>
 	</table>
 	
-	<form id="actionForm" action="/diary/diarylist" method='get'></form>
+	<form id="actionForm" action="/diary/diarylist" method='get'>
+	<input type="hidden" name="journal_no" value="<%=journal_no%>">
+	</form>
 	<button type="button" id="Btn">Write</button>
 </div>
 <script>
 	$(document).ready(function() {
 	$('#Btn').on('click',  function(){
-	    location.href = "write";
+	    location.href = "write?journal_no="+<%=journal_no%>;
 	    
 	 });
 	

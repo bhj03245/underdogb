@@ -7,6 +7,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
 <%@ page import="java.net.*"%>
+<% int journal_no = Integer.parseInt(request.getParameter("journal_no")); %>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +76,7 @@ width: 330px;
    <c:out escapeXml="false" value="${diary.diary}"/>
    </div>
    
-      <button type="button"><a href='/diary/diarylist'>목록으로</a></button>
+      <button type="button"><a href='/diary/diarylist?journal_no=<%=journal_no%>'>목록으로</a></button>
       <button type="button"><a href='/diary/update?diary_no=<c:out value="${diary.diary_no}"/>'>수정하기</a></button>
       <button type="button"><a href='/diary/delete?diary_no=<c:out value="${diary.diary_no}"/>'>삭제하기</a></button>
    </div>

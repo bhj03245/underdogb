@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-
 <div id="journalContentContainer">
 	<h1>내 여행일지</h1>
 	<div id="myJournalList">
@@ -16,7 +15,7 @@
 					<c:when test="${!empty journalList}">
 						<c:forEach var="list" items="${journalList}">
 							<tr>
-								<td><c:out value="${list.title}" /></td>
+								<td class="journal_title"><c:out value="${list.title}" /><input type="hidden" value="${list.journal_no}"></td>
 								<td><c:out value="${list.start_dt}" /></td>
 								<td><c:out value="${list.end_dt}" /></td>
 								<td><c:out value="${list.view_cnt}" /></td>
@@ -51,5 +50,11 @@
     var url = "${pageContext.request.contextPath}/journal/delete";
     url = url + "?journal_no="+event.target.value;
 		location.href = url;
+	});
+
+	$(document).on('click', '.journal_title', function(){
+	    var url = "${pageContext.request.contextPath}/diary/diarylist";
+	    url = url + "?journal_no="+event.target.children[0].value;
+			location.href = url;
 	});
 </script>

@@ -9,7 +9,7 @@ import com.traveler.web.diary.model.DiaryVO;
 
 public interface DiaryService {
 	
-	List<DiaryVO> getList();
+	List<DiaryVO> getList(int journal_no);
 	
 //	List<BoardVO> getList(Criteria cri);
 	

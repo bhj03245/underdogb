@@ -19,8 +19,8 @@ public class DiaryServiceImpl implements DiaryService {
 	private final DiaryMapper mapper;
 
 	@Override
-	public List<DiaryVO> getList() {
-		return mapper.getList();
+	public List<DiaryVO> getList(int journal_no) {
+		return mapper.getList(journal_no);
 	}
 
 	@Override

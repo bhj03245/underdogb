@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.tiles.request.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,9 +37,8 @@ public class DiaryController {
 	private final DiaryService service;
 	
 	@GetMapping("diarylist")
-	public void list(Model model) {
-		model.addAttribute("diarylist", service.getList());
-		
+	public void list(Model model, @RequestParam("journal_no") int journal_no) {
+		model.addAttribute("diarylist", service.getList(journal_no));
 	}
 	
 	@GetMapping("write")
@@ -47,7 +47,9 @@ public class DiaryController {
 	}
 	
 	@PostMapping("write")
-	public String write(DiaryVO diary, RedirectAttributes rtr) {
+	public String write(DiaryVO diary, RedirectAttributes rtr, HttpServletRequest request) {
+		int journal_no = Integer.parseInt(request.getParameter("journal_no"));
+		diary.setJournal_no(journal_no);
 		String imgchoose = diary.getDiary();	//본문 데이터 가져오기.
 		String imglocs="{\"imglocs\":[";		//json 형식의 String으로 이미지파일의 경로값만을 담기위한 변수 선언.
 		while(imgchoose.indexOf("src=\"")!=-1) {	// src=" 을 포함하는 경우에 계속 반복. 더이상 src=" 을 포함하지 않을 경우 종료.
@@ -67,7 +69,7 @@ public class DiaryController {
 		service.write(diary);								// db로 전달.
 		rtr.addFlashAttribute("result", diary.getDiary_no());
 		
-		return "redirect:/diary/diarylist";					// 목록 페이지로 이동.
+		return "redirect:/diary/diarylist?journal_no="+journal_no;					// 목록 페이지로 이동.
 	}
 	
 	@GetMapping({"info", "update"})

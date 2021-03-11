@@ -16,4 +16,5 @@ public class DiaryVO {
 	private Date regdate;
 	private String marker;
 	private String imglocs;
+	private int journal_no;
 }

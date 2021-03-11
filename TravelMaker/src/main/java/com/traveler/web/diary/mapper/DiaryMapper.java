@@ -10,7 +10,7 @@ import com.traveler.web.diary.model.DiaryVO;
 
 public interface DiaryMapper {
 	
-	public List<DiaryVO> getList();
+	public List<DiaryVO> getList(int journal_no);
 	
 //	public List<BoardVO> getListPaging(Criteria cri);
 	

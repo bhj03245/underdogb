@@ -118,6 +118,7 @@
             </div>
         </div>
       </div>
+       <button id="resetMarker">초기화</button>
    </div>
    <script>
    var sendsmap = '{"markers":[';
@@ -269,14 +270,11 @@ function setMarkers(map) {
    }            
 }
 
-//"마커 보이기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에 표시하는 함수입니다
-function showMarkers() {
-   setMarkers(map)    
-}
+var reset = document.getElementById('resetMarker'); 
+resetMarker.onclick = function() {
+	sendsmap = '{"markers":[';
+	setMarkers(null);
 
-//"마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
-function hideMarkers() {
-   setMarkers(null);    
 }
    
 

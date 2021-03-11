@@ -16,7 +16,7 @@ select * from traveler_diary where journal_no=#{journal_no} order by diary_no de
 </insert>
 
 <select id="read" resultType="com.traveler.web.diary.model.DiaryVO">
-   select DIARY_NO, TITLE, DIARY, WRITER, REGDATE, MARKER
+   select *
    from traveler_diary 
    where diary_no = #{diary_no}
 </select>

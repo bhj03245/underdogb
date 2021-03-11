@@ -81,6 +81,7 @@
 <div>
 	<h1>Diary Update</h1>
 	<form role="form" id="form" action="${pageContext.request.contextPath}/diary/update" method="post">
+	<input type="hidden" name="journal_no" value="${diary.journal_no}">
 	<div>
 		<label>NO</label>
 	    <input name="diary_no" id="box" readonly="readonly" value='<c:out value="${diary.diary_no}"/>'>
@@ -102,7 +103,7 @@
      </div>
 	<input type="hidden" id="smap" name="marker">
 	<button id="Btn" class="upBtn">수정하기</button>
-	<button id="Btn"><a href='/diary/diarylist'>목록으로</a></button>
+	<button id="Btn"><a href='/diary/diarylist?journal_no=${diary.journal_no}'>목록으로</a></button>
 	</form>
 	<div id="menu_wrap" class="bg_white">
         <div class="option">

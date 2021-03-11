@@ -80,6 +80,7 @@ public class DiaryController {
 	
 	@PostMapping("update")
 	public String update(DiaryVO diary, RedirectAttributes rtr) {
+		
 		String imgchoose = diary.getDiary();	//본문 데이터 가져오기.
 		String imglocs="{\"imglocs\":[";		//json 형식의 String으로 이미지파일의 경로값만을 담기위한 변수 선언.
 		while(imgchoose.indexOf("src=\"")!=-1) {	// src=" 을 포함하는 경우에 계속 반복. 더이상 src=" 을 포함하지 않을 경우 종료.
@@ -102,18 +103,18 @@ public class DiaryController {
 		if(count == 1) {
 			rtr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/diary/diarylist";
+		return "redirect:/diary/diarylist?journal_no="+diary.getJournal_no();
 	}
 	
 	@GetMapping("delete")
-	public String delete(@RequestParam("diary_no") int diary_no, RedirectAttributes rtr) {
+	public String delete(@RequestParam("diary_no") int diary_no,@RequestParam("journal_no") int journal_no, RedirectAttributes rtr) {
 		
 		int count = service.delete(diary_no);
 		
 		if(count == 1) {
 			rtr.addFlashAttribute("result", "delSuccess");
 		}
-		return "redirect:/diary/diarylist";
+		return "redirect:/diary/diarylist?journal_no="+journal_no;
 	}
 	
 	@RequestMapping(value="/uploadFile", produces = "application/json; charset=utf8")

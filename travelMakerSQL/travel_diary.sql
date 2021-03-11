@@ -12,3 +12,5 @@ SELECT * FROM traveler_diary
 DROP TABLE traveler_diary
 
 ALTER TABLE traveler_diary ADD imglocs VARCHAR(3000)
+
+ALTER TABLE traveler_diary ADD journal_no INT

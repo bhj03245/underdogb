@@ -29,7 +29,7 @@ margin-left: 20%;
 
 label{
 display:inline-block; 
-width:50px; 
+width:70px; 
 line-height:40px;
 }
 
@@ -81,15 +81,17 @@ width: 330px;
       <button type="button"><a href='/diary/update?diary_no=<c:out value="${diary.diary_no}"/>&journal_no=<%=journal_no%>'>수정하기</a></button>
       <button type="button"><a href='/diary/delete?diary_no=<c:out value="${diary.diary_no}"/>&journal_no=<%=journal_no%>'>삭제하기</a></button>
    </div>
+   
+   
    <!-- 댓글 -->
-<div id="reply">
+<div id="reply" style="width:700px">
   <ol class="replyList">
     <c:forEach items="${replyList}" var="replyList">
       <li>
         <p>
-        작성자 : ${replyList.writer}<br />
-        작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
-        </p>
+        작성자 : ${replyList.writer} 
+        작성 날짜 : ${replyList.regdate} 
+          </p>
 
         <p>${replyList.content}</p>
         <div>
@@ -107,13 +109,11 @@ width: 330px;
 <form name="replyForm" method="get">
   <input type="hidden" id="diary_no" name="diary_no" value="${diary.diary_no}" />
   <input type="hidden" id="journal_no" name="journal_no" value="${diary.journal_no }"/>
-  <div>
-    <label for="writer">댓글 작성자</label><input type="text" id="writer" name="writer" />
+  <div style="width:650px; text-align: center;">
+    <label for="writer">작성자</label><input type="text" id="writer" name="writer" />
     <br/>
-    <label for="content">댓글 내용</label><input type="text" id="content" name="content" />
-  </div>
-  <div>
- 	 <button type="button" class="replyWriteBtn">작성</button>
+    <textarea rows="5" cols="80" id="content" name="content" placeholder="댓글을 작성해주세요"></textarea>
+ 	 <button type="button" class="replyWriteBtn">작성완료</button>
   </div>
 </form>
 

@@ -1,6 +1,16 @@
 package com.traveler.web.journal.controller;
 
+import java.io.Console;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,13 +20,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.traveler.web.journal.model.JournalVO;
 import com.traveler.web.journal.service.JournalService;
+import com.traveler.web.user.controller.UserController;
 
 @Controller
 @RequestMapping("/journal")
 public class JournalController {
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
 	@Inject
 	private JournalService journalService;
 	
@@ -54,4 +68,23 @@ public class JournalController {
 		}
 		return "redirect:/journal/list";
 	}
+	
+	@PostMapping("/searchList")
+		public String searchList(@RequestParam("search_title") String search_title, @RequestParam("search_date") String search_date, @RequestParam("search_author") String search_author, Model model, HttpServletRequest request) throws Exception {
+		String path = null;
+		
+		if(request.getRequestURI().equals("/journal/searchList")){
+			path = "journal/journalList" ;
+			}else{
+				path = "/journalList";
+			}
+		if (search_date.equals("") && search_author.equals("")) {//title로 검색할때
+				model.addAttribute("journalList", journalService.searchListTitle(search_title));
+			} else if (search_title == "" && search_author == "" ) {//방치
+				model.addAttribute("journalList", journalService.searchListDate(search_date));
+			} else 	if (search_date == "" && search_title == "" ) {
+				model.addAttribute("journalList", journalService.searchListAuthor(search_author));
+			} return "http://localhost:8080/journal/list";
+			//return contextRoot+"journal/journalList";//절대경로 값 찾는것.
+		}
 }

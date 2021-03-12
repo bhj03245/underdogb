@@ -13,12 +13,17 @@
 						</tr>
 					</c:when>
 					<c:when test="${!empty journalList}">
-						<c:forEach var="list" items="${journalList}">
+						<c:forEach var="list" items="${journalList}" varStatus="status">
 							<tr>
 								<td class="journal_title"><c:out value="${list.title}" /><input type="hidden" value="${list.journal_no}"></td>
 								<td><c:out value="${list.start_dt}" /></td>
 								<td><c:out value="${list.end_dt}" /></td>
 								<td><c:out value="${list.view_cnt}" /></td>
+								<c:forEach var="dlist" items="${diarylist}">
+									<td>
+										<c:out value="${dlist[status.index].imglocs}"/>
+									</td>
+								</c:forEach>
 								<td><button type="button" value="${list.journal_no}" class="btnUpdate">수정</button></td>
 								<td><button type="button" value="${list.journal_no}" class="btnDelete">삭제</button></td>
 							</tr>

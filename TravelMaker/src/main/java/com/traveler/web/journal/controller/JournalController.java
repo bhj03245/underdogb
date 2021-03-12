@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.traveler.web.diary.model.DiaryVO;
+import com.traveler.web.diary.service.DiaryService;
 import com.traveler.web.journal.model.JournalVO;
 import com.traveler.web.journal.service.JournalService;
 import com.traveler.web.user.controller.UserController;
@@ -34,9 +36,19 @@ public class JournalController {
 	@Inject
 	private JournalService journalService;
 	
+	@Inject
+	private DiaryService diaryService;
+	
 	@GetMapping("/list")
 	public String getJournalList(Model model) throws Exception{
-		model.addAttribute("journalList", journalService.getJournalList());
+		List<JournalVO> journalList = journalService.getJournalList();
+		List<List<DiaryVO>> diaryList = new ArrayList<>();
+		model.addAttribute("journalList", journalList);
+		for(int i=0; i<journalList.size(); i++) {
+			diaryList.add(diaryService.getList(journalList.get(i).getJournal_no()));
+		}if(diaryList != null) {
+			model.addAttribute("diarylist", diaryList);
+		}
 		return "journal/journalList";
 	}
 	

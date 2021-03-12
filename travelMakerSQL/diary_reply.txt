@@ -1,0 +1,11 @@
+CREATE TABLE diary_reply (
+    diary_no INT NOT NULL,
+    reply INT AUTO_INCREMENT NOT NULL,
+    content VARCHAR(1000) NOT NULL,
+    writer VARCHAR(50) NOT NULL,
+    regdate DATE,
+    PRIMARY KEY(reply)
+);
+
+ALTER TABLE diary_reply ADD CONSTRAINT diary_reply_reply FOREIGN KEY(diary_no)
+REFERENCES traveler_diary(diary_no);

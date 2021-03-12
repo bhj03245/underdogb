@@ -22,9 +22,6 @@
 <link href="${CONTEXT_PATH}/resources/css/journal/journalNav.css" rel="stylesheet"/>
 <link href="${CONTEXT_PATH}/resources/css/journal/journalContent.css" rel="stylesheet"/>
 <style type="text/css">
-body{
-	height: 2000px;
-}
 #blank{
 	height: 100px;
 }

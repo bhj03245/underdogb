@@ -46,17 +46,17 @@ public class JournalDAOImpl implements JournalDAO {//mapper로 가는거
 
 	@Override
 	public List<JournalVO> searchListTitle(String title) throws Exception {
-		return sqlSession.selectList("com.traveler.web.journal.jornalMapper.searchListTitle", title);
+		return sqlSession.selectList("com.traveler.web.journal.journalMapper.searchListTitle", title);
 	}
 
 	@Override
 	public List<JournalVO> searchListDate(String searchDate) throws Exception {
-		return sqlSession.selectList("com.traveler.web.journal.jornalMapper.searchListDate", searchDate);
+		return sqlSession.selectList("com.traveler.web.journal.journalMapper.searchListDate", searchDate);
 	}
 
 	@Override
 	public List<JournalVO> searchListAuthor(String author) throws Exception {
-		return sqlSession.selectList("com.traveler.web.journal.jornalMapper.searchListAuthor", author);
+		return sqlSession.selectList("com.traveler.web.journal.journalMapper.searchListAuthor", author);
 	}
 	
 	

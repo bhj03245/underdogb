@@ -69,22 +69,18 @@ public class JournalController {
 		return "redirect:/journal/list";
 	}
 	
-	@PostMapping("/searchList")
-		public String searchList(@RequestParam("search_title") String search_title, @RequestParam("search_date") String search_date, @RequestParam("search_author") String search_author, Model model, HttpServletRequest request) throws Exception {
+	@PostMapping("/journalSearch")
+		public String searchList(@RequestParam("search_title") String search_title, @RequestParam("search_date") String search_date, @RequestParam("search_author") String search_author, Model model) throws Exception {
 		String path = null;
 		
-		if(request.getRequestURI().equals("/journal/searchList")){
-			path = "journal/journalList" ;
-			}else{
-				path = "/journalList";
-			}
 		if (search_date.equals("") && search_author.equals("")) {//title로 검색할때
 				model.addAttribute("journalList", journalService.searchListTitle(search_title));
 			} else if (search_title == "" && search_author == "" ) {//방치
 				model.addAttribute("journalList", journalService.searchListDate(search_date));
 			} else 	if (search_date == "" && search_title == "" ) {
 				model.addAttribute("journalList", journalService.searchListAuthor(search_author));
-			} return "http://localhost:8080/journal/list";
+			} 
+		return "journal/journalSearch";
 			//return contextRoot+"journal/journalList";//절대경로 값 찾는것.
 		}
 }

@@ -12,7 +12,7 @@
 			<a href="/logout.do" id = "logout">&nbsp&nbsp로그아웃</a>
 		</div>
 	</c:if>
-				<form id="searchForm" action="journal/searchList" method="post">
+				<form id="searchForm" action="${pageContext.request.contextPath}/journal/journalSearch" method="post">
 	<div id="main_search">
 		<div id="main_searchbar">
 			<input type="text" id="search_title" name="search_title" placeholder="제목"> 

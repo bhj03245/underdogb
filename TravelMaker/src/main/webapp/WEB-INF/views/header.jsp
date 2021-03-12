@@ -1,23 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <div class="Header">
 	<div id="logo">Travel Maker</div>
 	<!-- 로그인한 상태 -->
 	<c:if test="${vo != null }">
 		<div id="header_right">
-			<a href="MyTravel.do" class = "logout">My Travel</a> 
-			<a href="/logout.do" class = "logout">로그아웃</a>
+			<a href="/MyTravel.do" id = "logout">My Travel</a> 
+			<a href="/logout.do" id = "logout">&nbsp&nbsp로그아웃</a>
 		</div>
 	</c:if>
+				<form id="searchForm" action="journal/searchList" method="post">
 	<div id="main_search">
 		<div id="main_searchbar">
-			<input type="text" id="search_title" placeholder="제목"> <input
-				type="text" id="search_date" placeholder="날짜"> <input
-				type="text" id="search_author" placeholder="작성자">
+			<input type="text" id="search_title" name="search_title" placeholder="제목"> 
+			<input type="date" id="search_date" name="search_date"> 
+			<input type="text" id="search_author" name="search_author" placeholder="작성자">
 			<div id="search_btn">
 				<i class="fas fa-search"></i>
 			</div>
+			</form>
 		</div>
 	</div>
 </div>
+
+<script>
+
+$(document).ready(function() {
+	    $("#search_btn").on("click", function(e) {
+
+// 	    if (!searchForm.find("option:selected")
+// 	    .val()) {
+// 	    alert("검색종류를 선택하세요");
+// 	    return false;
+// 	    }
+
+// 	    if (!searchForm.find(
+// 	    "input[name='keyword']").val()) {
+// 	    alert("키워드를 입력하세요");
+// 	    return false;
+// 	    }
+
+	    e.preventDefault();
+
+	    $('#searchForm').submit();
+
+	    });
+	});
+
+</script>

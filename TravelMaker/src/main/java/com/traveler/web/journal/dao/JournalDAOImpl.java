@@ -1,5 +1,6 @@
 package com.traveler.web.journal.dao;
 
+import java.sql.Date;
 import java.util.List;
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
@@ -7,9 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.traveler.web.journal.model.JournalVO;
 
 
-
 @Repository
-public class JournalDAOImpl implements JournalDAO {
+public class JournalDAOImpl implements JournalDAO {//mapper로 가는거
 
 	@Inject
 	private SqlSession sqlSession;
@@ -18,7 +18,7 @@ public class JournalDAOImpl implements JournalDAO {
 	public List<JournalVO> getJournalList() throws Exception {
 		return sqlSession.selectList("com.traveler.web.journal.journalMapper.getJournalList");
 	}
-
+	
 	@Override
 	public JournalVO getJournalContent(int journal_no) throws Exception {
 		return sqlSession.selectOne("com.traveler.web.journal.journalMapper.getJournalContent", journal_no);
@@ -44,5 +44,21 @@ public class JournalDAOImpl implements JournalDAO {
 		return sqlSession.update("com.traveler.web.journal.journalMapper.updateViewCnt", journal_no);
 	}
 
+	@Override
+	public List<JournalVO> searchListTitle(String title) throws Exception {
+		return sqlSession.selectList("com.traveler.web.journal.jornalMapper.searchListTitle", title);
+	}
+
+	@Override
+	public List<JournalVO> searchListDate(String searchDate) throws Exception {
+		return sqlSession.selectList("com.traveler.web.journal.jornalMapper.searchListDate", searchDate);
+	}
+
+	@Override
+	public List<JournalVO> searchListAuthor(String author) throws Exception {
+		return sqlSession.selectList("com.traveler.web.journal.jornalMapper.searchListAuthor", author);
+	}
+	
+	
 
 }

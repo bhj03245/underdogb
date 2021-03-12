@@ -80,6 +80,22 @@ width: 330px;
       <button type="button"><a href='/diary/update?diary_no=<c:out value="${diary.diary_no}"/>&journal_no=<%=journal_no%>'>수정하기</a></button>
       <button type="button"><a href='/diary/delete?diary_no=<c:out value="${diary.diary_no}"/>&journal_no=<%=journal_no%>'>삭제하기</a></button>
    </div>
+   <!-- 댓글 -->
+<div id="reply">
+  <ol class="replyList">
+    <c:forEach items="${replyList}" var="replyList">
+      <li>
+        <p>
+        작성자 : ${replyList.writer}<br />
+        작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
+        </p>
+
+        <p>${replyList.content}</p>
+      </li>
+    </c:forEach>   
+  </ol>
+</div>
+   
       
       <script>
       var actionForm = $("#actionForm");

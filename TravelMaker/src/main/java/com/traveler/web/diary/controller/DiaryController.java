@@ -3,8 +3,10 @@ package com.traveler.web.diary.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.UUID;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
@@ -23,7 +25,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.JsonObject;
 import com.traveler.web.diary.model.DiaryVO;
+import com.traveler.web.diary.model.ReplyVO;
 import com.traveler.web.diary.service.DiaryService;
+import com.traveler.web.diary.service.ReplyService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -35,6 +39,9 @@ import lombok.extern.log4j.Log4j;
 public class DiaryController {
 	
 	private final DiaryService service;
+	
+	@Inject
+	ReplyService replyService;
 	
 	@GetMapping("diarylist")
 	public void list(Model model, @RequestParam("journal_no") int journal_no) {
@@ -76,6 +83,10 @@ public class DiaryController {
 	public void info(@RequestParam("diary_no") int diary_no, Model model) { //requestParam을 이용해서 tno 값을 좀 더 명시적으로 처리. 
 		
 		model.addAttribute("diary", service.info(diary_no)); //해당 번호의 게시물을 전달해야 하므로 model을 파라미터로 지정한다.
+	
+		List<ReplyVO> replyList = replyService.viewReply(diary_no);
+		model.addAttribute("replyList",replyList);
+			
 	}
 	
 	@PostMapping("update")

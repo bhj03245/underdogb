@@ -11,5 +11,11 @@ public interface ReplyService {
 	
 	public void writeReply(ReplyVO vo);
 	
+	public void updateReply(ReplyVO vo);
+	
+	public ReplyVO selectReply(int reply);
+
+	public void deleteReply(ReplyVO vo);
+	
 
 }

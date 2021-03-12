@@ -27,4 +27,37 @@ public class ReplyServiceImpl implements ReplyService {
 		
 	}
 
+
+
+	@Override
+	public void writeReply(ReplyVO vo) {
+		mapper.writeReply(vo);
+		
+		
+	}
+
+
+
+	
+	@Override
+	public void updateReply(ReplyVO vo) {
+		 mapper.updateReply(vo);
+		
+	}
+
+
+
+	@Override
+	public void deleteReply(ReplyVO vo) {
+		mapper.deleteReply(vo);
+		
+	}
+
+
+
+	@Override
+	public ReplyVO selectReply(int reply) {
+		return mapper.selectReply(reply);
+	}
+
 }

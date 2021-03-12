@@ -38,6 +38,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/diary/*")
 public class DiaryController {
 	
+
 	private final DiaryService service;
 	
 	@Inject
@@ -161,5 +162,56 @@ public class DiaryController {
 		return a;
 	}
 	
+	//댓글작성
+	@GetMapping("replyWrite")
+	public String replyWrite(ReplyVO vo, RedirectAttributes rttr, @RequestParam("journal_no") int journal_no) {
+		
+		replyService.writeReply(vo);
+		
+		rttr.addAttribute("diary_no",vo.getDiary_no());
+		
+		return "redirect:/diary/info?journal_no="+journal_no;
+		
+	}
+	
+	//댓글 수정
+	@GetMapping("replyUpdateView")
+	public String replyUpdateView(ReplyVO vo, Model model) {
+		
+		model.addAttribute("replyUpdate", replyService.selectReply(vo.getReply()));
+		
+		return "diary/replyUpdateView";
+		
+	}
+	
+	@PostMapping("replyUpdate")
+	public String replyUpdate(ReplyVO vo, RedirectAttributes rttr, @RequestParam("journal_no") int journal_no) {
+		replyService.updateReply(vo);
+		
+		rttr.addAttribute("diary_no", vo.getDiary_no());
+		
+		return "redirect:/diary/info?journal_no="+journal_no;
+		
+	}
+	
+	//댓글 삭제
+	@GetMapping("replyDeleteView")
+	public String replyDeleteView(ReplyVO vo, Model model) {
+		
+		model.addAttribute("replyDelete", replyService.selectReply(vo.getReply()));
+		
+		return "diary/replyDeleteView";
+	}
+	
+	@PostMapping("replyDelete")
+	public String replyDele(ReplyVO vo, RedirectAttributes rttr, @RequestParam("journal_no") int journal_no) {
+		
+		replyService.deleteReply(vo);
+	
+		rttr.addAttribute("diary_no",vo.getDiary_no());
+		
+		return "redirect:/diary/info?journal_no="+journal_no;
+		
+	}
 
 }

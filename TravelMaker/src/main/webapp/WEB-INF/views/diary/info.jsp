@@ -39,7 +39,8 @@ width: 330px;
 
 .map_wrap {
     position:relative;
-    width:100%; height:350px;
+    width:100%; 
+    height:100%;
 }
 .title {
     font-weight:bold;
@@ -91,10 +92,31 @@ width: 330px;
         </p>
 
         <p>${replyList.content}</p>
+        <div>
+         <button type="button" class="replyUpdateBtn" data-reply="${replyList.reply }">수정</button>
+         <button type="button" class="replyDeleteBtn" data-reply="${replyList.reply }">삭제</button>
+        
+        </div>
       </li>
     </c:forEach>   
   </ol>
 </div>
+
+
+
+<form name="replyForm" method="get">
+  <input type="hidden" id="diary_no" name="diary_no" value="${diary.diary_no}" />
+  <input type="hidden" id="journal_no" name="journal_no" value="${diary.journal_no }"/>
+  <div>
+    <label for="writer">댓글 작성자</label><input type="text" id="writer" name="writer" />
+    <br/>
+    <label for="content">댓글 내용</label><input type="text" id="content" name="content" />
+  </div>
+  <div>
+ 	 <button type="button" class="replyWriteBtn">작성</button>
+  </div>
+</form>
+
    
       
       <script>
@@ -123,6 +145,28 @@ width: 330px;
         var marker = new kakao.maps.Marker({ map: map, position: coords });
         map.setCenter(coords);
    }
+   
+   $(".replyWriteBtn").on("click", function(){
+	   var formObj = $("form[name='replyForm']");
+	   formObj.attr("action", "/diary/replyWrite");
+	   formObj.submit();
+	 });
+   
+ //댓글 수정 View
+	$(".replyUpdateBtn").on("click", function(){
+		location.href = "/diary/replyUpdateView?diary_no=${diary.diary_no}"
+						+ "&reply="+$(this).attr("data-reply")
+	                    + "&journal_no="+${diary.journal_no};
+	});
+			
+//댓글 삭제 View
+	$(".replyDeleteBtn").on("click", function(){
+		location.href = "/diary/replyDeleteView?diary_no=${diary.diary_no}"
+			+ "&reply="+$(this).attr("data-reply")
+		    + "&journal_no="+${diary.journal_no};
+	});
+   
+   
 </script>
 </div>
 </body>

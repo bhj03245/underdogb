@@ -15,6 +15,7 @@
     line-height: 40px;
     padding: 10px 30px;
     background: white;
+    box-shadow:0px 2px 3px 2px grey;
     -webkit-transition:position 0.5s, font-size 0.5s, color 0.5s, line-height 0.5s, padding 0.5s, background 0.5s, box-shadow 0.5s, -webkit-transform 0.5s;
     transition:position 0.5s, font-size 0.5s, color 0.5s, line-height 0.5s, padding 0.5s, background 0.5s, box-shadow 0.5s, transform 0.5s;
 }

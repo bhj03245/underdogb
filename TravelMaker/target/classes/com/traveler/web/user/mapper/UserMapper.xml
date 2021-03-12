@@ -30,6 +30,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 회원 탈퇴 -->
 	<delete id="deleteUser">
-	delete from tbl_member where id = #{id}
+	delete from tbl_member where id = #{id} and password = #{password}
 	</delete>
 </mapper>

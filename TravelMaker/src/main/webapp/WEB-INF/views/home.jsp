@@ -19,15 +19,12 @@ String id = (String) session.getAttribute("id");
 <title>Home</title>
 <link href="${path}/resources/css/home.css?v=2" rel="stylesheet" />
 <link href="${path}/resources/css/total.css?v=2" rel="stylesheet" />
-<link href="${path}/resources/css/ryan.css?v=2" rel="stylesheet" />
-<link href="${path}/resources/css/ryan.css?v=1" rel="stylesheet" />
-<link href="${path}/resources/css/ryan.css?v=3" rel="stylesheet" />
+<link href="${path}/resources/css/ryan.css?v=4" rel="stylesheet" />
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js" 
 integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" 
 crossorigin="anonymous">
 </script>
-
 </head>
 <body>
 <%-- <input type="hidden" value="<%=is_login%>" id = "login_checkk"> --%>
@@ -100,8 +97,6 @@ crossorigin="anonymous">
 <!--          <a href = "" class = "searchpw" style = "text-decoration: none;">비밀번호 찾기</a> -->
          </div>
       </form>
-      <script src="${path}/resources/js/ryan.js?v=1"></script>
-      <script src="${path}/resources/js/home.js?v=3"></script>
    </div>
    
    <!-- 아이디 찾기 -->
@@ -151,8 +146,6 @@ crossorigin="anonymous">
         </svg>
          <input type="text" class = "searchid_email" id = "searchid_email" name = "searchid_email" placeholder="email@domain.com"> 
       </form>
-      <script src="${path}/resources/js/ryan.js?v=7"></script>
-      <script src="${path}/resources/js/home.js?v=8"></script>
    </div>
 
 <!-- 회원가입 -->
@@ -226,11 +219,10 @@ crossorigin="anonymous">
 		
          <input type="button" class = "sign_btn" value="가입하기">
       </form>
-      <script src="${path}/resources/js/ryan.js?v=2"></script>
-      <script src="${path}/resources/js/home.js?v=5"></script>
    </div>
    
-      
+    <script src="${path}/resources/js/ryan.js?v=9"></script>
+	<script src="${path}/resources/js/home.js?v=9"></script>
    <!-- 로그인 버튼 -->
    <script>
    $(".login_btn").click(function(){
@@ -243,7 +235,7 @@ crossorigin="anonymous">
    <script>
    $(document).ready(function() {
 	   $("#search_id").click(function() {
-		   $("#searchid_modal").modal();
+		   $("#searchid_modal").css("display","inherit");
 	   });
    });
    

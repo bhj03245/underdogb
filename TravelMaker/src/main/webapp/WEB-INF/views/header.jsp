@@ -6,8 +6,8 @@
 	<!-- 로그인한 상태 -->
 	<c:if test="${vo != null }">
 		<div id="header_right">
-			<a href="MyTravel.do" id = "logout">My Travel</a> 
-			<a href="/logout.do" id = "logout">&nbsp&nbsp로그아웃</a>
+			<a href="MyTravel.do" class = "logout">My Travel</a> 
+			<a href="/logout.do" class = "logout">로그아웃</a>
 		</div>
 	</c:if>
 	<div id="main_search">

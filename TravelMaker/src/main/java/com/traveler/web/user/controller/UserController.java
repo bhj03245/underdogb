@@ -121,18 +121,21 @@ public class UserController {
 //	}
 	
 	// 이메일 인증
-	@RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
+	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
 	@ResponseBody
-	public void mailCheckGET(String email)throws Exception{
-		logger.info("이메일 데이터 전송 확인");
-		logger.info("인증 번호 : " + email);
+	public String emailCheckGET(String email)throws Exception{
+//		logger.info("이메일 데이터 전송 확인");
+//		logger.info("인증 번호 : " + email);
+		System.out.println("이메일 데이터 전송 확인");
+		System.out.println("인증번호 메일 : " + email);
 		
 		// 인증 번호 생성
 		Random random = new Random();
 		int checkNum = random.nextInt(888888) + 111111;
-		logger.info("인증번호" + checkNum);
-		
-		// 이메일 보내기
+//		logger.info("인증번호" + checkNum);
+		System.out.println("인증번호 " + checkNum);
+//		
+//		// 이메일 보내기
 		String setForm = "kksskk1234@naver.com";
 		String toMail = email;
 		String title = "회원가입 인증 메일 입니다.";
@@ -155,6 +158,8 @@ public class UserController {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
+		String num = Integer.toString(checkNum);
+		return num;
 				
 	}
 	// 회원정보 보기
@@ -195,10 +200,11 @@ public class UserController {
 	public String deletePOST(UserVO vo, HttpSession session, RedirectAttributes rttr)throws Exception {
 		System.out.println("C: 회원정보 삭제 GET");
 //		String id = (String) session.getAttribute("id");
-		UserVO user = (UserVO)session.getAttribute("user");
+		System.out.println(vo);
+		UserVO user = (UserVO)session.getAttribute("vo");
 		String sessionPass = user.getPassword();
 		String voPass = vo.getPassword();
-		if(!(session.equals(voPass))) {
+		if(!(sessionPass.equals(voPass))) {
 			rttr.addFlashAttribute("msg", false);
 			return "redirect:/user/userDeleteForm";
 		}

@@ -1,5 +1,6 @@
 package com.traveler.web.journal.service;
 
+import java.sql.Date;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
@@ -36,4 +37,23 @@ public class JournalServiceImpl implements JournalService{
 	public void deleteJournal(int journal_no) throws Exception{
 		journalDAO.deleteJournal(journal_no);
 	}
+
+	@Override
+	public List<JournalVO> searchListTitle(String title) throws Exception {
+		return journalDAO.searchListTitle(title);
+	}
+
+	@Override
+	public List<JournalVO> searchListDate(String searchDate) throws Exception {
+		return journalDAO.searchListDate(searchDate);
+
+	}
+
+	@Override
+	public List<JournalVO> searchListAuthor(String author) throws Exception {
+		return journalDAO.searchListAuthor(author);
+	}
+	
+	
+	
 }

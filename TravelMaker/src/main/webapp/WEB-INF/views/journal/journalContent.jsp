@@ -13,20 +13,30 @@
 						</tr>
 					</c:when>
 					<c:when test="${!empty journalList}">
-						<c:forEach var="list" items="${journalList}" varStatus="status">
-							<tr>
-								<td class="journal_title"><c:out value="${list.title}" /><input type="hidden" value="${list.journal_no}"></td>
-								<td><c:out value="${list.start_dt}" /></td>
-								<td><c:out value="${list.end_dt}" /></td>
-								<td><c:out value="${list.view_cnt}" /></td>
-								<c:forEach var="dlist" items="${diarylist}">
-									<td>
-										<c:out value="${dlist[status.index].imglocs}"/>
-									</td>
-								</c:forEach>
-								<td><button type="button" value="${list.journal_no}" class="btnUpdate">수정</button></td>
-								<td><button type="button" value="${list.journal_no}" class="btnDelete">삭제</button></td>
-							</tr>
+						<c:forEach var="list" items="${journalList}">
+						<div class="plus">
+						<div class="section1">
+							<div class="bigTitle">
+								<div id="title" class="journal_title"><c:out value="${list.title}" /><input type="hidden" value="${list.journal_no}"></div>
+								<div id="author"><c:out value="${list.author}"/></div>
+								<img src="${pageContext.request.contextPath}/resources/img/plus.png" id="plusBtn">
+								<div id="btn">
+									<button type="button" value="${list.journal_no}" class="btnUpdate">수정</button>
+									<button type="button" value="${list.journal_no}" class="btnDelete">삭제</button>
+								</div>
+							</div>
+							<div class="bigReply">
+								<div id="regdate"><c:out value="${list.start_dt}" /> ~ <c:out value="${list.end_dt}" /></div>								
+								<img src="${pageContext.request.contextPath}/resources/img/view.png" id="viewImg">
+								<div id="view"><c:out value="${list.view_cnt}" /></div>
+							</div>
+						</div>
+						<div class="section2">
+							<div id="img"></div>
+							<div id="img"></div>
+							<div id="img"></div>
+						</div>
+						</div>
 						</c:forEach>
 					</c:when>
 				</c:choose>
@@ -40,6 +50,11 @@
    $(document).on('click', '#createJournalBox', function(e){
       e.preventDefault();   
       location.href = "${pageContext.request.contextPath}/journal/create";
+   });
+   
+   $(document).on('click', '#plusBtn', function(){
+       $('#btn').show();
+       $('#plusBtn').hide();
    });
    
  //수정 버튼 클릭 이벤트

@@ -91,10 +91,19 @@ body{
     width: 40%;
     top: 0px;
 }
+.diaryLink{
+	position: absolute;
+    bottom: 40px;
+    right: 20px;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
 #map, #diaryList{
 	-webkit-transition: width 0.5s, -webkit-transform 0.5s;
     transition: width 0.5s, transform 0.5s;
 }
+
 </style>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="${CONTEXT_PATH}/resources/css/headerStatic.css" rel="stylesheet"/>
@@ -108,10 +117,7 @@ body{
 		<div id="myJournalList">
 			<div id="diaryList">
 			<div id="journalContent">
-				<div id="gotoMyJournalList">
-					내 여행일지
-				</div>
-				<div id="journalTitle"></div>
+				<div id="journalTitle" onclick="setMyMarkers()"></div>
 				<div id="journalDate">
 					<div id="startDate"></div>
 					<div id="endDate"></div>
@@ -140,6 +146,9 @@ body{
 		var geocoder = new kakao.maps.services.Geocoder();
 
 		var arr = new Array();
+		var ajaxData = new Array();
+		var journalMarkers = [];
+		var diaryMarkers= [];
 		// 주소로 좌표를 검색합니다
 
 		<c:forEach var="my" items="${myjournalList}">
@@ -153,6 +162,7 @@ body{
 					position : coords
 				// 마커의 위치
 				});
+				journalMarkers.push(marker);
 				map.setCenter(coords);
 				// 마커에 표시할 인포윈도우를 생성합니다 
 				var infowindow = new kakao.maps.InfoWindow({
@@ -180,23 +190,28 @@ body{
 				                	$('#diaryList').css('width','30%');
 				                	checkOnce = 1;
 			                    }
+			                	ajaxData = res;
 			                	$('#diaryContent').text('');
 		                    	$('#journalTitle').text(res.title.title);
 		                    	$('#startDate').text(res.title.start_dt+'~');
 		                    	$('#endDate').text(res.title.end_dt);
+		                    	$('#journalContent').append('<div id="gotoMyJournalList" onclick="gotoMyJournal('+res.title.journal_no+')">내 여행일지</div>');
 			                    for(var i = 0; i<res.mydiaryList.length; i++){
 			                    	$('#diaryContent').append('<div class="diary"></div>');
-			                    	$('.diary:eq('+i+')').append('<div class="diaryTitle">'+res.mydiaryList[i].title+'</div>');
+			                    	$('.diary:eq('+i+')').append('<div class="diaryTitle" onclick="setDiaryMarker('+i+')">'+res.mydiaryList[i].title+'</div>');
 			                    	$('.diary:eq('+i+')').append('<div class="diaryDate">'+res.mydiaryList[i].regdate+'</div>');
 			                    	$('.diary:eq('+i+')').append('<div class="diaryImgs"></div>');
+			                    	$('.diary:eq('+i+')').append('<a class="diaryLink" href="/diary/info?journal_no=${my.journal_no}&diary_no='+res.mydiaryList[i].diary_no+'">보러가기</a>');
 			                    	var imglocs = res.mydiaryList[i].imglocs;
 			                    	if(imglocs!='{"imglocs"}]}'){
 			                    		var jsonImg = JSON.parse(imglocs);
 			                    		$('.diaryImgs:eq('+i+')').css('background-image','url('+jsonImg.imglocs[0].imgloc+')');
+			                    	}else{
+			                    		$('.diaryImgs:eq('+i+')').css('background-image','url(${CONTEXT_PATH}/resources/img/noImage.gif)');
 			                    	}
 			                    }
 //			                    $('#journaltitle').text(res.mydiaryList[0].title);
-//			                    console.log(res.mydiaryList.length);
+			                    console.log(res);
 			                },
 			                error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
 			                    alert("통신 실패.")
@@ -222,6 +237,39 @@ body{
 			return function() {
 				infowindow.close();
 			};
+		}
+		function setDiaryMarker(i){
+			var diaryMarker = ajaxData.mydiaryList[i].marker;
+			var jsonmarker = JSON.parse(diaryMarker);
+			setJournalMarkers(null);
+			setDiaryMarkers(null);
+			map.setLevel(4);
+			for(var num=0; num<jsonmarker.markers.length; num++) {
+			   var coords = new kakao.maps.LatLng(jsonmarker.markers[num].Ma, jsonmarker.markers[num].La);
+			   // 결과값으로 받은 위치를 마커로 표시합니다
+			   var marker = new kakao.maps.Marker({ map: map, position: coords });
+			   map.setCenter(coords);
+			   diaryMarkers.push(marker);
+			}
+		}
+		function setMyMarkers(){
+			map.setLevel(12);
+			setDiaryMarkers(null);
+			setJournalMarkers(map);
+		}
+		function setJournalMarkers(map) {
+			   for (var i = 0; i < journalMarkers.length; i++) {
+			       journalMarkers[i].setMap(map);
+			   }            
+		}
+		function setDiaryMarkers(map) {
+			   for (var i = 0; i < diaryMarkers.length; i++) {
+			       diaryMarkers[i].setMap(map);
+			   }
+			   diaryMarkers=[];
+		}
+		function gotoMyJournal(journal_no){
+			location.href='/journal/list';
 		}
 	</script>
 </body>

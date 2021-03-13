@@ -171,7 +171,7 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 	            	<c:out value="${diary.title}"/></a>
 	            </li>
 	            <li id="writer">by ${diary.writer}</li>
-	            <li id="regdate"><fmt:formatDate pattern="yyyy-MM-dd" value="${diary.regdate}"/></li>
+	            <li id="regdate">${diary.regdate}</li>
 	            <li id="diary">${diary.diary}</li>
 	        </ul>
         </div>

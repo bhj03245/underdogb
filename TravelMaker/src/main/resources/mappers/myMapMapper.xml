@@ -18,7 +18,7 @@
       resultType="com.traveler.web.journal.model.JournalVO"
       parameterType="com.traveler.web.journal.model.JournalVO">
       SELECT
-         TITLE, START_DT, END_DT
+         JOURNAL_NO, TITLE, START_DT, END_DT
       FROM
          TRAVELER_JOURNAL
       WHERE
@@ -29,7 +29,7 @@
       resultType="com.traveler.web.diary.model.DiaryVO"
       parameterType="com.traveler.web.diary.model.DiaryVO">
       SELECT
-         TITLE, REGDATE, IMGLOCS
+         DIARY_NO, TITLE, REGDATE, IMGLOCS, MARKER
       FROM
          TRAVELER_DIARY
       WHERE

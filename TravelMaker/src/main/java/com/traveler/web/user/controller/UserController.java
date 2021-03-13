@@ -98,7 +98,7 @@ public class UserController {
 			session.setAttribute("login", "false");
 			return "redirect:/";
 		}
-		session.setAttribute("vo", lvo);
+		session.setAttribute("id", lvo.getId());
 		session.setAttribute("login", "true");
 		return "redirect:/main";
 	}

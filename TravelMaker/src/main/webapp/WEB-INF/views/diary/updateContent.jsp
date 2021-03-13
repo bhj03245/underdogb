@@ -17,36 +17,80 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-lite.css">
 
 <style>
-#box {
-   position: relative;
-   width: 300px;
+@font-face {
+ font-family: 'NanumBarunGothic';
+ font-style: normal;
+ font-weight: 400;
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
 }
-#Btn {
+
+.diaryUpdateContainer {
+	width: 70%;
+	margin-top: 100px;
+	margin-left: 200px;
+}
+
+h1 {
+	font-family: 'NanumBarunGothic';
+	font-size: 35px;
+}
+
+.updateDiary {
 	position: relative;
+	width: 100%;
+	margin-left: 15%;
+}
+
+label{
+	font-family: 'NanumBarunGothic';
+	font-size: 17px;
+	width: 10%;
 	float: left;
-	top: 15px;
-	left: 605px;
 }
+
+#box {
+    font-family: 'NanumBarunGothic';
+    position: relative;
+    width: 80%;
+    border: 0px;
+    border-bottom: 2px solid rgb(198, 198, 199);
+    margin-bottom: 10px;
+    padding: 5px;
+    text-size: 17px;
+}
+
 .map_wrap {
-    position:relative;
-    width:100%; height:350px;
+	width:100%; height:350px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
+
+#map {
+	position:relative;
+	width: 90%; 
+	height:500px; 
+	overflow:hidden;
+}
+
 #menu_wrap {
-	position:absolute;
-	top:130; left:0; bottom:0;
-	width:210px;
-	height:37px;
-	margin:10px 0 30px 5px;
-	padding:5px;
-	overflow-y:auto;
-	background:rgba(255, 255, 255, 0.7);
-	z-index: 1;
-	font-size:12px;
-	border-radius: 10px;
+   position:absolute;
+   top:135px; left:0; bottom:0;
+   width:230px;
+   height:37px;
+   margin:10px 0 30px 5px;
+   padding:5px;
+   overflow-y:auto;
+   background:rgba(255, 255, 255, 0.7);
+   z-index: 1;
+   font-size:12px;
+   border-radius: 10px;
 }
+
 .bg_white {
 	background:#fff;
 }
+
 #menu_wrap hr {
 	display: block; 
 	height: 1px;
@@ -54,74 +98,130 @@
 	border-top: 2px solid #5F5F5F;
 	margin:3px 0;
 }
+
 #menu_wrap .option{
 	text-align: center;
 }
+
 #menu_wrap .option p {
 	margin:10px 0;
 }  
+
 #menu_wrap .option button {
 	margin-left:5px;
 }
-.title {
-    font-weight:bold;
-    font-size:14px;
-    display:block;
+
+#resetMarker {
+	font-family: 'NanumBarunGothic';
+	position: absolute;
+	top: 185px;
+	left: 5px;
+	width: 80px;
+	height: 25px;
+	background-color: rgb(68, 96, 223);
+	border: 0px;
+	padding: 3px;
+	border-radius: 7px;
+	color: white;
+	letter-spacing: 1px;
+	z-index: 1;
 }
-#centerAddr {
-    display:block;
-    margin-top:2px;
-    font-weight: normal;
-    font-size: 13px;
+
+.ck{
+	position:relative;
+	width: 90%;
+	height: 500px;
+	top: 150px;
 }
+
+#Btn {
+	position: relative;
+    float: left;
+}
+
+#upBtn {
+    border: 2px solid rgb(198, 198, 199);
+    background-color: white;
+    border-radius: 5px;
+    padding: 7px;
+    margin-bottom: 10px;
+    margin-top: 220px;
+    font-family: 'NanumBarunGothic';
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#goList {
+    border: 2px solid rgb(198, 198, 199);
+    background-color: white;
+    border-radius: 5px;
+    padding: 7px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-family: 'NanumBarunGothic';
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#goList a {
+	text-decoration: none;
+	color: black;
+	}
 </style>
 </head>
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ebaa88a9f875faa0b1038d0b6682dfde&libraries=services"></script>
 <body>
-<div>
-	<h1>Diary Update</h1>
-	<form role="form" id="form" action="${pageContext.request.contextPath}/diary/update" method="post">
-	<input type="hidden" name="journal_no" value="${diary.journal_no}">
-	<div>
-		<label>NO</label>
-	    <input name="diary_no" id="box" readonly="readonly" value='<c:out value="${diary.diary_no}"/>'>
-	</div>
-	<div>
-		<label>Title</label>
-		<input name="title" id="box" value='<c:out value="${diary.title}"/>'>
-	</div>
-	<div>
-		<label>Writer</label>
-		<input name="writer" id="box" readonly="readonly" value='<c:out value="${diary.writer}"/>'>
-	</div>
-	<div class="map_wrap">
-       		 <div id="map" style="width:700px; height:350px; position:relative; overflow:hidden;"></div>
-    	 </div>
-    	 <input type="hidden" id="marker" value='<c:out value="${diary.marker}"/>'>
-	 <div class="ck">
-    	<textarea id="summernote" name="diary"><c:out value="${diary.diary}"/></textarea>
-     </div>
-	<input type="hidden" id="smap" name="marker">
-	<button id="Btn" class="upBtn">수정하기</button>
-	<button id="Btn"><a href='/diary/diarylist?journal_no=${diary.journal_no}'>목록으로</a></button>
-	</form>
-	<div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" id="keyword" size="10" placeholder="입력하세요"> 
-                    <button type="submit">검색</button> 
-                </form>
-            </div>
-        </div>
-      </div>
-        <button type="button" id="reset">초기화</button>
+<div class="diaryUpdateContainer">
+	<h1>다이어리 수정하기</h1>
+		<div class="updateDiary">
+			<form role="form" id="form" action="${pageContext.request.contextPath}/diary/update" method="post">
+			<input type="hidden" name="journal_no" value="${diary.journal_no}">
+			<div>
+				<label>번호</label>
+		    	<input name="diary_no" id="box" readonly="readonly" value='<c:out value="${diary.diary_no}"/>'>
+			</div>
+			<div>
+				<label>제목</label>
+				<input name="title" id="box" value='<c:out value="${diary.title}"/>'>
+			</div>
+			<div>
+				<label>아이디</label>
+				<input name="writer" id="box" readonly="readonly" value='<c:out value="${diary.writer}"/>'>
+			</div>
+			<div class="map_wrap">
+		    	<div id="map"></div>
+		    </div>
+	    	<input type="hidden" id="marker" value='<c:out value="${diary.marker}"/>'>
+			<div class="ck">
+				<textarea id="summernote" name="diary"><c:out value="${diary.diary}"/></textarea>
+			</div>
+			<input type="hidden" id="smap" name="marker">
+			<div id="Btn">
+				<button id="upBtn">수정하기</button>
+				<button id="goList"><a href='/diary/diarylist?journal_no=${diary.journal_no}'>목록으로</a></button>
+			</div>
+			</form>
+			<div id="menu_wrap" class="bg_white">
+			       <div class="option">
+			           <div>
+			               <form onsubmit="searchPlaces(); return false;">
+			            키워드 : <input type="text" id="keyword" size="10"> 
+			            <button type="submit">검색</button> 
+			        </form>
+			    </div>
+			</div>
+      	</div>
+      	<button id="resetMarker">마커초기화</button>
+		</div>
 </div>
 <script>
 $(document).ready(function() {
     //여기 아래 부분
     $('#summernote').summernote({
-				height: 300, // 에디터 높이
+		    	width: 1000,
+		        height: 500,
 				minHeight: null, // 최소 높이
 				maxHeight: null, // 최대 높이
 				focus: true, // 에디터 로딩후 포커스를 맞출지 여부
@@ -154,7 +254,7 @@ $(document).ready(function() {
 	    });
 	 }
 	 
-	$(document).on('click', '.upBtn', function(e) {
+	$(document).on('click', '#upBtn', function(e) {
 	    sendsmap=sendsmap.substr(0, sendsmap.length -1);
 	    sendsmap+="]}";
 	    $("#smap").val(sendsmap);
@@ -194,7 +294,7 @@ $(document).ready(function() {
 	 markerSave[num] = marker;
 	}
 	
-	var reset = document.getElementById('reset'); 
+	var reset = document.getElementById('resetMarker'); 
 	reset.onclick = function() { 
 		for(var num=0; num<jsonmarker.markers.length; num++){ //좌표의 갯수만큼 돌린다
 			 markerSave[num].setMap(null);

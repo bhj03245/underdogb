@@ -19,7 +19,7 @@ integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07j
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
 integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
 </script>
-<link rel="stylesheet" href="/resources/css/bootstrap1.min.css">
+
 <style>
 @font-face {
  font-family: 'NanumBarunGothic';
@@ -29,10 +29,27 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
  src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
 }
 
+<<<<<<< HEAD
 #diaryPage{
 position: absolute;
 width: 60%;
 margin-left: 20%;
+=======
+.diaryPageContainer{
+	position: absolute;
+	width: 70%;
+	margin-left: 20%;
+}
+
+h1 {
+	font-size: 35px;
+}
+
+.info {
+   position: relative;
+   width: 70%;
+   margin-left: 5%;
+>>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
 }
 
 h1 {
@@ -46,12 +63,21 @@ h1 {
 }
 
 label{
+<<<<<<< HEAD
    font-family: 'NanumBarunGothic';
    font-size: 17px;
    width: 50px;
    float: left;
    margin-right: 10px;
    font-weight: bold;
+=======
+	font-family: 'NanumBarunGothic';
+	font-size: 17px;
+	width: 50px;
+	float: left;
+	margin-right: 10px;
+	font-weight: bold;
+>>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
 }
 
 #box {
@@ -73,11 +99,19 @@ label{
 }
 
 #map {
+<<<<<<< HEAD
     width:100%; 
     height:300px; 
     position:relative; 
     overflow:hidden; 
     background-color: blue;
+=======
+ 	width:100%; 
+ 	height:300px; 
+ 	position:relative; 
+ 	overflow:hidden; 
+ 	background-color: blue;
+>>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
 }
 .title {
     font-weight:bold;
@@ -85,8 +119,37 @@ label{
     display:block;
 }
 
-.addr {
-   font-size: 12px;
+.diary {
+	margin-bottom: 70px;
+}
+
+hr {
+	width: 100%;
+	border: none;
+	border-top: 4px double #bbb;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+#btn {
+	border: 2px solid rgb(198, 198, 199);
+    background-color: white;
+    border-radius: 5px;
+    padding: 7px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-family: 'NanumBarunGothic';
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn {
+	margin-bottom: 30px;
+}
+.btn a {
+text-decoration: none;
+color: black;
 }
 
 
@@ -95,6 +158,7 @@ label{
 </head>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ebaa88a9f875faa0b1038d0b6682dfde&libraries=services"></script>
 <body>
+<<<<<<< HEAD
 <div id="diaryPage">
    <h1>내 여행페이지</h1>
    <div class="info">
@@ -125,6 +189,39 @@ label{
  
    
    <!-- 댓글 -->
+=======
+<div class="diaryPageContainer">
+<h1>내 여행페이지</h1>
+    <div class="info">
+    <div>
+		<label>번호</label>
+		<input name="title" id="box" readonly="readonly" value='<c:out value="${diary.diary_no}"/>'>
+    </div>
+    <div>
+		<label>제목</label>
+		<input name="title" id="box" readonly="readonly" value='<c:out value="${diary.title}"/>'>
+    </div>
+    <div>
+		<label>아이디</label>
+		<input name="writer" id="box" readonly="readonly" value='<c:out value="${diary.writer}"/>'>
+    </div>
+    <div class="map_wrap">
+        <div id="map">
+    </div>
+	<input type="hidden" id="marker" value='<c:out value="${diary.marker}"/>'>
+	<div class="diary">
+		<c:out escapeXml="false" value="${diary.diary}"/>
+	</div>
+	<hr>
+	<div class="btn">
+      <button type="button" id="btn"><a href='/diary/diarylist?journal_no=<%=journal_no%>'>목록으로</a></button>
+      <button type="button" id="btn"><a href='/diary/update?diary_no=<c:out value="${diary.diary_no}"/>&journal_no=<%=journal_no%>'>수정하기</a></button>
+      <button type="button" id="btn"><a href='/diary/delete?diary_no=<c:out value="${diary.diary_no}"/>&journal_no=<%=journal_no%>'>삭제하기</a></button>
+    </div>
+    </div>
+ 
+     <!-- 댓글 -->
+>>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
 
 <form name="replyForm" method="get">
   <input type="hidden" id="diary_no" name="diary_no" value="${diary.diary_no}" />
@@ -143,9 +240,13 @@ label{
       <div hr style="border-bottom: dotted 1px black; margin-bottom: 20px;">
         <h3>${replyList.writer}</h3>  
         <p>${replyList.content}</p>
+<<<<<<< HEAD
          <p>
          <fmt:formatDate value="${replyList.regdate}"/> 
          </p>
+=======
+         <p>${replyList.regdate}</p>
+>>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
         <div style="margin-bottom: 20px;">
          <button type="button" class="replyUpdateBtn" data-reply="${replyList.reply }">수정</button>
          <button type="button" class="replyDeleteBtn" data-reply="${replyList.reply }">삭제</button>

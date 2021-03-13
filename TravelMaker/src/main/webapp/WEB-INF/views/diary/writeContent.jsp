@@ -24,29 +24,40 @@
  src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
 }
 .big{
+	width: 70%;
 	margin-top: 100px;
 	margin-left: 200px;
 }
 
-h1{font-family: 'NanumBarunGothic';}
+h1{
+	font-family: 'NanumBarunGothic';
+	font-size: 35px;
+}
 
 .write {
    position: relative;
-   width: 70%;
+   width: 100%;
    margin-left: 15%;
 }
 label{
    font-family: 'NanumBarunGothic';
    font-size: 17px;
+<<<<<<< HEAD
     width: 50px;
+=======
+    width: 10%; /*50px*/
+>>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
     float: left;
-    margin-right: 10px;
 }
 
 #box {
    font-family: 'NanumBarunGothic';
     position: relative;
+<<<<<<< HEAD
     width: 950px;
+=======
+    width: 80%; /*950*/
+>>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
     border: 0px;
     border-bottom: 2px solid rgb(198, 198, 199);
     margin-bottom: 10px;
@@ -57,9 +68,15 @@ label{
    width: 220px;
    position: relative;
    border: 0px;
+<<<<<<< HEAD
     border-bottom: 2px solid rgb(198, 198, 199);
     margin-bottom: 5px;
     padding: 3px;
+=======
+   border-bottom: 2px solid rgb(198, 198, 199);
+   margin-bottom: 5px;
+   padding: 3px;
+>>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
 }
 
 .map_wrap {
@@ -69,51 +86,59 @@ label{
 }
 
 #map {
+<<<<<<< HEAD
  	position:relative;
 	width:1000px; 
 	height:500px; 
 	overflow:hidden;
+=======
+   position:relative;
+   width:90%; 
+   height:500px; 
+   overflow:hidden;
+>>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
 }
 
 #menu_wrap {
-	position:absolute;
- 	top:130px; left:0; bottom:0;
-	width:230px;
-	height:37px;
-	margin:10px 0 30px 5px;
-	padding:5px;
-	overflow-y:auto;
-	background:rgba(255, 255, 255, 0.7);
-	z-index: 1;
-	font-size:12px;
-	border-radius: 10px;
+   position:absolute;
+   top:135px; left:0; bottom:0;
+   width:230px;
+   height:37px;
+   margin:10px 0 30px 5px;
+   padding:5px;
+   overflow-y:auto;
+   background:rgba(255, 255, 255, 0.7);
+   z-index: 1;
+   font-size:12px;
+   border-radius: 10px;
 }
 
 .bg_white {
-	background:#fff;
+   background:#fff;
 }
 
 #menu_wrap hr {
-	display: block; 
-	height: 1px;
-	border: 0; 
-	border-top: 2px solid #5F5F5F;
-	margin:3px 0;
+   display: block; 
+   height: 1px;
+   border: 0; 
+   border-top: 2px solid #5F5F5F;
+   margin:3px 0;
 }
 
 #menu_wrap .option{
-	text-align: center;
+   text-align: center;
 }
 
 #menu_wrap .option p {
-	margin:10px 0;
+   margin:10px 0;
 }  
 
 #menu_wrap .option button {
-	margin-left:5px;
+   margin-left:5px;
 }
 
 #resetMarker {
+<<<<<<< HEAD
    font-family: 'NanumBarunGothic';
    position: absolute;
     top: 180px;
@@ -127,10 +152,25 @@ label{
     color: white;
     letter-spacing: 1px;
     z-index: 1;
+=======
+	font-family: 'NanumBarunGothic';
+	position: absolute;
+	top: 185px;
+	left: 5px;
+	width: 80px;
+	height: 25px;
+	background-color: rgb(68, 96, 223);
+	border: 0px;
+	padding: 3px;
+	border-radius: 7px;
+	color: white;
+	letter-spacing: 1px;
+	z-index: 1;
+>>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
 }
 
 #Btn {
-   	position: relative;
+	position: relative;
     float: left;
 }
 #btnsave {
@@ -147,7 +187,7 @@ label{
 }
 
 #rewrite {
-	border: 2px solid rgb(198, 198, 199);
+    border: 2px solid rgb(198, 198, 199);
     background-color: white;
     border-radius: 5px;
     padding: 7px;
@@ -160,6 +200,7 @@ label{
 }
 
 .ck{
+<<<<<<< HEAD
 
 position:relative;
 
@@ -167,6 +208,12 @@ width: 1000px;
 height: 500px;
 top: 150px;
 
+=======
+	position:relative;
+	width: 90%;
+	height: 500px;
+	top: 150px;
+>>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
 }
 
 </style>
@@ -177,7 +224,7 @@ top: 150px;
    <h1>여행일기 작성</h1>
    <div class="write">
       <form role="form" id="form" action="${pageContext.request.contextPath}/diary/write" method="post">
-      	<input type="hidden" name="journal_no" value="<%=journal_no%>">
+         <input type="hidden" name="journal_no" value="<%=journal_no%>">
          <div>
             <label>제목</label>
             <input name="title" id="box" required="required">
@@ -187,13 +234,13 @@ top: 150px;
             <input name="writer" id="box" required="required">
          </div>
          <div>
-         	<label>날짜</label>
-	         <input type="date" id="regdate" name="regdate">
-	         <input type="hidden" id="smap" name="marker">
+            <label>날짜</label>
+            <input type="date" id="regdate" name="regdate">
+            <input type="hidden" id="smap" name="marker">
          </div>
          <div class="map_wrap">
-       		 <div id="map"></div>
-    	 </div>
+              <div id="map"></div>
+        </div>
          <div class="ck">
            <textarea id="summernote" name="diary"></textarea>
          </div>
@@ -222,8 +269,13 @@ top: 150px;
          //여기 아래 부분
          $('#summernote').summernote({
                width: 1000,
+<<<<<<< HEAD
         	   height: 500,
         	   top: 150,// 에디터 높이
+=======
+               height: 500,
+               top: 150,// 에디터 높이
+>>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
                minHeight: null, // 최소 높이
                maxHeight: null, // 최대 높이
                focus: true, // 에디터 로딩후 포커스를 맞출지 여부
@@ -368,8 +420,8 @@ function setMarkers(map) {
 
 var reset = document.getElementById('resetMarker'); 
 resetMarker.onclick = function() {
-	sendsmap = '{"markers":[';
-	setMarkers(null);
+   sendsmap = '{"markers":[';
+   setMarkers(null);
 
 }
    

@@ -43,4 +43,16 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(UserVO vo)throws Exception {
 		usermapper.deleteUser(vo);
 	}
+	// 아이디 찾기
+	@Override
+	public UserVO searchid(UserVO vo)throws Exception {
+		return usermapper.searchid(vo);
+	}
+//	public UserVO searchid(String id)throws Exception {
+//		return usermapper.searchid(id);
+//	}
+	// 비밀번호 찾기
+	public UserVO searchpw(UserVO vo)throws Exception {
+		return usermapper.searchpw(vo);
+	}
 }

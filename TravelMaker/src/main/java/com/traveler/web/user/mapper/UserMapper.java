@@ -16,4 +16,9 @@ public interface UserMapper {
 	public void updateUser(UserVO vo);
 	// 회원 탈퇴
 	public void deleteUser(UserVO vo);
+	// 아이디 찾기
+	public UserVO searchid(UserVO vo);
+//	public UserVO searchid(String id);
+	// 비밀번호 찾기
+	public UserVO searchpw(UserVO vo);
 }

@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,11 +16,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.traveler.web.user.mapper.UserMapper;
 import com.traveler.web.user.model.UserVO;
 import com.traveler.web.user.service.UserService;
 
@@ -82,11 +87,13 @@ public class UserController {
 		System.out.println("login 메서드 진입");
 		System.out.println("전달된 데이터: " + vo);
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();		
 		UserVO lvo = userserivce.userLogin(vo);
-		
+		System.out.println("sessiion = " + session);
+		System.out.println("lvo = " + lvo);
 		if(lvo == null) {
 			int result = 0;
+//			rttr.addAttribute("result", result);
 			rttr.addFlashAttribute("result", result);
 			session.setAttribute("login", "false");
 			return "redirect:/";
@@ -168,7 +175,7 @@ public class UserController {
 		String id = (String) session.getAttribute("id");
 		
 		UserVO vo = userserivce.readUser(id);
-		
+		System.out.println("id = " +id);
 		model.addAttribute("VO", vo);
 		logger.info("C:회원정보보기 GET으 VO" + vo);
 		System.out.println("C: 회원정보보기 GET의 아이디 " + vo);
@@ -227,7 +234,7 @@ public class UserController {
 //		session.invalidate();
 //		return "redirect:/";
 //	}
-	
+	// 마이페이지
 	@RequestMapping(value = "/MyTravel.do", method = RequestMethod.GET)
 	public String MyTravelGET(HttpServletRequest request)throws Exception {
 		
@@ -248,4 +255,88 @@ public class UserController {
 ////		session.invalidate();
 //		return "/user/userInfo";
 //}
+	
+	// 아이디 찾기
+//	@RequestMapping(value = "/searchid_form", method = RequestMethod.POST)
+//	public String searchidPOST(UserVO vo, Model model)throws Exception {
+//		UserVO lvo = userserivce.searchid(vo);
+//		
+//		if(lvo == null) {
+//			model.addAttribute("check", 1);
+//		} else {
+//			model.addAttribute("check", 0);
+//			model.addAttribute("id", lvo.getId());
+//		}
+//		return "redirect:/";
+//	}
+//	@RequestMapping(value = "/searchpw_form", method = RequestMethod.POST)
+//	public String searchpwPOST(UserVO vo, Model model)throws Exception {
+//		UserVO lvo = userserivce.searchpw(vo);
+//		
+//		if(lvo == null) {
+//			model.addAttribute("check", 1);
+//		} else {
+//			model.addAttribute("check", 0);
+//			model.addAttribute("password", lvo.getPassword());
+//		}
+//		return "redirect:/";
+//	}
+	
+	// 아이디 찾기 메일
+	@RequestMapping(value = "/searchid_email", method = RequestMethod.POST)
+	public UserVO searchidEmailPOST(String email, UserVO vo)throws Exception {
+//		UserVO id = userserivce.readUser(id);
+//		String emaill = vo.getEmail("email");
+		UserVO lvo = userserivce.searchid(vo);
+		String setForm = "kksskk1234@naver.com";
+		String toMail = email;
+		String title = "회원님의 아이디 입니다.";
+		String content = "회원님의 아이디는 " + lvo.getId() + " 입니다";
+		System.out.println("lvo = " + lvo.getId());
+		System.out.println(email);		
+		
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+			helper.setFrom(setForm);
+			helper.setTo(toMail);
+			helper.setSubject(title);
+			helper.setText(content,true);
+			mailSender.send(message);
+		} catch (MailException e) {
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return lvo;
+				
+	}
+	
+
+	// 비밀번호 찾기 메일	
+	@RequestMapping(value = "/searchpw_email", method = RequestMethod.POST)
+	public UserVO searchpwEmailPOST(String email, UserVO vo)throws Exception {
+		
+		UserVO lvo = userserivce.searchpw(vo);
+		String setForm = "kksskk1234@naver.com";
+		String toMail = email;
+		String title = "회원님의 비밀번호 입니다.";
+		String content = "회원님의 비밀번호는 " + lvo.getPassword() + " 입니다";
+		
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+			helper.setFrom(setForm);
+			helper.setTo(toMail);
+			helper.setSubject(title);
+			helper.setText(content,true);
+			mailSender.send(message);
+		} catch (MailException e) {
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return lvo;
+				
+	}
 }

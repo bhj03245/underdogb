@@ -18,5 +18,9 @@ public interface UserService {
 	public void updateUser(UserVO vo)throws Exception;
 	// 회원탈퇴
 	public void deleteUser(UserVO vo)throws Exception;
-	
+	// 아이디 찾기
+	public UserVO searchid(UserVO vo)throws Exception;
+//	public UserVO searchid(String id)throws Exception;
+	// 비밀번호 찾기
+	public UserVO searchpw(UserVO vo)throws Exception;
 }

@@ -30,7 +30,7 @@
 		<div id="dateBox">
 			<label id="dateLabel">여행일자</label> <form:input path="start_dt" name="start_dt" id="dateInput1" type="date"/>~<form:input path="end_dt" name="end_dt" id="dateInput2" type="date"/>
 		</div>
-		<form:input  path="author" id="author" name="author" type="hidden" value="아이디"/>
+		<form:input  path="author" id="author" name="author" type="hidden" value="kmg"/>
 		<div id="createJournalBox">
 			<input id="createBtn" type="button" value="생성하기">
 		</div>

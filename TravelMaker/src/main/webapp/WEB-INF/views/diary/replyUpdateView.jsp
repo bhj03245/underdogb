@@ -12,7 +12,7 @@
 			var formObj = $("form[name='updateForm']");
 			
 			$(".cancel_btn").on("click", function(){
-				location.href = "/diary/readView?diary_no=${replyUpdate.reply}"
+				location.href = "/diary/info?diary_no=${replyUpdate.reply}&journal_no="+<%=journal_no%>
 			})
 			
 		})

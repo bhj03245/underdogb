@@ -54,4 +54,8 @@
 		<put-attribute name="content" value="/WEB-INF/views/diary/writeContent.jsp" />
 		<put-attribute name="nav" value="/WEB-INF/views/journal/journalNav.jsp" />
 	</definition>
+	<definition name="mymap/mymap" template="/WEB-INF/views/mymap/mymap.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="diarylist" value="/WEB-INF/views/mymap/mymaplist.jsp" />
+	</definition>
 </tiles-definitions>

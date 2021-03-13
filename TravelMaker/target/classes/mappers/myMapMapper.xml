@@ -15,7 +15,7 @@
    </select>
    
     <select id="getMyMapJournalTitle"
-      resultType="com.traveler.web.journal.model.JournalVO"
+      resultType="string"
       parameterType="com.traveler.web.journal.model.JournalVO">
       SELECT
          TITLE
@@ -29,7 +29,7 @@
       resultType="com.traveler.web.diary.model.DiaryVO"
       parameterType="com.traveler.web.diary.model.DiaryVO">
       SELECT
-         TITLE, WRITER, REGDATE
+         *
       FROM
          TRAVELER_DIARY
       WHERE

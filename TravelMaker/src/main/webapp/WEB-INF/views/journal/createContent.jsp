@@ -3,15 +3,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-	<head>
-	<style>
+<head>
+<style>
     .map_wrap {position:relative;width:100%;height:350px;}
     .title {font-weight:bold;display:block;}
     .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
     #centerAddr {display:block;margin-top:2px;font-weight: normal;}
     .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 </style>
-	</head>
+</head>
+<%
+	String id = (String)session.getAttribute("id");
+%>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d625053b0732bfe46e3b6a75cb7c220a&libraries=services"></script>
 <div id="createContentContainer">
@@ -30,7 +33,7 @@
 		<div id="dateBox">
 			<label id="dateLabel">여행일자</label> <form:input path="start_dt" name="start_dt" id="dateInput1" type="date"/>~<form:input path="end_dt" name="end_dt" id="dateInput2" type="date"/>
 		</div>
-		<form:input  path="author" id="author" name="author" type="hidden" value="kmg"/>
+		<form:input  path="author" id="author" name="author" type="hidden" value="<%=id%>"/>
 		<div id="createJournalBox">
 			<input id="createBtn" type="button" value="생성하기">
 		</div>

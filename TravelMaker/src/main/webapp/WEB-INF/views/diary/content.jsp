@@ -8,11 +8,11 @@
 <head>
 <style>
 @font-face {
-            font-family: 'Chosunilbo_myungjo';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
+    font-family: 'Chosunilbo_myungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 @font-face {
     font-family: 'KOTRA_BOLD-Bold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
@@ -27,9 +27,39 @@
     font-style: normal;
 }
 
+#diaryContentContainer{
+	float: left;
+    width: 70%;
+    height: 100%;
+}
+
+h2 {
+	font-size: 35px;
+}
+
+#myDiaryList {
+	float: left;
+    width: 70%;
+    height: 100%;
+}
+
+#createDiaryBox {
+	font-family: 'NanumBarunGothic';
+	letter-spacing: 2px;
+	float: left;
+    width: 30%;
+    background-color: #258FFF;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    padding: 30px 15px;
+    border-radius: 20px;
+}
+
 .section {
-    position: relative;
-    width: 600px; height: 300px;
+     position: relative;
+     width: 600px; height: 300px;
 }
 .section1 {
     width:56%;
@@ -127,6 +157,8 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 </head>
 <body>
 	<div id="diaryContentContainer">
+	<h2>내 여행지도</h2>
+	<div id="myDiaryList">
     <c:forEach items="${diarylist}" var="diary" varStatus="status">
 	<div class="section">
 		<div class="section1">
@@ -149,13 +181,15 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 	<form id="actionForm" action="/diary/diarylist" method='get'>
 	<input type="hidden" name="journal_no" value="<%=journal_no%>">
 	</form>
-	<button type="button" id="Btn">Write</button>
+	</div>
+	<div id="createDiaryBox">+일기작성</div>
 	</div>
 <script>
-	$(document).ready(function() {
-	$('#Btn').on('click',  function(){
+ 	$(document).ready(function() {
+ 		
+	$(document).on('click', '#createDiaryBox', function(e){
+	    e.preventDefault();   
 	    location.href = "write?journal_no="+<%=journal_no%>;
-	    
 	 });
 	
 	 var actionForm = $("#actionForm");

@@ -6,13 +6,14 @@
 <div class="Header">
 	<div id="logo">Travel Maker</div>
 	<!-- 로그인한 상태 -->
-	<c:if test="${vo != null }">
+	<c:if test="${id != null }">
 		<div id="header_right">
-			<a href="/MyTravel.do" id = "logout">My Travel</a> 
+			<a href="/MyTravel.do" id = "logout">My Travel</a>
 			<a href="/logout.do" id = "logout">&nbsp&nbsp로그아웃</a>
+			<a href="journal/create.do" id = "logout">&nbsp&nbsp일지생성</a>
 		</div>
 	</c:if>
-				<form id="searchForm" action="${pageContext.request.contextPath}/journal/journalSearch" method="post">
+	<form id="searchForm" action="${pageContext.request.contextPath}/journal/journalSearch" method="post">
 	<div id="main_search">
 		<div id="main_searchbar">
 			<input type="text" id="search_title" name="search_title" placeholder="제목"> 
@@ -21,9 +22,9 @@
 			<div id="search_btn">
 				<i class="fas fa-search"></i>
 			</div>
-			</form>
 		</div>
 	</div>
+	</form>
 </div>
 
 <script>

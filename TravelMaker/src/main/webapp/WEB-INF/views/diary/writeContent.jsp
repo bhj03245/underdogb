@@ -35,30 +35,29 @@ h1{font-family: 'NanumBarunGothic';}
    width: 70%;
    margin-left: 15%;
 }
-
 label{
-	font-family: 'NanumBarunGothic';
-	font-size: 16px;
+   font-family: 'NanumBarunGothic';
+   font-size: 17px;
     width: 50px;
     float: left;
     margin-right: 10px;
 }
 
 #box {
-	font-family: 'NanumBarunGothic';
+   font-family: 'NanumBarunGothic';
     position: relative;
-    width: 270px;
-    border: 2px solid rgb(198, 198, 199);
-    border-radius: 5px;
+    width: 950px;
+    border: 0px;
+    border-bottom: 2px solid rgb(198, 198, 199);
     margin-bottom: 10px;
-    padding: 3px;
+    padding: 5px;
 }
 
 #regdate {
-	width: 270px;
-	position: relative;
-    border: 2px solid rgb(198, 198, 199);
-    border-radius: 5px;
+   width: 220px;
+   position: relative;
+   border: 0px;
+    border-bottom: 2px solid rgb(198, 198, 199);
     margin-bottom: 5px;
     padding: 3px;
 }
@@ -71,8 +70,8 @@ label{
 
 #map {
  	position:relative;
-	width:500px; 
-	height:350px; 
+	width:1000px; 
+	height:500px; 
 	overflow:hidden;
 }
 
@@ -115,13 +114,13 @@ label{
 }
 
 #resetMarker {
-	font-family: 'NanumBarunGothic';
-	position: absolute;
-    top: 465px;
-    right: 350px;
+   font-family: 'NanumBarunGothic';
+   position: absolute;
+    top: 180px;
+    left: 5px;
     width: 80px;
     height: 25px;
-    background-color: red;
+    background-color: rgb(68, 96, 223);
     border: 0px;
     padding: 3px;
     border-radius: 7px;
@@ -140,7 +139,7 @@ label{
     border-radius: 5px;
     padding: 7px;
     margin-bottom: 10px;
-    margin-top: 20px;
+    margin-top: 220px;
     font-family: 'NanumBarunGothic';
     font-size: 15px;
     font-weight: bold;
@@ -160,6 +159,16 @@ label{
     letter-spacing: 1px;
 }
 
+.ck{
+
+position:relative;
+
+width: 1000px;
+height: 500px;
+top: 150px;
+
+}
+
 </style>
 </head>
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ebaa88a9f875faa0b1038d0b6682dfde&libraries=services"></script>
@@ -171,11 +180,11 @@ label{
       	<input type="hidden" name="journal_no" value="<%=journal_no%>">
          <div>
             <label>제목</label>
-            <input name="title" id="box" placeholder="제목을 입력하세요" required="required">
+            <input name="title" id="box" required="required">
          </div>
          <div>
             <label>아이디</label>
-            <input name="writer" id="box" placeholder="아이디를 입력하세요" required="required">
+            <input name="writer" id="box" required="required">
          </div>
          <div>
          	<label>날짜</label>
@@ -212,8 +221,9 @@ label{
    $(document).ready(function() {
          //여기 아래 부분
          $('#summernote').summernote({
-               width: 800,
-        	   height: 500, // 에디터 높이
+               width: 1000,
+        	   height: 500,
+        	   top: 150,// 에디터 높이
                minHeight: null, // 최소 높이
                maxHeight: null, // 최대 높이
                focus: true, // 에디터 로딩후 포커스를 맞출지 여부

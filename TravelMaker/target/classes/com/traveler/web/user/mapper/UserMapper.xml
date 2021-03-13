@@ -32,4 +32,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteUser">
 	delete from tbl_member where id = #{id} and password = #{password}
 	</delete>
+	<!-- 아이디 찾기 -->
+	<select id = "searchid" parameterType = "String" resultType="com.traveler.web.user.model.UserVO">
+	select id from tbl_member where email = #{email}
+	</select>
+	<!-- 비밀번호 찾기 -->
+	<select id = "searchpw" parameterType="String" resultType="com.traveler.web.user.model.UserVO">
+	select password from tbl_member where email = #{email}
+	</select>
 </mapper>

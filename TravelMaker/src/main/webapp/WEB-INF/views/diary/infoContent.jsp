@@ -21,26 +21,63 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 </script>
 <link rel="stylesheet" href="/resources/css/bootstrap1.min.css">
 <style>
-#body1{
+@font-face {
+ font-family: 'NanumBarunGothic';
+ font-style: normal;
+ font-weight: 400;
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+}
+
+#diaryPage{
 position: absolute;
 width: 60%;
 margin-left: 20%;
 }
 
-label{
-display:inline-block; 
-width:70px; 
-line-height:40px;
+h1 {
+   font-size: 35px;
 }
 
-input{
-width: 330px;
+.info {
+   position: relative;
+   width: 70%;
+   margin-left: 15%;
+}
+
+label{
+   font-family: 'NanumBarunGothic';
+   font-size: 17px;
+   width: 50px;
+   float: left;
+   margin-right: 10px;
+   font-weight: bold;
+}
+
+#box {
+   font-family: 'NanumBarunGothic';
+    position: relative;
+    width: 340px;
+    border: 0px;
+    border-bottom: 2px solid rgb(198, 198, 199);
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
 }
 
 .map_wrap {
     position:relative;
     width:100%; 
     height:100%;
+    margin-top: 20px;
+}
+
+#map {
+    width:100%; 
+    height:300px; 
+    position:relative; 
+    overflow:hidden; 
+    background-color: blue;
 }
 .title {
     font-weight:bold;
@@ -52,25 +89,29 @@ width: 330px;
    font-size: 12px;
 }
 
+
+
 </style>
 </head>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ebaa88a9f875faa0b1038d0b6682dfde&libraries=services"></script>
 <body>
-<div id="body1">
-   <h1>Diary View</h1>
+<div id="diaryPage">
+   <h1>내 여행페이지</h1>
+   <div class="info">
    <div>
-      <label>NO</label>
-       <input name="title" readonly="readonly" value='<c:out value="${diary.diary_no}"/>'>
+      <label>번호</label>
+       <input name="title" id="box" readonly="readonly" value='<c:out value="${diary.diary_no}"/>'>
    </div>
    <div>
-      <label>Title</label>
-      <input name="title" readonly="readonly" value='<c:out value="${diary.title}"/>'>
+      <label>제목</label>
+      <input name="title" id="box" readonly="readonly" value='<c:out value="${diary.title}"/>'>
    </div>
    <div>
-      <label>Writer</label><input name="writer" readonly="readonly" value='<c:out value="${diary.writer}"/>'>
+      <label>아이디</label>
+      <input name="writer" id="box" readonly="readonly" value='<c:out value="${diary.writer}"/>'>
    </div>
    <div class="map_wrap">
-        <div id="map" style="width:400px; height:300px; position:relative; overflow:hidden; background-color: blue;">
+        <div id="map">
    </div>
     <input type="hidden" id="marker" value='<c:out value="${diary.marker}"/>'>
    <div>
@@ -81,30 +122,9 @@ width: 330px;
       <button type="button"><a href='/diary/update?diary_no=<c:out value="${diary.diary_no}"/>&journal_no=<%=journal_no%>'>수정하기</a></button>
       <button type="button"><a href='/diary/delete?diary_no=<c:out value="${diary.diary_no}"/>&journal_no=<%=journal_no%>'>삭제하기</a></button>
    </div>
-   
+ 
    
    <!-- 댓글 -->
-<div id="reply" style="width:700px">
-  <ol class="replyList">
-    <c:forEach items="${replyList}" var="replyList">
-      <li>
-        <p>
-        작성자 : ${replyList.writer} 
-        작성 날짜 : ${replyList.regdate} 
-          </p>
-
-        <p>${replyList.content}</p>
-        <div>
-         <button type="button" class="replyUpdateBtn" data-reply="${replyList.reply }">수정</button>
-         <button type="button" class="replyDeleteBtn" data-reply="${replyList.reply }">삭제</button>
-        
-        </div>
-      </li>
-    </c:forEach>   
-  </ol>
-</div>
-
-
 
 <form name="replyForm" method="get">
   <input type="hidden" id="diary_no" name="diary_no" value="${diary.diary_no}" />
@@ -112,13 +132,31 @@ width: 330px;
   <div style="width:650px; text-align: center;">
     <label for="writer">작성자</label><input type="text" id="writer" name="writer" />
     <br/>
-    <textarea rows="5" cols="80" id="content" name="content" placeholder="댓글을 작성해주세요"></textarea>
- 	 <button type="button" class="replyWriteBtn">작성완료</button>
+    <textarea rows="3" cols="80" id="content" name="content" placeholder="댓글을 작성해주세요"></textarea>
+     <button type="button" class="replyWriteBtn">작성완료</button>
   </div>
 </form>
-
-   
-      
+<div id="reply" style="width:700px">
+  <ol class="replyList">
+    <c:forEach items="${replyList}" var="replyList">
+      <li>
+      <div hr style="border-bottom: dotted 1px black; margin-bottom: 20px;">
+        <h3>${replyList.writer}</h3>  
+        <p>${replyList.content}</p>
+         <p>
+         <fmt:formatDate value="${replyList.regdate}"/> 
+         </p>
+        <div style="margin-bottom: 20px;">
+         <button type="button" class="replyUpdateBtn" data-reply="${replyList.reply }">수정</button>
+         <button type="button" class="replyDeleteBtn" data-reply="${replyList.reply }">삭제</button>
+        </div>
+           </div>
+      </li>
+    </c:forEach>   
+  </ol>
+</div>
+</div>
+</div>  
       <script>
       var actionForm = $("#actionForm");
       
@@ -147,27 +185,27 @@ width: 330px;
    }
    
    $(".replyWriteBtn").on("click", function(){
-	   var formObj = $("form[name='replyForm']");
-	   formObj.attr("action", "/diary/replyWrite");
-	   formObj.submit();
-	 });
+      var formObj = $("form[name='replyForm']");
+      formObj.attr("action", "/diary/replyWrite"); 
+      var today = new Date();
+      formObj.attr(today);
+      
+      formObj.submit();
+    });
    
  //댓글 수정 View
-	$(".replyUpdateBtn").on("click", function(){
-		location.href = "/diary/replyUpdateView?diary_no=${diary.diary_no}"
-						+ "&reply="+$(this).attr("data-reply")
-	                    + "&journal_no="+${diary.journal_no};
-	});
-			
+   $(".replyUpdateBtn").on("click", function(){
+      location.href = "/diary/replyUpdateView?diary_no=${diary.diary_no}"
+                  + "&reply="+$(this).attr("data-reply")
+                       + "&journal_no="+${diary.journal_no};
+   });
+         
 //댓글 삭제 View
-	$(".replyDeleteBtn").on("click", function(){
-		location.href = "/diary/replyDeleteView?diary_no=${diary.diary_no}"
-			+ "&reply="+$(this).attr("data-reply")
-		    + "&journal_no="+${diary.journal_no};
-	});
-   
-   
+   $(".replyDeleteBtn").on("click", function(){
+      location.href = "/diary/replyDeleteView?diary_no=${diary.diary_no}"
+         + "&reply="+$(this).attr("data-reply")
+          + "&journal_no="+${diary.journal_no};
+   });   
 </script>
-</div>
 </body>
 </html>

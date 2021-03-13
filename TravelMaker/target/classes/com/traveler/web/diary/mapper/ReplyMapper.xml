@@ -17,8 +17,8 @@
 	
 	<insert id="writeReply">
 	
-	INSERT INTO DIARY_REPLY(DIARY_NO,CONTENT,WRITER) 
-	VALUES (#{diary_no},#{content},#{writer})
+	INSERT INTO DIARY_REPLY(DIARY_NO,CONTENT,WRITER,REGDATE) 
+	VALUES (#{diary_no},#{content},#{writer},#{regdate})
 	
 	</insert>
 	

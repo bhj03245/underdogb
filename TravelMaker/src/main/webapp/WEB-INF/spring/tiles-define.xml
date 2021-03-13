@@ -39,4 +39,19 @@
 		<put-attribute name="content" value="/WEB-INF/views/diary/content.jsp" />
 		<put-attribute name="nav" value="/WEB-INF/views/journal/journalNav.jsp" />
 	</definition>
+	<definition name="diary/info" template="/WEB-INF/views/diary/info.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/diary/infoContent.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/views/journal/journalNav.jsp" />
+	</definition>
+	<definition name="diary/update" template="/WEB-INF/views/diary/update.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/diary/updateContent.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/views/journal/journalNav.jsp" />
+	</definition>
+	<definition name="diary/write" template="/WEB-INF/views/diary/write.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/diary/writeContent.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/views/journal/journalNav.jsp" />
+	</definition>
 </tiles-definitions>

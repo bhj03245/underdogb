@@ -10,7 +10,6 @@
 <body>
 	<div id="journalContentContainer">
 		<div id="myJournalList">
-		<h1 id="h1"></h1>
 			<table>
 				<tbody>
 					<c:choose>
@@ -72,11 +71,11 @@
 						marker, infowindow));
 				kakao.maps.event.addListener(marker, 'mouseout',
 						makeOutListener(infowindow));
-				kakao.maps.event.addListener(marker,'click',function(){
-					var url = "${pageContext.request.contextPath}/my/list";
-				    url = url + "?journal_no="+;
-					location.href = url;
-				});
+// 				kakao.maps.event.addListener(marker,'click',function(){
+// 					var url = "${pageContext.request.contextPath}/my/list";
+// 				    url = url + "?journal_no="+;
+// 					location.href = url;
+// 				});
 			}
 		});
 		</c:forEach>

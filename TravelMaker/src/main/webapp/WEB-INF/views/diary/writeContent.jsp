@@ -42,22 +42,14 @@ h1{
 label{
    font-family: 'NanumBarunGothic';
    font-size: 17px;
-<<<<<<< HEAD
-    width: 50px;
-=======
     width: 10%; /*50px*/
->>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
     float: left;
 }
 
 #box {
    font-family: 'NanumBarunGothic';
     position: relative;
-<<<<<<< HEAD
-    width: 950px;
-=======
     width: 80%; /*950*/
->>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
     border: 0px;
     border-bottom: 2px solid rgb(198, 198, 199);
     margin-bottom: 10px;
@@ -68,15 +60,9 @@ label{
    width: 220px;
    position: relative;
    border: 0px;
-<<<<<<< HEAD
-    border-bottom: 2px solid rgb(198, 198, 199);
-    margin-bottom: 5px;
-    padding: 3px;
-=======
    border-bottom: 2px solid rgb(198, 198, 199);
    margin-bottom: 5px;
    padding: 3px;
->>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
 }
 
 .map_wrap {
@@ -86,17 +72,10 @@ label{
 }
 
 #map {
-<<<<<<< HEAD
- 	position:relative;
-	width:1000px; 
-	height:500px; 
-	overflow:hidden;
-=======
    position:relative;
    width:90%; 
    height:500px; 
    overflow:hidden;
->>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
 }
 
 #menu_wrap {
@@ -138,21 +117,6 @@ label{
 }
 
 #resetMarker {
-<<<<<<< HEAD
-   font-family: 'NanumBarunGothic';
-   position: absolute;
-    top: 180px;
-    left: 5px;
-    width: 80px;
-    height: 25px;
-    background-color: rgb(68, 96, 223);
-    border: 0px;
-    padding: 3px;
-    border-radius: 7px;
-    color: white;
-    letter-spacing: 1px;
-    z-index: 1;
-=======
 	font-family: 'NanumBarunGothic';
 	position: absolute;
 	top: 185px;
@@ -166,7 +130,6 @@ label{
 	color: white;
 	letter-spacing: 1px;
 	z-index: 1;
->>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
 }
 
 #Btn {
@@ -200,20 +163,10 @@ label{
 }
 
 .ck{
-<<<<<<< HEAD
-
-position:relative;
-
-width: 1000px;
-height: 500px;
-top: 150px;
-
-=======
 	position:relative;
 	width: 90%;
 	height: 500px;
 	top: 150px;
->>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
 }
 
 </style>
@@ -269,13 +222,8 @@ top: 150px;
          //여기 아래 부분
          $('#summernote').summernote({
                width: 1000,
-<<<<<<< HEAD
-        	   height: 500,
-        	   top: 150,// 에디터 높이
-=======
                height: 500,
                top: 150,// 에디터 높이
->>>>>>> d6678bc8de38f548d4b5d55ce4542ba39e45f480
                minHeight: null, // 최소 높이
                maxHeight: null, // 최대 높이
                focus: true, // 에디터 로딩후 포커스를 맞출지 여부

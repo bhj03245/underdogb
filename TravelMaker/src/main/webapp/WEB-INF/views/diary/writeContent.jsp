@@ -24,43 +24,45 @@
  src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
 }
 .big{
+	width: 70%;
 	margin-top: 100px;
 	margin-left: 200px;
 }
 
-h1{font-family: 'NanumBarunGothic';}
+h1{
+	font-family: 'NanumBarunGothic';
+	font-size: 35px;
+}
 
 .write {
    position: relative;
-   width: 70%;
+   width: 100%;
    margin-left: 15%;
 }
-
 label{
-	font-family: 'NanumBarunGothic';
-	font-size: 16px;
-    width: 50px;
+   font-family: 'NanumBarunGothic';
+   font-size: 17px;
+    width: 10%; /*50px*/
     float: left;
-    margin-right: 10px;
 }
 
 #box {
-	font-family: 'NanumBarunGothic';
+   font-family: 'NanumBarunGothic';
     position: relative;
-    width: 270px;
-    border: 2px solid rgb(198, 198, 199);
-    border-radius: 5px;
+    width: 80%; /*950*/
+    border: 0px;
+    border-bottom: 2px solid rgb(198, 198, 199);
     margin-bottom: 10px;
-    padding: 3px;
+    padding: 5px;
 }
 
 #regdate {
-	width: 270px;
-	position: relative;
-    border: 2px solid rgb(198, 198, 199);
-    border-radius: 5px;
-    margin-bottom: 5px;
-    padding: 3px;
+   width: 220px;
+   position: relative;
+   border: 0px;
+   border-bottom: 2px solid rgb(198, 198, 199);
+   margin-bottom: 5px;
+   padding: 3px;
 }
 
 .map_wrap {
@@ -70,71 +72,84 @@ label{
 }
 
 #map {
- 	position:relative;
-	width:500px; 
-	height:350px; 
-	overflow:hidden;
+   position:relative;
+   width:90%; 
+   height:500px; 
+   overflow:hidden;
 }
 
 #menu_wrap {
-	position:absolute;
- 	top:130px; left:0; bottom:0;
-	width:230px;
-	height:37px;
-	margin:10px 0 30px 5px;
-	padding:5px;
-	overflow-y:auto;
-	background:rgba(255, 255, 255, 0.7);
-	z-index: 1;
-	font-size:12px;
-	border-radius: 10px;
+   position:absolute;
+   top:135px; left:0; bottom:0;
+   width:230px;
+   height:37px;
+   margin:10px 0 30px 5px;
+   padding:5px;
+   overflow-y:auto;
+   background:rgba(255, 255, 255, 0.7);
+   z-index: 1;
+   font-size:12px;
+   border-radius: 10px;
 }
 
 .bg_white {
-	background:#fff;
+   background:#fff;
 }
 
 #menu_wrap hr {
-	display: block; 
-	height: 1px;
-	border: 0; 
-	border-top: 2px solid #5F5F5F;
-	margin:3px 0;
+   display: block; 
+   height: 1px;
+   border: 0; 
+   border-top: 2px solid #5F5F5F;
+   margin:3px 0;
 }
 
 #menu_wrap .option{
-	text-align: center;
+   text-align: center;
 }
 
 #menu_wrap .option p {
-	margin:10px 0;
+   margin:10px 0;
 }  
 
 #menu_wrap .option button {
-	margin-left:5px;
+   margin-left:5px;
 }
 
 #resetMarker {
 	font-family: 'NanumBarunGothic';
 	position: absolute;
-    top: 465px;
-    right: 350px;
-    width: 80px;
-    height: 25px;
-    background-color: red;
-    border: 0px;
-    padding: 3px;
-    border-radius: 7px;
-    color: white;
-    letter-spacing: 1px;
-    z-index: 1;
+	top: 185px;
+	left: 5px;
+	width: 80px;
+	height: 25px;
+	background-color: rgb(68, 96, 223);
+	border: 0px;
+	padding: 3px;
+	border-radius: 7px;
+	color: white;
+	letter-spacing: 1px;
+	z-index: 1;
 }
 
 #Btn {
-   	position: relative;
+	position: relative;
     float: left;
 }
 #btnsave {
+    border: 2px solid rgb(198, 198, 199);
+    background-color: white;
+    border-radius: 5px;
+    padding: 7px;
+    margin-bottom: 10px;
+    margin-top: 220px;
+    font-family: 'NanumBarunGothic';
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#rewrite {
     border: 2px solid rgb(198, 198, 199);
     background-color: white;
     border-radius: 5px;
@@ -147,17 +162,11 @@ label{
     letter-spacing: 1px;
 }
 
-#rewrite {
-	border: 2px solid rgb(198, 198, 199);
-    background-color: white;
-    border-radius: 5px;
-    padding: 7px;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    font-family: 'NanumBarunGothic';
-    font-size: 15px;
-    font-weight: bold;
-    letter-spacing: 1px;
+.ck{
+	position:relative;
+	width: 90%;
+	height: 500px;
+	top: 150px;
 }
 
 </style>
@@ -168,23 +177,23 @@ label{
    <h1>여행일기 작성</h1>
    <div class="write">
       <form role="form" id="form" action="${pageContext.request.contextPath}/diary/write" method="post">
-      	<input type="hidden" name="journal_no" value="<%=journal_no%>">
+         <input type="hidden" name="journal_no" value="<%=journal_no%>">
          <div>
             <label>제목</label>
-            <input name="title" id="box" placeholder="제목을 입력하세요" required="required">
+            <input name="title" id="box" required="required">
          </div>
          <div>
             <label>아이디</label>
-            <input name="writer" id="box" placeholder="아이디를 입력하세요" required="required">
+            <input name="writer" id="box" required="required">
          </div>
          <div>
-         	<label>날짜</label>
-	         <input type="date" id="regdate" name="regdate">
-	         <input type="hidden" id="smap" name="marker">
+            <label>날짜</label>
+            <input type="date" id="regdate" name="regdate">
+            <input type="hidden" id="smap" name="marker">
          </div>
          <div class="map_wrap">
-       		 <div id="map"></div>
-    	 </div>
+              <div id="map"></div>
+        </div>
          <div class="ck">
            <textarea id="summernote" name="diary"></textarea>
          </div>
@@ -212,8 +221,9 @@ label{
    $(document).ready(function() {
          //여기 아래 부분
          $('#summernote').summernote({
-               width: 800,
-        	   height: 500, // 에디터 높이
+               width: 1000,
+               height: 500,
+               top: 150,// 에디터 높이
                minHeight: null, // 최소 높이
                maxHeight: null, // 최대 높이
                focus: true, // 에디터 로딩후 포커스를 맞출지 여부
@@ -358,8 +368,8 @@ function setMarkers(map) {
 
 var reset = document.getElementById('resetMarker'); 
 resetMarker.onclick = function() {
-	sendsmap = '{"markers":[';
-	setMarkers(null);
+   sendsmap = '{"markers":[';
+   setMarkers(null);
 
 }
    

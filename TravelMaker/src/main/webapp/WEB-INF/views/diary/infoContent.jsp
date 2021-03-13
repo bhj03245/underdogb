@@ -19,28 +19,65 @@ integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07j
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
 integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
 </script>
-<link rel="stylesheet" href="/resources/css/bootstrap1.min.css">
+
 <style>
-#body1{
-position: absolute;
-width: 60%;
-margin-left: 20%;
+@font-face {
+ font-family: 'NanumBarunGothic';
+ font-style: normal;
+ font-weight: 400;
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+}
+
+.diaryPageContainer{
+	position: absolute;
+	width: 70%;
+	margin-left: 20%;
+}
+
+h1 {
+	font-size: 35px;
+}
+
+.info {
+   position: relative;
+   width: 70%;
+   margin-left: 5%;
 }
 
 label{
-display:inline-block; 
-width:70px; 
-line-height:40px;
+	font-family: 'NanumBarunGothic';
+	font-size: 17px;
+	width: 50px;
+	float: left;
+	margin-right: 10px;
+	font-weight: bold;
 }
 
-input{
-width: 330px;
+#box {
+   font-family: 'NanumBarunGothic';
+    position: relative;
+    width: 340px;
+    border: 0px;
+    border-bottom: 2px solid rgb(198, 198, 199);
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
 }
 
 .map_wrap {
     position:relative;
     width:100%; 
     height:100%;
+    margin-top: 20px;
+}
+
+#map {
+ 	width:100%; 
+ 	height:300px; 
+ 	position:relative; 
+ 	overflow:hidden; 
+ 	background-color: blue;
 }
 .title {
     font-weight:bold;
@@ -48,63 +85,74 @@ width: 330px;
     display:block;
 }
 
-.addr {
-   font-size: 12px;
+.diary {
+	margin-bottom: 70px;
+}
+
+hr {
+	width: 100%;
+	border: none;
+	border-top: 4px double #bbb;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+#btn {
+	border: 2px solid rgb(198, 198, 199);
+    background-color: white;
+    border-radius: 5px;
+    padding: 7px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-family: 'NanumBarunGothic';
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn {
+	margin-bottom: 30px;
+}
+.btn a {
+text-decoration: none;
+color: black;
 }
 
 </style>
 </head>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ebaa88a9f875faa0b1038d0b6682dfde&libraries=services"></script>
 <body>
-<div id="body1">
-   <h1>Diary View</h1>
-   <div>
-      <label>NO</label>
-       <input name="title" readonly="readonly" value='<c:out value="${diary.diary_no}"/>'>
-   </div>
-   <div>
-      <label>Title</label>
-      <input name="title" readonly="readonly" value='<c:out value="${diary.title}"/>'>
-   </div>
-   <div>
-      <label>Writer</label><input name="writer" readonly="readonly" value='<c:out value="${diary.writer}"/>'>
-   </div>
-   <div class="map_wrap">
-        <div id="map" style="width:400px; height:300px; position:relative; overflow:hidden; background-color: blue;">
-   </div>
-    <input type="hidden" id="marker" value='<c:out value="${diary.marker}"/>'>
-   <div>
-   <c:out escapeXml="false" value="${diary.diary}"/>
-   </div>
-   
-      <button type="button"><a href='/diary/diarylist?journal_no=<%=journal_no%>'>목록으로</a></button>
-      <button type="button"><a href='/diary/update?diary_no=<c:out value="${diary.diary_no}"/>&journal_no=<%=journal_no%>'>수정하기</a></button>
-      <button type="button"><a href='/diary/delete?diary_no=<c:out value="${diary.diary_no}"/>&journal_no=<%=journal_no%>'>삭제하기</a></button>
-   </div>
-   
-   
-   <!-- 댓글 -->
-<div id="reply" style="width:700px">
-  <ol class="replyList">
-    <c:forEach items="${replyList}" var="replyList">
-      <li>
-        <p>
-        작성자 : ${replyList.writer} 
-        작성 날짜 : ${replyList.regdate} 
-          </p>
-
-        <p>${replyList.content}</p>
-        <div>
-         <button type="button" class="replyUpdateBtn" data-reply="${replyList.reply }">수정</button>
-         <button type="button" class="replyDeleteBtn" data-reply="${replyList.reply }">삭제</button>
-        
-        </div>
-      </li>
-    </c:forEach>   
-  </ol>
-</div>
-
-
+<div class="diaryPageContainer">
+<h1>내 여행페이지</h1>
+    <div class="info">
+    <div>
+		<label>번호</label>
+		<input name="title" id="box" readonly="readonly" value='<c:out value="${diary.diary_no}"/>'>
+    </div>
+    <div>
+		<label>제목</label>
+		<input name="title" id="box" readonly="readonly" value='<c:out value="${diary.title}"/>'>
+    </div>
+    <div>
+		<label>아이디</label>
+		<input name="writer" id="box" readonly="readonly" value='<c:out value="${diary.writer}"/>'>
+    </div>
+    <div class="map_wrap">
+        <div id="map">
+    </div>
+	<input type="hidden" id="marker" value='<c:out value="${diary.marker}"/>'>
+	<div class="diary">
+		<c:out escapeXml="false" value="${diary.diary}"/>
+	</div>
+	<hr>
+	<div class="btn">
+      <button type="button" id="btn"><a href='/diary/diarylist?journal_no=<%=journal_no%>'>목록으로</a></button>
+      <button type="button" id="btn"><a href='/diary/update?diary_no=<c:out value="${diary.diary_no}"/>&journal_no=<%=journal_no%>'>수정하기</a></button>
+      <button type="button" id="btn"><a href='/diary/delete?diary_no=<c:out value="${diary.diary_no}"/>&journal_no=<%=journal_no%>'>삭제하기</a></button>
+    </div>
+    </div>
+ 
+     <!-- 댓글 -->
 
 <form name="replyForm" method="get">
   <input type="hidden" id="diary_no" name="diary_no" value="${diary.diary_no}" />
@@ -112,13 +160,29 @@ width: 330px;
   <div style="width:650px; text-align: center;">
     <label for="writer">작성자</label><input type="text" id="writer" name="writer" />
     <br/>
-    <textarea rows="5" cols="80" id="content" name="content" placeholder="댓글을 작성해주세요"></textarea>
- 	 <button type="button" class="replyWriteBtn">작성완료</button>
+    <textarea rows="3" cols="80" id="content" name="content" placeholder="댓글을 작성해주세요"></textarea>
+     <button type="button" class="replyWriteBtn">작성완료</button>
   </div>
 </form>
-
-   
-      
+<div id="reply" style="width:700px">
+  <ol class="replyList">
+    <c:forEach items="${replyList}" var="replyList">
+      <li>
+      <div hr style="border-bottom: dotted 1px black; margin-bottom: 20px;">
+        <h3>${replyList.writer}</h3>  
+        <p>${replyList.content}</p>
+         <p>${replyList.regdate}</p>
+        <div style="margin-bottom: 20px;">
+         <button type="button" class="replyUpdateBtn" data-reply="${replyList.reply }">수정</button>
+         <button type="button" class="replyDeleteBtn" data-reply="${replyList.reply }">삭제</button>
+        </div>
+           </div>
+      </li>
+    </c:forEach>   
+  </ol>
+</div>
+</div>
+</div>  
       <script>
       var actionForm = $("#actionForm");
       
@@ -168,6 +232,5 @@ width: 330px;
    
    
 </script>
-</div>
 </body>
 </html>

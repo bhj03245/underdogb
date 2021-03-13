@@ -7,6 +7,6 @@ import com.traveler.web.journal.model.JournalVO;
 
 public interface MyMapService {
 	public List<JournalVO>  getMyJournalList(String author) throws Exception;
-	public String getMyJournalTitle(int journal_no) throws Exception;
+	public JournalVO getMyJournalTitle(int journal_no) throws Exception;
 	public List<DiaryVO> getMyMapDiary(int journal_no) throws Exception;
 }

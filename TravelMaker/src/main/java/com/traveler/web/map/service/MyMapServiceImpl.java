@@ -21,7 +21,7 @@ public class MyMapServiceImpl implements MyMapService{
 	}
 	
 	@Override 
-	public String getMyJournalTitle(int journal_no) throws Exception{
+	public JournalVO getMyJournalTitle(int journal_no) throws Exception{
 		return mymapDAO.getMyJournalTitle(journal_no);
 	}
 

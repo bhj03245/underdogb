@@ -21,7 +21,7 @@ public class MyMapDAOImpl implements MyMapDAO{
 	}
 	
 	@Override
-	public String getMyJournalTitle(int journal_no) throws Exception{
+	public JournalVO getMyJournalTitle(int journal_no) throws Exception{
 		return sqlSession.selectOne("com.traveler.web.map.myMapMapper.getMyMapJournalTitle",journal_no);
 	}
 

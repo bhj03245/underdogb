@@ -15,10 +15,10 @@
    </select>
    
     <select id="getMyMapJournalTitle"
-      resultType="string"
+      resultType="com.traveler.web.journal.model.JournalVO"
       parameterType="com.traveler.web.journal.model.JournalVO">
       SELECT
-         TITLE
+         TITLE, START_DT, END_DT
       FROM
          TRAVELER_JOURNAL
       WHERE
@@ -29,7 +29,7 @@
       resultType="com.traveler.web.diary.model.DiaryVO"
       parameterType="com.traveler.web.diary.model.DiaryVO">
       SELECT
-         *
+         TITLE, REGDATE, IMGLOCS
       FROM
          TRAVELER_DIARY
       WHERE

@@ -23,33 +23,112 @@ body{
 #myJournalList{
 	height: 100%;
 	display: flex;
+	padding-top: 60px;
 }
 #diaryList{
 	height: 100%;
-	width: 30%;
+	width: 0%;
+	overflow-y:scroll;
 }
-#blank{
-	height: 60px;
+#diaryList::-webkit-scrollbar {
+    display: none;
+}
+#journalContent {
+    height: 25%;
+    padding: 30px;
+    display: flex;
+    background-color: #258FFF;
+    color: white;
+    width: 100%;
+    position: relative;
+}
+#gotoMyJournalList{
+	position: absolute;
+    right: 40px;
+}
+#journalTitle{
+	font-size: 40px;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    padding-top: 10%;
+}
+#journalDate{
+	display: flex;
+    width: 60%;
+    top: 30px;
+    height: 100%;
+    padding-top: 16%;
+}
+#diaryContent{
+	height: 75%;
+    position: relative;
+}
+.diary {
+    height: 33%;
+    border-bottom: 1px solid lightblue;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+}
+.diaryTitle {
+    margin-left: 40%;
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 40px;
+}
+.diaryDate {
+    margin-left: 40%;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: right;
+}
+.diaryImgs {
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    width: 40%;
+    top: 0px;
+}
+#map, #diaryList{
+	-webkit-transition: width 0.5s, -webkit-transform 0.5s;
+    transition: width 0.5s, transform 0.5s;
 }
 </style>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="${CONTEXT_PATH}/resources/css/headerStatic.css" rel="stylesheet"/>
+<link href="${CONTEXT_PATH}/resources/css/total.css" rel="stylesheet"/>
 <script src="https://kit.fontawesome.com/395fa77f9c.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
 	<div id="journalContentContainer">
 		<tiles:insertAttribute name="header" />
-		<div id="blank"></div>
 		<div id="myJournalList">
 			<div id="diaryList">
+			<div id="journalContent">
+				<div id="gotoMyJournalList">
+					내 여행일지
+				</div>
+				<div id="journalTitle"></div>
+				<div id="journalDate">
+					<div id="startDate"></div>
+					<div id="endDate"></div>
+				</div>
+				
 			</div>
-			<div id="map" style="width: 70%; height: 100%;"></div>
+			<div id="diaryContent">
+			
+			</div>
+			</div>
+			<div id="map" style="width: 100%; height: 100%;"></div>
 		</div>
 	</div>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d625053b0732bfe46e3b6a75cb7c220a&libraries=services"></script>
 	<script>
+		var checkOnce = 0;
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -96,12 +175,28 @@ body{
 			                url : "/my/list",      // 컨트롤러에서 대기중인 URL 주소이다.
 			                data : params,            // Json 형식의 데이터이다.
 			                success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
-			                    // 응답코드 > 0000
+			                    if(checkOnce==0){			                    	
+				                	$('#map').css('width','70%');
+				                	$('#diaryList').css('width','30%');
+				                	checkOnce = 1;
+			                    }
+			                	$('#diaryContent').text('');
+		                    	$('#journalTitle').text(res.title.title);
+		                    	$('#startDate').text(res.title.start_dt+'~');
+		                    	$('#endDate').text(res.title.end_dt);
 			                    for(var i = 0; i<res.mydiaryList.length; i++){
-			                    	$('#diaryList').append('<div>'+res.mydiaryList[i].title+'</div>');
+			                    	$('#diaryContent').append('<div class="diary"></div>');
+			                    	$('.diary:eq('+i+')').append('<div class="diaryTitle">'+res.mydiaryList[i].title+'</div>');
+			                    	$('.diary:eq('+i+')').append('<div class="diaryDate">'+res.mydiaryList[i].regdate+'</div>');
+			                    	$('.diary:eq('+i+')').append('<div class="diaryImgs"></div>');
+			                    	var imglocs = res.mydiaryList[i].imglocs;
+			                    	if(imglocs!='{"imglocs"}]}'){
+			                    		var jsonImg = JSON.parse(imglocs);
+			                    		$('.diaryImgs:eq('+i+')').css('background-image','url('+jsonImg.imglocs[0].imgloc+')');
+			                    	}
 			                    }
 //			                    $('#journaltitle').text(res.mydiaryList[0].title);
-			                    console.log(res.mydiaryList.length);
+//			                    console.log(res.mydiaryList.length);
 			                },
 			                error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
 			                    alert("통신 실패.")
@@ -128,7 +223,6 @@ body{
 				infowindow.close();
 			};
 		}
-		
 	</script>
 </body>
 </html>

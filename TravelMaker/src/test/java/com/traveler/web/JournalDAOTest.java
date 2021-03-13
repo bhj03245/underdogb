@@ -66,8 +66,8 @@ public class JournalDAOTest {
    public void testInsertJournal() throws Exception {
       JournalVO journalVO = new JournalVO();
       journalVO.setTitle("첫번째 게시물 입니다.");
-      journalVO.setStart_dt(Date.valueOf("2021-02-24"));
-      journalVO.setEnd_dt(Date.valueOf("2021-02-28"));
+      journalVO.setStart_dt(Date.valueOf("2021-02-24").toString());
+      journalVO.setEnd_dt(Date.valueOf("2021-02-28").toString());
       journalVO.setAuthor("현재 로그인중 아이디");
       journalVO.setMarker("마커 데이터");
 
@@ -85,8 +85,8 @@ public class JournalDAOTest {
       JournalVO journalVO = new JournalVO();
       journalVO.setJournal_no(1);
       journalVO.setTitle("첫번째 게시물 입니다.-수정됨");
-      journalVO.setStart_dt(Date.valueOf("2021-02-25"));
-      journalVO.setEnd_dt(Date.valueOf("2021-03-01"));
+      journalVO.setStart_dt(Date.valueOf("2021-02-25").toString());
+      journalVO.setEnd_dt(Date.valueOf("2021-03-01").toString());
       journalVO.setMarker("마커 데이터-수정됨");
       
       int result = journalDAO.updateJournal(journalVO);

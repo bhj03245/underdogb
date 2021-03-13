@@ -23,7 +23,7 @@ $( document ).ready( function() {
 			$('#search_title').blur();
 			$('#search_date').css('display','inline-block');
 			$('#search_author').css('display','inline-block');
-			$('.logout').css('color','white');
+			$('#header_right a').css('color','rgb(168, 215, 253)');
 		}
 		if(scroll_top!=0){
 			$('.Header').css('position','fixed');
@@ -46,7 +46,7 @@ $( document ).ready( function() {
 			$('#search_btn').css('height','30px');
 			$('#search_date').css('display','none');
 			$('#search_author').css('display','none');
-			$('.logout').css('color','black');
+			$('#header_right a').css('color','black');
 		}
 	});
 	

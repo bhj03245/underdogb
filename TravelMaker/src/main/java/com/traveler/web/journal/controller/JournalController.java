@@ -84,14 +84,28 @@ public class JournalController {
 	@PostMapping("/journalSearch")
 		public String searchList(@RequestParam("search_title") String search_title, @RequestParam("search_date") String search_date, @RequestParam("search_author") String search_author, Model model) throws Exception {
 		String path = null;
-		
+		List<JournalVO> journalList = new ArrayList<>();
+		List<List<DiaryVO>> diaryList = new ArrayList<>();
+		for(int i=0; i<journalList.size(); i++) {
+			diaryList.add(diaryService.getList(journalList.get(i).getJournal_no()));
+		}if(diaryList != null) {
+			model.addAttribute("diarylist", diaryList);
+		}
 		if (search_date.equals("") && search_author.equals("")) {//title로 검색할때
-				model.addAttribute("journalList", journalService.searchListTitle(search_title));
-			} else if (search_title == "" && search_author == "" ) {//방치
-				model.addAttribute("journalList", journalService.searchListDate(search_date));
+				journalList = journalService.searchListTitle(search_title);
+				model.addAttribute("journalList", journalList);
+			} else if (search_title == "" && search_author == "" ) {
+				journalList = journalService.searchListDate(search_date);
+				model.addAttribute("journalList", journalList);
 			} else 	if (search_date == "" && search_title == "" ) {
-				model.addAttribute("journalList", journalService.searchListAuthor(search_author));
-			} 
+				journalList = journalService.searchListAuthor(search_author);
+				model.addAttribute("journalList", journalList);
+			}
+		for(int i=0; i<journalList.size(); i++) {
+			diaryList.add(diaryService.getList(journalList.get(i).getJournal_no()));
+		}if(diaryList != null) {
+			model.addAttribute("diarylist", diaryList);
+		}
 		return "journal/journalSearch";
 			//return contextRoot+"journal/journalList";//절대경로 값 찾는것.
 		}

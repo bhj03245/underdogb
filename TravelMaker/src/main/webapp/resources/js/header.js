@@ -95,4 +95,17 @@ $( document ).ready( function() {
 		$('#search_title').css('border-right','2px solid lightgray');
 		$('#search_date').css('width','100%');
 	});
+	
+	$('#search_author').on("change", function(){
+		$('#search_title').val("");
+		$('#search_date').val(null);
+	});
+	$('#search_title').on("change", function(){
+		$('#search_author').val("");
+		$('#search_date').val(null);
+	});
+	$('#search_date').on("change", function(){
+		$('#search_author').val("");
+		$('#search_title').val(null);
+	});
 });

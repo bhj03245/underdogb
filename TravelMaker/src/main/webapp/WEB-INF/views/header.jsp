@@ -31,23 +31,13 @@
 
 $(document).ready(function() {
 	    $("#search_btn").on("click", function(e) {
-
-// 	    if (!searchForm.find("option:selected")
-// 	    .val()) {
-// 	    alert("검색종류를 선택하세요");
-// 	    return false;
-// 	    }
-
-// 	    if (!searchForm.find(
-// 	    "input[name='keyword']").val()) {
-// 	    alert("키워드를 입력하세요");
-// 	    return false;
-// 	    }
-
 	    e.preventDefault();
 
 	    $('#searchForm').submit();
 
+	    });
+	    $('#logo').on("click", function(){
+	    	location.href="${pageContext.request.contextPath}/main";
 	    });
 	});
 

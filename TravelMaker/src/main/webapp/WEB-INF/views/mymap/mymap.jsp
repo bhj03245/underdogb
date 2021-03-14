@@ -269,7 +269,7 @@ body{
 			   diaryMarkers=[];
 		}
 		function gotoMyJournal(journal_no){
-			location.href='/journal/list';
+			location.href='/journal/list?id=${id}';
 		}
 	</script>
 </body>

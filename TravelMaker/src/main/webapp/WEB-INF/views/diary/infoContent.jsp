@@ -161,14 +161,14 @@ color: black;
   <input type="hidden" id="diary_no" name="diary_no" value="${diary.diary_no}" />
   <input type="hidden" id="journal_no" name="journal_no" value="${diary.journal_no }"/>
   <div style="width:650px; text-align: center;">
-    <label for="writer">작성자</label><input type="text" id="writer" name="writer" />
+  <input type="hidden" id="writer" name="writer" value="${id}"/>
     <br/>
     <textarea rows="3" cols="80" id="content" name="content" placeholder="댓글을 작성해주세요"></textarea>
      <button type="button" class="replyWriteBtn">작성완료</button>
   </div>
 </form>
 <div id="reply" style="width:700px">
-  <ol class="replyList">
+  <ul class="replyList">
     <c:forEach items="${replyList}" var="replyList">
       <li>
       <div hr style="border-bottom: dotted 1px black; margin-bottom: 20px;">
@@ -182,7 +182,7 @@ color: black;
            </div>
       </li>
     </c:forEach>   
-  </ol>
+  </ul>
 </div>
 </div>
 </div>  

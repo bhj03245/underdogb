@@ -56,7 +56,8 @@
 	$(document).ready(function() {
 		for(var i=0; i<$('.imglocs').length; i++){
 			var imgloc=$('.imglocs:eq('+i+')').val();
-			if(imgloc!=''){
+			if(imgloc!='{"imglocs"}]}'&&imgloc!=''){
+				console.log(imgloc);
 				var jsonImg = JSON.parse(imgloc);
 				$('.img:eq('+i+')').css('background-image','url('+jsonImg.imglocs[0].imgloc+')');
 			}else{

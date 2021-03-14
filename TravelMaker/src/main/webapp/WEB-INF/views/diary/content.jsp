@@ -213,7 +213,7 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 	  	if('${diary.imglocs}'!='{"imglocs"}]}'){ //사진이 있는경우
 	  		arr.push('${diary.imglocs}'); //사진의 경로를 arr에 넣어준다 아직 형태는 json string
 	  	}else{ //없는경우
-	  		arr.push('{"imglocs":[{"imgloc":"noimage"}]}'); //noimage가 뜬다
+	  		arr.push('{"imglocs":[{"imgloc":"${CONTEXT_PATH}/resources/img/noImage.gif"}]}'); //noimage가 뜬다
 	  	}
 	  </c:forEach>
 	  
@@ -222,6 +222,7 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 		  imglist.push(jsonimg.imglocs[0].imgloc); //변환한 경로들 중 첫번째 경로의 첫번째 사진을 imglist에 넣어준다.
 //		  console.log(jsonimg.imglocs[0].imgloc);
 	  } // 현재 imglist에는 각 게시글의 첫번째 사진의 경로가 순서대로 저장되어있다.
+	  console.log(imglist);
 	  for(var i=0; i<imglist.length; i++){
 	  	$('.thumbnail').eq(i).css('background-image','url('+imglist[i]+')'); //thumbnail i번째 요소의 src 속성을 첫번째 사진의 경로로 바꿔준다.
 	  }

@@ -1,5 +1,7 @@
 package com.traveler.web.diary.model;
 
+
+
 import java.sql.Date;
 
 import lombok.Data;

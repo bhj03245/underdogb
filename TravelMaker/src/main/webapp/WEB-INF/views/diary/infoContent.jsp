@@ -173,6 +173,41 @@ p {
    margin-right: -10px;
 }
 
+#modal {
+   display: none;
+   position:relative;
+   width:100%;
+   top: 10px;
+   z-index:1;
+}
+
+#modal h2 {
+   margin:0;
+}
+#modal button {
+   display:inline-block;
+   width:100px;
+   margin-left:calc(100% - 100px - 10px);
+}
+
+#modal .modal_content {
+   width:300px;
+   margin:100px auto;
+   padding:20px 10px;
+   background:#fff;
+   border:2px solid #666;
+}
+
+#modal .modal_layer {
+   position:fixed;
+   top:0;
+   left:0;
+   width:100%;
+   height:100%;
+   background:rgba(0, 0, 0, 0.5);
+   z-index:-1;
+}
+
 </style>
 </head>
 
@@ -224,12 +259,11 @@ p {
 </form>
 <div id="reply">
   <ul class="replyList">
-    <c:forEach items="${replyList}" var="replyList">
+    <c:forEach items="${replyList}" var="replyList" varStatus="status">
       <li>
       <div hr style="border-bottom: dotted 1px black; margin-bottom: 20px;">
         <h3>${replyList.writer}</h3>  
         <p>${replyList.content}</p>
-        <p>${replyList.regdate}</p>
         <div style="margin-bottom: 20px;">
         <div id="replyBtn">
            <button type="button" class="replyUpdateBtn" data-reply="${replyList.reply }">수정</button>
@@ -238,19 +272,36 @@ p {
         </div>
         </div>
       </li>
-    </c:forEach>   
+    </c:forEach>
   </ul>
+</div>
+<!-- modal -->
+<div id="modal">
+   <div class="modal_content">
+      <h3>댓글을 삭제하시겠습니까?</h3>
+      <form name="deleteForm" id="form" role="form" method="post" action="/diary/replyDelete">
+      <input type="hidden" name="diary_no" value="${replyDelete.diary_no}" readonly="readonly"/>
+      <input type="hidden" id="reply" name="reply" value="${replyDelete.reply}" />
+      <input type="hidden" id="journal_no" name="journal_no" value="<%=journal_no %>"/>
+      </form>
+      <button type="button" id="modal_close_btn">삭제</button>
+      <button type="button" id="modal_close1_btn">취소</button>
+   </div>
+   <div class="modal_layer"></div>
+</div>
+
+<div>
 </div>
 </div>
 </div>  
-      <script>
-      var actionForm = $("#actionForm");
-      
-      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-       mapOption = {
-           center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-           level: 4 // 지도의 확대 레벨
-       };  
+<script>
+var actionForm = $("#actionForm");
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+ mapOption = {
+     center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+     level: 4 // 지도의 확대 레벨
+ };  
 
    // 지도를 생성합니다    
    var map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -279,17 +330,52 @@ p {
  //댓글 수정 View
    $(".replyUpdateBtn").on("click", function(){
       location.href = "/diary/replyUpdateView?diary_no=${diary.diary_no}"
-                  + "&reply="+$(this).attr("data-reply")
-                       + "&journal_no="+${diary.journal_no};
+                        + "&reply="+$(this).attr("data-reply")
+                        + "&journal_no="+${diary.journal_no};
    });
          
-//댓글 삭제 View
+
    $(".replyDeleteBtn").on("click", function(){
-      location.href = "/diary/replyDeleteView?diary_no=${diary.diary_no}"
-         + "&reply="+$(this).attr("data-reply")
-          + "&journal_no="+${diary.journal_no};
+      $("#modal").show();
+      $("#modal_close_btn").val($(this).attr("data-reply"));
    });
    
+   $("#modal_close_btn").on("click", function(){
+
+		var params={ 
+				reply : $(this).val(),
+				diary_no : '${diary.diary_no}'
+		}
+		
+		$.ajax({
+		    url: "/diary/replyDeleteView",
+		    data: params,
+		    type: "POST",
+		    success : function(data){
+		    	$("#modal").hide();
+		    	$('.replyList').text('');
+//		    	console.log(data);
+		    	for(var i = 0; i<data.replyList.length; i++){
+			    	$('.replyList').append('<li class="reply1"></li>');
+			    	$('.reply1:eq('+i+')').append('<div class="reply2" hr style="border-bottom: dotted 1px black; margin-bottom: 20px;"></div>');
+			    	$('.reply2:eq('+i+')').append('<h3>'+data.replyList[i].writer+'</h3>');  
+			    	$('.reply2:eq('+i+')').append('<p>'+data.replyList[i].content+'</p>');
+			        $('.reply2:eq('+i+')').append('<div class="reply3" style="margin-bottom: 20px;"></div>');
+			        $('.reply3:eq('+i+')').append('<div class="replyBtn"></div>');
+			        $('.replyBtn:eq('+i+')').append('<button type="button" class="replyUpdateBtn" data-reply="'+data.replyList[i].reply+'">수정</button>');
+			        $('.replyBtn:eq('+i+')').append('<button type="button" class="replyDeleteBtn" data-reply="'+data.replyList[i].reply+'">삭제</button>');
+			      }
+			    },
+			    error : function(){
+			      alert("에러")		
+			    }
+			  });
+	   		});
+   
+   $("#modal_close1_btn").on("click", function(){
+	   location.href = "/diary/info?diary_no=${diary.diary_no}"+"&journal_no="+<%=journal_no%>
+
+   });
    
 </script>
 </body>

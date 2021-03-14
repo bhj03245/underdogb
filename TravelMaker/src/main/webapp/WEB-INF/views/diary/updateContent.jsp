@@ -173,7 +173,7 @@ label{
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ebaa88a9f875faa0b1038d0b6682dfde&libraries=services"></script>
 <body>
 <div class="diaryUpdateContainer">
-	<h1>여행일기 수정하기</h1>
+	<h1>다이어리 수정하기</h1>
 		<div class="updateDiary">
 			<form role="form" id="form" action="${pageContext.request.contextPath}/diary/update" method="post">
 			<input type="hidden" name="journal_no" value="${diary.journal_no}">

@@ -84,15 +84,17 @@ crossorigin="anonymous">
                d="M40,105 C10,140 110,140 80,105 L80,105 L70,111 L60,105 L50,111 L40,105"
                fill="#fff" />
         </svg>
-         <input type="text" class = "login_id" id = "login_id" name = "id" placeholder="ID"> 
+         <input type="text" class = "login_id" id = "login_id" name = "id" placeholder="email@domain.com"> 
          <input type="password" class = "login_pw" id = "login_pw" name = "password" placeholder="Password">
          <c:if test="${result == 0 }">
          <div class = "login_warn">사용자 ID 또는 비밀번호를 잘못 입력하였습니다.</div>
          </c:if>
          <input type="button" class = "login_btn" value="로그인">
          <div id = "idpwsearch" style = "margin-top: 10px;">
-         <input type = "button" id = "search_id" value = "아이디 찾기" style = "color :black; margin-left: 10px;">
-         <input type = "button" id = "search_pw" value = "비밀번호 찾기" style = "color :black; ">
+         <input type = "button" id = "search_id" value = "아이디 찾기" style = "color :orange; margin-left: 10px;">
+         <input type = "button" id = "search_pw" value = "비밀번호 찾기" style = "color :orange; ">
+<!--          <a href = "#searchid_modal" class = "searchid" style = "text-decoration: none; margin-left: 25px; margin-right: 30px;">아이디 찾기</a> -->
+<!--          <a href = "" class = "searchpw" style = "text-decoration: none;">비밀번호 찾기</a> -->
          </div>
       </form>
    </div>
@@ -192,6 +194,7 @@ crossorigin="anonymous">
                d="M40,105 C10,140 110,140 80,105 L80,105 L70,111 L60,105 L50,111 L40,105"
                fill="#fff" />
         </svg>
+<!--         <input type = "text" class = "input_searchpw_id" id = "input_searchpw_id" name = "input_searchpw_id" placeholder="아이디"> -->
                  <input type="text" class = "input_searchpw_email" id = "input_searchpw_email" name = "input_searchpw_email" placeholder="email@domain.com"> 
          <input type="button" class = "search_pw_btn" value="비밀번호 찾기">
       </form>
@@ -329,6 +332,16 @@ crossorigin="anonymous">
    });
    </script>
    
+<!--    <script>
+    $(window).load( function() {
+        var loginModal = document.getElementById('login_modal');
+        var checkk = $('#login_checkk').val();
+       if(checkk == "false"){
+       loginModal.style.display = 'inherit';
+        } 
+       
+    });
+    </script> -->
 <!--회원가입 js -->
    <script>
 

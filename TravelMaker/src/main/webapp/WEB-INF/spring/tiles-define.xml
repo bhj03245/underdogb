@@ -58,19 +58,4 @@
 		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
 		<put-attribute name="diarylist" value="/WEB-INF/views/mymap/mymaplist.jsp" />
 	</definition>
-	<definition name="user/info" template="/WEB-INF/views/user/info.jsp">
-		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
-		<put-attribute name="content" value="/WEB-INF/views/user/infoContent.jsp" />		
-		<put-attribute name="nav" value="/WEB-INF/views/journal/journalNav.jsp" />
-	</definition>
-	<definition name="user/update" template="/WEB-INF/views/user/update.jsp">
-		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
-		<put-attribute name="content" value="/WEB-INF/views/user/updateContent.jsp" />		
-		<put-attribute name="nav" value="/WEB-INF/views/journal/journalNav.jsp" />
-	</definition>
-	<definition name="user/delete" template="/WEB-INF/views/user/delete.jsp">
-		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
-		<put-attribute name="content" value="/WEB-INF/views/user/deleteContent.jsp" />		
-		<put-attribute name="nav" value="/WEB-INF/views/journal/journalNav.jsp" />
-	</definition>
 </tiles-definitions>

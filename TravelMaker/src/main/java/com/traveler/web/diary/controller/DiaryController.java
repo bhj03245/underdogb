@@ -3,7 +3,9 @@ package com.traveler.web.diary.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -11,13 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.tiles.request.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,7 +31,6 @@ import com.traveler.web.diary.service.DiaryService;
 import com.traveler.web.diary.service.ReplyService;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j;
 
 
 @Controller
@@ -195,15 +195,22 @@ public class DiaryController {
 	}
 	
 	//댓글 삭제
-	@GetMapping("replyDeleteView")
-	public String replyDeleteView(ReplyVO vo, Model model) {
+	@PostMapping("/replyDeleteView")
+	@ResponseBody
+	public Map<String, Object> replyDeleteView(int reply, int diary_no) {
+		ReplyVO vo =new ReplyVO();
+		vo.setReply(reply);
+		Map<String, Object> result = new HashMap<String, Object>();        
+        // 응답 데이터 셋팅
+		replyService.deleteReply(vo);
+		List<ReplyVO> replyList = replyService.viewReply(diary_no);
+        result.put("replyList", replyList);
+//        model.addAttribute("replyList",replyList);
+        return result;
 		
-		model.addAttribute("replyDelete", replyService.selectReply(vo.getReply()));
-		
-		return "diary/replyDeleteView";
 	}
 	
-	@PostMapping("replyDelete")
+	@RequestMapping(value="replyDelete", method= {RequestMethod.GET, RequestMethod.POST})
 	public String replyDele(ReplyVO vo, RedirectAttributes rttr, @RequestParam("journal_no") int journal_no) {
 		
 		replyService.deleteReply(vo);

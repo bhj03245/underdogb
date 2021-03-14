@@ -12,7 +12,7 @@
 			var formObj = $("form[name='deleteForm']");
 			
 			$(".cancel_btn").on("click", function(){
-				location.href = "/diary/readView?diary_no=${replyDelete.diary_no}"
+				location.href = "/diary/info?diary_no=${replyDelete.diary_no}"+"&journal_no="+<%=journal_no%>
 			})
 			
 		})

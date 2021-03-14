@@ -160,7 +160,7 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 </head>
 <body>
 	<div id="diaryContentContainer">
-	<h2>내 여행지도</h2>
+	<h2>내 여행일기</h2>
 	<div id="myDiaryList">
     <c:forEach items="${diarylist}" var="diary" varStatus="status">
 	<div class="section">

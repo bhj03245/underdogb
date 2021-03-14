@@ -20,7 +20,7 @@
 <div id="createContentContainer">
 	<h1>내 여행일지</h1>
 	<form:form id="form"
-		action="${pageContext.request.contextPath}/journal/saveJournal"
+		action="${pageContext.request.contextPath}/journal/saveJournal?id=${id}"
 		modelAttribute="journalVO"
 		method="post">
 		<form:hidden path="journal_no" />

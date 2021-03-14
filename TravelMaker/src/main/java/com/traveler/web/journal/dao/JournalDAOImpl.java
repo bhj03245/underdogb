@@ -15,8 +15,8 @@ public class JournalDAOImpl implements JournalDAO {//mapper로 가는거
 	private SqlSession sqlSession;
 
 	@Override
-	public List<JournalVO> getJournalList() throws Exception {
-		return sqlSession.selectList("com.traveler.web.journal.journalMapper.getJournalList");
+	public List<JournalVO> getJournalList(String author) throws Exception {
+		return sqlSession.selectList("com.traveler.web.journal.journalMapper.getJournalList", author);
 	}
 	
 	@Override

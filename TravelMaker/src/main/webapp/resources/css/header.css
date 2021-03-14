@@ -26,6 +26,11 @@
 	float: right;
     display: flex;
 }
+
+div#header_right a {
+    margin-right: 10px;
+}
+
 #header_right div{
 	padding-left: 20px;
 }

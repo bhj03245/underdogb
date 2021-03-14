@@ -66,6 +66,7 @@ h1{
 }
 .section2 {
     position: relative;
+    display: flex;
     width: 100%;
     height: 60%;
     margin-top: 2.5%;
@@ -91,13 +92,13 @@ h1{
     float: left;
     font-size: 18px;
 }
-#plusBtn {
+.plusBtn {
 	width: 33px;
 	margin-top: 10px;
 	margin-right: 20px;
 	float: right;
 }
-#btn{
+.btn{
 	display: none;
 } 
 .btnUpdate {
@@ -151,12 +152,16 @@ h1{
     width: 30px;
     margin-top: 20px;
 }
-#img {
+.img {
 	float: left;
-    width: 180px;
+    width: 100%;
     height: 100%;
-    margin-left: 13px;
-    margin-right: 3px;
     background-color: yellowgreen;
+    background-position: center;
+    background-size: cover;
     border-radius: 10px;
+}
+
+.img:nth-child(2){
+	margin: 0px 10px;
 }

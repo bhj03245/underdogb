@@ -17,7 +17,7 @@
     top: 0;
     display: none;
 }
-#searchid_modal {
+#searchid_modal, #searchpw_modal {
 	background-color: rgba(61,81,107,0.5);
     position: absolute;
     width: 100%;

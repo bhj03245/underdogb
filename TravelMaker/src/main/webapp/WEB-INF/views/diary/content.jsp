@@ -31,6 +31,7 @@
 	float: left;
     width: 70%;
     height: 100%;
+    position: relative;
 }
 
 h2 {
@@ -55,6 +56,8 @@ h2 {
     text-align: center;
     padding: 30px 15px;
     border-radius: 20px;
+    position: absolute;
+    right: 5%;
 }
 
 .section {

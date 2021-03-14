@@ -3,11 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ page session="false"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
 <%@ page import="java.net.*"%>
-<% int journal_no = Integer.parseInt(request.getParameter("journal_no")); %>
+<% 
+	int journal_no = Integer.parseInt(request.getParameter("journal_no"));
+	String id = (String)session.getAttribute("id");
+%>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -120,6 +122,7 @@ color: black;
 
 </style>
 </head>
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ebaa88a9f875faa0b1038d0b6682dfde&libraries=services"></script>
 <body>
 <div class="diaryPageContainer">

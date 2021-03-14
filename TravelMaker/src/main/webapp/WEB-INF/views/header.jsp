@@ -8,9 +8,9 @@
 	<!-- 로그인한 상태 -->
 	<c:if test="${id != null }">
 		<div id="header_right">
-			<a href="/MyTravel.do" id = "logout">My Travel</a>
-			<a href="/logout.do" id = "logout">&nbsp&nbsp로그아웃</a>
-			<a href="journal/create.do" id = "logout">&nbsp&nbsp일지생성</a>
+			<a href="${pageContext.request.contextPath}/journal/list?id=${id}" id = "logout">My Travel</a>
+			<a href="/logout.do" id = "logout">로그아웃</a>
+			<a href="${pageContext.request.contextPath}/journal/create?id=${id}" id = "logout">일지생성</a>
 		</div>
 	</c:if>
 	<form id="searchForm" action="${pageContext.request.contextPath}/journal/journalSearch" method="post">

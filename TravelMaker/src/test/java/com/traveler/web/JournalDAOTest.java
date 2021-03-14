@@ -29,19 +29,19 @@ public class JournalDAOTest {
    @Inject
    private JournalDAO journalDAO;
 
-   @Test
-   public void testGetJournalList() throws Exception {
-      List<JournalVO> journalList = journalDAO.getJournalList();
-      logger.info("\n Journal List \n ");
-      
-      if(journalList.size() > 0) {
-         for(JournalVO list : journalList) {
-            logger.info(list.getTitle());
-         }
-      } else {
-         logger.info("데이터가 없습니다.");
-      }
-   }   
+//   @Test
+//   public void testGetJournalList() throws Exception {
+//      List<JournalVO> journalList = journalDAO.getJournalList();
+//      logger.info("\n Journal List \n ");
+//      
+//      if(journalList.size() > 0) {
+//         for(JournalVO list : journalList) {
+//            logger.info(list.getTitle());
+//         }
+//      } else {
+//         logger.info("데이터가 없습니다.");
+//      }
+//   }   
 
    @Test @Ignore
    public void testGetJournalContent() throws Exception {

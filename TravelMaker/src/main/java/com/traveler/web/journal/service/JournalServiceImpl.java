@@ -14,8 +14,8 @@ public class JournalServiceImpl implements JournalService{
 	private JournalDAO journalDAO;
 	
 	@Override
-	public List<JournalVO> getJournalList() throws Exception{
-		return journalDAO.getJournalList();
+	public List<JournalVO> getJournalList(String author) throws Exception{
+		return journalDAO.getJournalList(author);
 	}
 	
 	@Override

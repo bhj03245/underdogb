@@ -40,8 +40,8 @@ public class JournalController {
 	private DiaryService diaryService;
 	
 	@GetMapping("/list")
-	public String getJournalList(Model model) throws Exception{
-		List<JournalVO> journalList = journalService.getJournalList();
+	public String getJournalList(Model model, @RequestParam("id") String author) throws Exception{
+		List<JournalVO> journalList = journalService.getJournalList(author);
 		List<List<DiaryVO>> diaryList = new ArrayList<>();
 		model.addAttribute("journalList", journalList);
 		for(int i=0; i<journalList.size(); i++) {
@@ -72,13 +72,13 @@ public class JournalController {
 	}
 	
 	@PostMapping("/saveJournal")
-	public String saveJouarnal(@ModelAttribute("JournalVO") JournalVO journalVO, @RequestParam("mode") String mode, RedirectAttributes rttr) throws Exception {
+	public String saveJouarnal(@ModelAttribute("JournalVO") JournalVO journalVO,  @RequestParam("id") String author, @RequestParam("mode") String mode, RedirectAttributes rttr) throws Exception {
 		if (mode.equals("edit")) {
 			journalService.updateJournal(journalVO);
 		} else {
 			journalService.insertJournal(journalVO);
 		}
-		return "redirect:/journal/list";
+		return "redirect:/journal/list?id="+author;
 	}
 	
 	@PostMapping("/journalSearch")

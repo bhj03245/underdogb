@@ -40,28 +40,14 @@ public class UserController {
 	
 	@Autowired
 	private JavaMailSender mailSender;
-	
-	// 회원가입페이지 이동
-	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
-	public void signUpGET() {
-		logger.info("회원가입 페이지 이동");
-	}
-	
-	// 로그인페이지 이동
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public void loginGET() {
-		logger.info("로그인 페이지 이동");
-	}
-	
+		
 	// 회원가입
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public String signUpPOST(UserVO vo)throws Exception{
-		logger.info("signUp");
 		
 		// 회원가입 서비스 실행
 		userserivce.insertUser(vo);
 		
-		logger.info("signUp service 성공");
 		return "redirect:/";
 	}
 	
@@ -69,11 +55,9 @@ public class UserController {
 	@RequestMapping(value = "/userIdCheck", method = RequestMethod.POST)
 	@ResponseBody
 	public String userIdCheckPOST(String id)throws Exception{
-		logger.info("userIdCheck() 진입");
 		
 		int result = userserivce.idCheck(id);
 		
-		logger.info("결과값 = " + result);
 		if(result != 0) {
 			return "fail";
 		} else {
@@ -84,8 +68,7 @@ public class UserController {
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginPOST(HttpServletRequest request, UserVO vo, RedirectAttributes rttr)throws Exception {
-		System.out.println("login 메서드 진입");
-		System.out.println("전달된 데이터: " + vo);
+
 		
 		HttpSession session = request.getSession();		
 		UserVO lvo = userserivce.userLogin(vo);
@@ -93,7 +76,6 @@ public class UserController {
 		System.out.println("lvo = " + lvo);
 		if(lvo == null) {
 			int result = 0;
-//			rttr.addAttribute("result", result);
 			rttr.addFlashAttribute("result", result);
 			session.setAttribute("login", "false");
 			return "redirect:/";
@@ -106,9 +88,7 @@ public class UserController {
 	/* 로그아웃 */
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logoutGET(HttpServletRequest request)throws Exception {
-		System.out.println("logout 메서드 진입");
 
-		logger.info("logoutGET 로그아웃");
 		
 		HttpSession session = request.getSession();
 		
@@ -116,31 +96,15 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-//	//로그인 2
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
-//	public String login(HttpServletRequest request, HttpSession session, UserVO vo)throws Exception {
-//		vo.setId(request.getParameter("id"));
-//		vo.setPassword(request.getParameter("password"));
-//		
-//		if(userserivce.userLogin(session, vo) == 1) {
-//			session.setAttribute("id", request.getParameter("id"));
-//		}
-//	}
 	
 	// 이메일 인증
 	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String emailCheckGET(String email)throws Exception{
-//		logger.info("이메일 데이터 전송 확인");
-//		logger.info("인증 번호 : " + email);
-		System.out.println("이메일 데이터 전송 확인");
-		System.out.println("인증번호 메일 : " + email);
-		
+	
 		// 인증 번호 생성
 		Random random = new Random();
 		int checkNum = random.nextInt(888888) + 111111;
-//		logger.info("인증번호" + checkNum);
-		System.out.println("인증번호 " + checkNum);
 //		
 //		// 이메일 보내기
 		String setForm = "kksskk1234@naver.com";
@@ -175,45 +139,38 @@ public class UserController {
 		String id = (String) session.getAttribute("id");
 		
 		UserVO vo = userserivce.readUser(id);
-		System.out.println("id = " +id);
 		model.addAttribute("VO", vo);
-		logger.info("C:회원정보보기 GET으 VO" + vo);
-		System.out.println("C: 회원정보보기 GET의 아이디 " + vo);
-		return "user/userInfo";
+		return "user/info";
 	}
 	// 회원정보 수정
-	@RequestMapping(value = "/user/userUpdateForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/update", method = RequestMethod.GET)
 	public String updateGET(HttpSession session, Model model)throws Exception {
 		model.addAttribute("VO", userserivce.readUser((String)session.getAttribute("id")));
-		System.out.println("업데이트 폼간다");
 		
-		return "user/userUpdateForm";
+		return "user/update";
 	}
 	@RequestMapping(value = "/update.do", method = RequestMethod.POST)
-	public String updatePOST(UserVO vo)throws Exception {
-		logger.info("C: 회원정보 입력페이지 POST");
-		System.out.println("바꿔준다");
+	public String updatePOST(UserVO vo, HttpSession session, Model model)throws Exception {
 		userserivce.updateUser(vo);
-		return "redirect:/main";
+		model.addAttribute("VO", userserivce.readUser((String)session.getAttribute("id")));
+
+		return "user/info";
 	}
 	// 회원정보 삭제
-	@RequestMapping(value = "/user/userDeleteForm", method = RequestMethod.GET)
-	public String deleteGET()throws Exception {
-		System.out.println("딜리트폼 간다");
-		return "user/userDeleteForm";
+	@RequestMapping(value = "/user/delete", method = RequestMethod.GET)
+	public String deleteGET(HttpSession session, Model model)throws Exception {
+		model.addAttribute("VO", userserivce.readUser((String)session.getAttribute("id")));
+		return "user/delete";
 	}
 	
 	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
-	public String deletePOST(UserVO vo, HttpSession session, RedirectAttributes rttr)throws Exception {
-		System.out.println("C: 회원정보 삭제 GET");
-//		String id = (String) session.getAttribute("id");
-		System.out.println(vo);
-		UserVO user = (UserVO)session.getAttribute("vo");
+	public String deletePOST(Model model, UserVO vo, HttpSession session, RedirectAttributes rttr)throws Exception {
+		UserVO user = (UserVO)session.getAttribute("VO");
 		String sessionPass = user.getPassword();
 		String voPass = vo.getPassword();
 		if(!(sessionPass.equals(voPass))) {
 			rttr.addFlashAttribute("msg", false);
-			return "redirect:/user/userDeleteForm";
+			return "user/delete";
 		}
 		userserivce.deleteUser(vo);
 		session.invalidate();
@@ -225,7 +182,7 @@ public class UserController {
 //		}
 //		System.out.println("하하하");
 //		return "redirect:/";
-	}
+}
 //	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
 //	public String deletePOST(UserVO vo, HttpSession session)throws Exception {
 //		System.out.println("C: 회원정보 삭제 POST");
@@ -238,62 +195,20 @@ public class UserController {
 	@RequestMapping(value = "/MyTravel.do", method = RequestMethod.GET)
 	public String MyTravelGET(HttpServletRequest request)throws Exception {
 		
-		logger.info("MyTravelGET 마이트래벌");
 		
 		HttpSession session = request.getSession();
 		
-//		session.invalidate();
-		return "/MyTravel";
+		return "user/MyTravel";
 	}
-//	@RequestMapping(value = "/userInfo.do", method = RequestMethod.GET)
-//	public String userInfoGET(HttpServletRequest request)throws Exception {
-//		
-//		logger.info("userInfoGET 마이트래벌");
-//		
-//		HttpSession session = request.getSession();
-//		
-////		session.invalidate();
-//		return "/user/userInfo";
-//}
-	
-	// 아이디 찾기
-//	@RequestMapping(value = "/searchid_form", method = RequestMethod.POST)
-//	public String searchidPOST(UserVO vo, Model model)throws Exception {
-//		UserVO lvo = userserivce.searchid(vo);
-//		
-//		if(lvo == null) {
-//			model.addAttribute("check", 1);
-//		} else {
-//			model.addAttribute("check", 0);
-//			model.addAttribute("id", lvo.getId());
-//		}
-//		return "redirect:/";
-//	}
-//	@RequestMapping(value = "/searchpw_form", method = RequestMethod.POST)
-//	public String searchpwPOST(UserVO vo, Model model)throws Exception {
-//		UserVO lvo = userserivce.searchpw(vo);
-//		
-//		if(lvo == null) {
-//			model.addAttribute("check", 1);
-//		} else {
-//			model.addAttribute("check", 0);
-//			model.addAttribute("password", lvo.getPassword());
-//		}
-//		return "redirect:/";
-//	}
 	
 	// 아이디 찾기 메일
 	@RequestMapping(value = "/searchid_email", method = RequestMethod.POST)
 	public UserVO searchidEmailPOST(String email, UserVO vo)throws Exception {
-//		UserVO id = userserivce.readUser(id);
-//		String emaill = vo.getEmail("email");
 		UserVO lvo = userserivce.searchid(vo);
 		String setForm = "kksskk1234@naver.com";
 		String toMail = email;
 		String title = "회원님의 아이디 입니다.";
 		String content = "회원님의 아이디는 " + lvo.getId() + " 입니다";
-		System.out.println("lvo = " + lvo.getId());
-		System.out.println(email);		
 		
 		try {
 			MimeMessage message = mailSender.createMimeMessage();

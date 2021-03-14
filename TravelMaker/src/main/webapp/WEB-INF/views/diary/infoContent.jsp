@@ -177,7 +177,7 @@ p {
    display: none;
    position:relative;
    width:100%;
-   top: 10px;
+   top: -800px;
    z-index:1;
 }
 
@@ -191,7 +191,7 @@ p {
 }
 
 #modal .modal_content {
-   width:300px;
+   width:500px;
    margin:100px auto;
    padding:20px 10px;
    background:#fff;

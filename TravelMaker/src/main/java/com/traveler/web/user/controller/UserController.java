@@ -1,5 +1,6 @@
  package com.traveler.web.user.controller;
 
+import java.io.PrintWriter;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -72,8 +73,6 @@ public class UserController {
 		
 		HttpSession session = request.getSession();		
 		UserVO lvo = userserivce.userLogin(vo);
-		System.out.println("sessiion = " + session);
-		System.out.println("lvo = " + lvo);
 		if(lvo == null) {
 			int result = 0;
 			rttr.addFlashAttribute("result", result);
@@ -81,6 +80,7 @@ public class UserController {
 			return "redirect:/";
 		}
 		session.setAttribute("id", lvo.getId());
+		session.setAttribute("lvo", lvo);
 		session.setAttribute("login", "true");
 		return "redirect:/main";
 	}
@@ -164,33 +164,22 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
-	public String deletePOST(Model model, UserVO vo, HttpSession session, RedirectAttributes rttr)throws Exception {
-		UserVO user = (UserVO)session.getAttribute("VO");
-		String sessionPass = user.getPassword();
+	public String deletePOST(HttpServletResponse response, Model model, UserVO vo, HttpSession session, RedirectAttributes rttr)throws Exception {
+		model.addAttribute("VO", userserivce.readUser((String)session.getAttribute("id")));
+		
+
+		UserVO pw = (UserVO)session.getAttribute("lvo");
+		String sessionPass = pw.getPassword();
 		String voPass = vo.getPassword();
 		if(!(sessionPass.equals(voPass))) {
+			model.addAttribute("msg", "메세지");
 			rttr.addFlashAttribute("msg", false);
 			return "user/delete";
 		}
 		userserivce.deleteUser(vo);
 		session.invalidate();
 		return "redirect:/";
-//		userserivce.deleteUser(vo);
-//		if(vo == null) {
-//			System.out.println("헤헤");
-//			return "user/userDeleteForm";
-//		}
-//		System.out.println("하하하");
-//		return "redirect:/";
-}
-//	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
-//	public String deletePOST(UserVO vo, HttpSession session)throws Exception {
-//		System.out.println("C: 회원정보 삭제 POST");
-//		System.out.println("C: deleteForm전달정보" + vo);
-//		userserivce.deleteUser(vo);
-//		session.invalidate();
-//		return "redirect:/";
-//	}
+	}
 	// 마이페이지
 	@RequestMapping(value = "/MyTravel.do", method = RequestMethod.GET)
 	public String MyTravelGET(HttpServletRequest request)throws Exception {

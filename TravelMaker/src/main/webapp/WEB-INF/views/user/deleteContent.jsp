@@ -52,7 +52,7 @@ td {
 <div id = "deletetitle">
 <h1>회원 탈퇴</h1>
 </div>
-	<form action="/delete.do" method="post">
+	<form action="/delete.do" method="post" name = "deletefrm">
 	<div id = "deletetable">
 	<table border = "1">
 	<tr>
@@ -73,7 +73,7 @@ td {
 	</tr>
 	</table>
 	<div id = "bbb">
-	<input type="submit" value="탈퇴하기" style="width: 70px; height: 30px; color: #5D5D5D; font-size: 15px;
+	<input type="submit" id = "delete_btn" value="탈퇴하기" style="width: 70px; height: 30px; color: #5D5D5D; font-size: 15px;
 		background-color: #B2CCFF; border:0; border-radius: 10px 10px 10px 10px;">
 	<input type="button" value="뒤로가기" onclick="location.href='/main'" style="width: 70px; height: 30px; color: #5D5D5D; font-size: 15px;
 		background-color: #B2CCFF; border:0; border-radius: 10px 10px 10px 10px;">
@@ -82,9 +82,20 @@ td {
 	</form>
 	<div>
 	<c:if test="${msg == false }">
+	<p style = "margin-left: 480px; color : red;" >
 	비밀번호가 틀렸습니다.
+	</p>
 	</c:if>
 	</div>
 	</div>
-</body>
+	<script>
+	$('#delete_btn').click(function(){
+		if(confirm("정말 삭제하시겠습니까?") == true) {
+			document.deletefrm.submit();
+		} else {
+			return false;
+		}
+	});
+	</script>
+	</body>
 </html>
